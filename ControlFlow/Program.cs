@@ -36,3 +36,17 @@ else
 Console.WriteLine("Your choice is: " + userChoice);
 
 Console.ReadKey();
+
+
+class Exercise
+{
+    int AbsoluteOfSum(int numOne, int numTwo)
+    {
+        int result = numOne + numTwo;
+        if (result < 0)
+        {
+            return result * -1;
+        }
+        return result;
+    }
+}

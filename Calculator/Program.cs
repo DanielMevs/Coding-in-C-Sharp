@@ -19,9 +19,10 @@ string PrintValues(string sign, string a, string b)
 {
     int numOne = int.Parse(a);
     int numTwo = int.Parse(b);
-    int result;
 
+    int result;
     string operatorSign;
+
     if(sign.ToUpper() == "A")
     {
         result = numOne + numTwo;

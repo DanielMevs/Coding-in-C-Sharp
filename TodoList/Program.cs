@@ -22,6 +22,10 @@ else if(userChoice == "E")
 {
     PrintSelectedOption("Exit");
 }
+else
+{
+    Console.WriteLine("Invalid choice");
+}
 
 void PrintSelectedOption(string selectedOption)
 {
