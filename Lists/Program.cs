@@ -1,46 +1,46 @@
-﻿var words = new List<string>
-{
-    "one",
-    "two",
-};
-
-Console.WriteLine($"Count of element is {words.Count}");
-
-foreach ( var word in words)
-{
-    Console.WriteLine(word);
-}
-
-
-
-Console.WriteLine();
+﻿//var words = new List<string>
+//{
+//    "one",
+//    "two",
+//};
+//
+//Console.WriteLine($"Count of element is {words.Count}");
+//
+//foreach ( var word in words)
+//{
+//    Console.WriteLine(word);
+//}
+//
+//
+//
+//Console.WriteLine();
 //Console.WriteLine("Removing an item");
 //words.Remove("one");
 
 // The list does nothing if the value to be removed
 //  does not exist in the list.
-words.Remove("twenty one");
+//words.Remove("twenty one");
 
 // Similar to .extends in Python
 //var moreWord = new[] { "three", "four", "five" };
 //words.AddRange( moreWord );
 
-words.AddRange(new[] { "three", "four", "five" });
-
-Console.WriteLine($"Index of element 'four' is {words.IndexOf("four")}");
-Console.WriteLine($"Index of element 'seven' is {words.IndexOf("seven")}");
-
-words.Clear();
-Console.WriteLine($"Count of elements after Clear: {words.Count}");
-
-
-foreach (var word in words)
-{
-    Console.WriteLine(word);
-}
-
-
-Console.WriteLine();
+//words.AddRange(new[] { "three", "four", "five" });
+//
+//Console.WriteLine($"Index of element 'four' is {words.IndexOf("four")}");
+//Console.WriteLine($"Index of element 'seven' is {words.IndexOf("seven")}");
+//
+//words.Clear();
+//Console.WriteLine($"Count of elements after Clear: {words.Count}");
+//
+//
+//foreach (var word in words)
+//{
+//    Console.WriteLine(word);
+//}
+//
+//
+//Console.WriteLine();
 var numbers = new[] { 10, -8, 2, 12, -17 };
 int nonPositiveCount;
 // With the out key word, the modification of the out variable
@@ -54,6 +54,29 @@ foreach (var positiveNumber in onlyPositive)
 }
 
 Console.WriteLine($"Count of non positive integers: {nonPositiveCount}");
+
+
+
+
+bool isParsingSuccessful;
+
+
+do
+{
+    Console.WriteLine("Enter a number: ");
+    var userInput = Console.ReadLine();
+
+    isParsingSuccessful = int.TryParse(
+        userInput, out int number);
+    if (isParsingSuccessful)
+    {
+        Console.WriteLine("Parsing worked,number is " + number);
+    }
+    else
+    {
+        Console.WriteLine("Parsing was not successful");
+    }
+} while (!isParsingSuccessful);
 
 
 Console.ReadKey();
