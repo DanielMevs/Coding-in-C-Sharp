@@ -50,7 +50,7 @@ do
             }
             else
             {
-                Console.WriteLine();
+                Console.WriteLine("The description must be unique!");
             }
         }
         else if (userInput == "R")
@@ -85,7 +85,7 @@ do
                         indexInput, out int index);
 
 
-                    if (isParsingSuccessful)
+                    if (isParsingSuccessful && index >= 1 && index <= todos.Count)
                     {
                         var item = todos[index - 1];
                         Console.WriteLine($"TODO removed: {item}");
