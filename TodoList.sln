@@ -31,6 +31,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lists", "Lists\Lists.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList2", "ToDoList2\ToDoList2.csproj", "{FF7B5F93-ED91-4C72-8F1B-0E6729DB1059}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTime", "DateTime\DateTime.csproj", "{CA42158B-2CFD-4E87-9A70-8800251BC5A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rectangle", "Rectangle\Rectangle.csproj", "{0F428AB1-788C-41B4-8757-77AE75A216AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +97,14 @@ Global
 		{FF7B5F93-ED91-4C72-8F1B-0E6729DB1059}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF7B5F93-ED91-4C72-8F1B-0E6729DB1059}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF7B5F93-ED91-4C72-8F1B-0E6729DB1059}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA42158B-2CFD-4E87-9A70-8800251BC5A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA42158B-2CFD-4E87-9A70-8800251BC5A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA42158B-2CFD-4E87-9A70-8800251BC5A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA42158B-2CFD-4E87-9A70-8800251BC5A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F428AB1-788C-41B4-8757-77AE75A216AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F428AB1-788C-41B4-8757-77AE75A216AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F428AB1-788C-41B4-8757-77AE75A216AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F428AB1-788C-41B4-8757-77AE75A216AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
