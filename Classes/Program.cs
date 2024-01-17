@@ -14,6 +14,9 @@ Console.WriteLine($"Area is {rectangle2.CalculateArea()}");
 Console.WriteLine($"Circumference is {rectangle2.CalculateCircumference()}");
 
 
+var appointmentTwoWeeksFromNow = new MedicalAppointment("Bob Smith", 14);
+var appointmentOneWeekFromNow = new MedicalAppointment("Margaret Smith");
+
 Console.ReadKey();
 
 class Rectangle
@@ -28,15 +31,11 @@ class Rectangle
 
     }
 
-    public int CalculateCircumference()
-    {
-        return 2 * Width + 2 * Height;
-    }
+    public int CalculateCircumference() => 2 * Width + 2 * Height;
 
-    public int CalculateArea()
-    {
-        return Width * Height;
-    }
+
+    public int CalculateArea() => Width * Height;
+
 }
 
 class ShapeMeasurementsCalculator
@@ -70,6 +69,8 @@ public class HotelBooking
 
 
 
+
+
 public class Triangle
 {
     private int _base;
@@ -92,6 +93,15 @@ public class Triangle
 
 }
 
+
+class MedicalAppointmentPrinter
+{
+    public void Print(MedicalAppointment medicalAppointment)
+    {
+        Console.WriteLine($"Appointment will take place on {medicalAppointment.GetDate()}");
+    }
+}
+
 class MedicalAppointment
 {
     private string _patientName;
@@ -102,20 +112,31 @@ class MedicalAppointment
         _patientName = patientName;
         _date = date;
     }
-    public MedicalAppointment(string patientName) :
-        this(patientName, 7)
-    {
-    }
 
-    public MedicalAppointment(string patientName, int daysFromNow)
+    public DateTime GetDate() => _date;
+
+    
+    //public MedicalAppointment(string patientName) :
+    //    this(patientName, 7)
+    //{
+    //}
+
+    public MedicalAppointment(string patientName="Unknown", int daysFromNow = 7)
     {
         _patientName = patientName;
         _date = DateTime.Now.AddDays(daysFromNow);
     }
 
+    //public MedicalAppointment(string patientName)
+    //{
+    //    _patientName=patientName;
+    //}
+
     public void Reschedule(DateTime date)
     {
         _date = date;
+        var printer = new MedicalAppointmentPrinter();
+        printer.Print(this);
     }
 
     public void OverwriteMonthAndDay(int month, int day)
