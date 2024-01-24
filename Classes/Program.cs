@@ -119,6 +119,33 @@ public class Dog
     }
 }
 
+public class Order
+{
+    private string _item;
+    private DateTime _date;
 
+    public string Item { get; }
+    public DateTime Date
+    {
+        get
+        {
+            return _date;
+        }
+        set
+        {
+            if (DateTime.Now.Year == value.Year)
+            {
+                _date = value;
+            }
+        }
+    }
+
+
+    public Order(string item, DateTime date)
+    {
+        Item = item;
+        Date = date;
+    }
+}
 
 
