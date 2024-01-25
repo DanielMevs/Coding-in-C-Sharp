@@ -66,10 +66,13 @@ class Rectangle
         return length;
     }
 
-    public int CalculateCircumference() => 2 * _width + 2 * GetHeight();
+    public int CalculateCircumference() => 2 * Width + 2 * _height;
 
 
-    public int CalculateArea() => _width * GetHeight();
+    public int CalculateArea() => Width * _height;
+
+    public string Description => $"A rectangle with width {Width} " +
+        $"and height {_height}";
 
 }
 
