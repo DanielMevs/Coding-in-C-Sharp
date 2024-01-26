@@ -1,6 +1,7 @@
 ﻿var rectangle1 = new Rectangle(5, 10);
 var calculator = new ShapeMeasurementsCalculator();
 
+Console.WriteLine(Rectangle.DescribeGenerally());
 Console.WriteLine($"Width is {rectangle1.Width}");
 rectangle1.Width = 15;
 Console.WriteLine($"Height is {rectangle1.GetHeight()}");
@@ -14,20 +15,30 @@ Console.WriteLine($"Height is {rectangle1.GetHeight()}");
 Console.WriteLine($"Area is {rectangle2.CalculateArea()}");
 Console.WriteLine($"Circumference is {rectangle2.CalculateCircumference()}");
 
-
+Console.WriteLine(
+    "Count of Rectangle object is " + Rectangle.CountOfInstances);
 Console.ReadKey();
+
+// Considered "stateful"
 class Rectangle
 {
     //const int NumberOfSides = 4;
     //readonly int NumberOfSidesReadonly;
 
+    public static int CountOfInstances {  get; private set; }
+    private static DateTime _firstUsed;
+
+    static Rectangle()
+    {
+        _firstUsed = DateTime.Now;
+    }
 
     public Rectangle(int width, int height)
     {
         //NumberOfSidesReadonly = 4;
         Width = GetLengthOrDefault(width, nameof(Width));
         _height = GetLengthOrDefault(height, nameof(_height));
-
+        ++CountOfInstances;
 
 
     }
@@ -73,6 +84,14 @@ class Rectangle
 
     public string Description => $"A rectangle with width {Width} " +
         $"and height {_height}";
+
+    // Static methods cannot access fields or properties
+    public static string DescribeGenerally() => $"A plane figure" +
+        " with four straight sides and four right angles.";
+    // + $"Sides are {Width}, {_height}";
+
+    // All const fields are implicitly static
+    public const int NumberOfSides = 4;
 
 }
 
