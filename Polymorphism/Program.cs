@@ -26,20 +26,64 @@
 //Ingredient ingredient = new Cheddar();
 //Console.WriteLine(ingredient.Name);
 
-var ingredients = new List<Ingredient>
-{
-    new Cheddar(),
-    new Mozarella(),
-    new TomatoSauce()
-};
+//var ingredients = new List<Ingredient>
+//{
+//    new Cheddar(),
+//    new Mozarella(),
+//    new TomatoSauce()
+//};
 
-foreach(Ingredient ingredient in ingredients)
-{
-    Console.WriteLine(ingredient.Name);
-}
+//foreach(Ingredient ingredient in ingredients)
+//{
+//   Console.WriteLine(ingredient.Name);
+//}
+
+List<int> numbers = new List<int> { 1, 4, 6, -1, 12, 44, -8, -19 };
+bool shallAddPoitiveOnly = false;
+
+NumbersSumCalculator calculator = 
+    shallAddPoitiveOnly ?
+    new PositiveNumbersSumCalculator() :
+    new NumbersSumCalculator();
+
+int sum = calculator.Calculate(numbers);
+
+
+Console.WriteLine("Sum is: " + sum);
+
+
 
 
 Console.ReadKey();
+
+public class PositiveNumbersSumCalculator : NumbersSumCalculator
+{
+    protected override bool ShallBeAdded(int number)
+    {
+        return number > 0;
+    }
+
+}
+public class NumbersSumCalculator
+{
+    public int Calculate(List<int> numbers)
+    {
+        int sum = 0;
+        foreach (int number in numbers)
+        {
+            if (ShallBeAdded(number))
+            {
+                sum += number;
+            }
+            
+        }
+        return sum;
+    }
+    protected virtual bool ShallBeAdded(int number)
+    {
+        return true;
+    }
+}
 
 public class Pizza
 {
