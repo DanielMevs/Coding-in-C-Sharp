@@ -1,10 +1,25 @@
-﻿//var pizza = new Pizza();
-//pizza.AddIngredient(new Cheddar());
-//pizza.AddIngredient(new Mozarella());
-//pizza.AddIngredient(new TomatoSauce());
+﻿//using Polymorphism.Animals;
 
-//Console.WriteLine(pizza.Describe());
+var pizza = new Pizza();
+pizza.AddIngredient(new Cheddar());
+pizza.AddIngredient(new Mozarella());
+pizza.AddIngredient(new TomatoSauce());
 
+Console.WriteLine(pizza);
+
+//var cheddar= new Cheddar();
+
+//Console.WriteLine(cheddar);
+
+
+
+//Console.WriteLine(new TomatoSauce());
+//Console.WriteLine(new HousePet());
+//Console.WriteLine(new List<int>());
+
+//Console.WriteLine(123);
+//Console.WriteLine(new DateTime(2023, 5, 6));
+//Console.WriteLine("hello");
 
 //var ingredient = new Ingredient();
 //ingredient.PublicField = 10;
@@ -38,18 +53,18 @@
 //   Console.WriteLine(ingredient.Name);
 //}
 
-List<int> numbers = new List<int> { 1, 4, 6, -1, 12, 44, -8, -19 };
-bool shallAddPoitiveOnly = false;
+//List<int> numbers = new List<int> { 1, 4, 6, -1, 12, 44, -8, -19 };
+//bool shallAddPoitiveOnly = false;
 
-NumbersSumCalculator calculator = 
-    shallAddPoitiveOnly ?
-    new PositiveNumbersSumCalculator() :
-    new NumbersSumCalculator();
+//NumbersSumCalculator calculator = 
+//    shallAddPoitiveOnly ?
+//    new PositiveNumbersSumCalculator() :
+//    new NumbersSumCalculator();
 
-int sum = calculator.Calculate(numbers);
+//int sum = calculator.Calculate(numbers);
 
 
-Console.WriteLine("Sum is: " + sum);
+//Console.WriteLine("Sum is: " + sum);
 
 
 
@@ -88,12 +103,15 @@ public class NumbersSumCalculator
 public class Pizza
 {
     private List<Ingredient> _ingredients = new List<Ingredient>();
-    public void AddIngredient(Ingredient ingredient) => _ingredients.Add(ingredient);
-    public string Describe() => $"This is a pizza with {string.Join(", ", _ingredients)}";
+    public void AddIngredient(Ingredient ingredient) => 
+        _ingredients.Add(ingredient);
+    public override string ToString() => 
+        $"This is a pizza with {string.Join(", ", _ingredients)}";
 }
 
 public class Ingredient
 {
+    public override string ToString() => Name;
     public virtual string Name { get; } = "Some ingredient";
     public int PublicField;
     public string PublicMethod() =>
@@ -103,7 +121,28 @@ public class Ingredient
     private string PrivateMethod() =>
         "This method is PRIVATE in the Ingredient class.";
 }
-public class Cheddar : Ingredient
+public class Cheese : Ingredient
+{
+
+}
+public class TomatoSauce : Ingredient
+{
+    public override string Name => "Tomato sauce";
+    public int TomatoIn100Grams { get; }
+}
+
+// Used to illustrate the diamond problem
+public class ItalianFoodItem
+{
+
+}
+
+public class Mozarella : Cheese
+{
+    public override string Name => "Mozarella";
+    public bool IsLight { get; }
+}
+public class Cheddar : Cheese
 {
     public override string Name => "Cheddar cheese";
     public int AgedForMonths { get; }
@@ -113,16 +152,4 @@ public class Cheddar : Ingredient
         Console.WriteLine(ProtectedMethod());
         //Console.WriteLine(PrivateMethod());
     }
-}
-
-public class TomatoSauce : Ingredient
-{
-    public string Name => "Tomato sauce";
-    public int TomatoIn100Grams { get; }
-}
-
-public class Mozarella : Ingredient
-{
-    public override string Name => "Mozarella";
-    public bool IsLight { get; }
 }
