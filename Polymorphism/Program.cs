@@ -1,15 +1,19 @@
 ﻿//using Polymorphism.Animals;
 
-var pizza = new Pizza();
-pizza.AddIngredient(new Cheddar());
-pizza.AddIngredient(new Mozarella());
-pizza.AddIngredient(new TomatoSauce());
+//var pizza = new Pizza();
+//pizza.AddIngredient(new Cheddar());
+//pizza.AddIngredient(new Mozarella());
+//pizza.AddIngredient(new TomatoSauce());
 
-Console.WriteLine(pizza);
+//Console.WriteLine(pizza);
+
+
+var ingredient = new Ingredient(1);
+var cheddar = new Cheddar(2, 12);
 
 //var cheddar= new Cheddar();
 
-//Console.WriteLine(cheddar);
+Console.WriteLine(cheddar);
 
 
 
@@ -111,6 +115,12 @@ public class Pizza
 
 public class Ingredient
 {
+    public Ingredient(int priceIfExtraTopping)
+    {
+        Console.WriteLine("Constructor from the Ingredient class");
+        PriceIfExtraTopping = priceIfExtraTopping;
+    }
+    public int PriceIfExtraTopping { get; }
     public override string ToString() => Name;
     public virtual string Name { get; } = "Some ingredient";
     public int PublicField;
@@ -123,10 +133,16 @@ public class Ingredient
 }
 public class Cheese : Ingredient
 {
-
+    public Cheese(int priceIfExtraTopping) : base(priceIfExtraTopping)
+    {
+    }
 }
 public class TomatoSauce : Ingredient
 {
+    public TomatoSauce(int priceIfExtraTopping) : base(priceIfExtraTopping)
+    {
+    }
+
     public override string Name => "Tomato sauce";
     public int TomatoIn100Grams { get; }
 }
@@ -139,12 +155,25 @@ public class ItalianFoodItem
 
 public class Mozarella : Cheese
 {
+    public Mozarella(int priceIfExtraTopping) : base(priceIfExtraTopping)
+    {
+    }
+
     public override string Name => "Mozarella";
     public bool IsLight { get; }
 }
-public class Cheddar : Cheese
+public class Cheddar : Ingredient
 {
-    public override string Name => "Cheddar cheese";
+    public Cheddar(int priceIfExtraTopping, int agedForMonths) : base(priceIfExtraTopping)
+    {
+        AgedForMonths = agedForMonths;
+        Console.WriteLine(
+            "Constructor from the Cheddar class");
+    }
+    public override string Name =>
+        $"{base.Name}, more specifically, " +
+        $"a cheddar cheese aged for {AgedForMonths} months";
+    
     public int AgedForMonths { get; }
     public void UseMethodsFromBaseClass()
     {
