@@ -72,8 +72,44 @@ Console.WriteLine(cheddar);
 
 
 
+int seasonNumber = 0;
+// Explicit cast express
+Season spring = (Season)seasonNumber;
+
+// decimals ending with m denote money values
+decimal a = 10.01m;
+
+int integer = 10;
+// Although C# is statically typed,
+//an implicit conversion happens
+//behind the scenes
+decimal b = integer;
+
+// Explicit conversion
+// is necessary in this
+// case due to data loss
+// or runtime error potential
+//decimal c = 10.01m;
+//decimal c = 10000000000000000000000000.01m;
+//int d = (int)c;
+
+//string s = (string)integer;
+
+
+//int secondSeasonNumber = 1;
+int secondSeasonNumber = 11;
+Season summer = (Season)secondSeasonNumber;
+Console.WriteLine(summer);
 
 Console.ReadKey();
+
+public enum Season
+{
+    Spring,
+    Summer,
+    Autumn,
+    Winter
+}
 
 public class PositiveNumbersSumCalculator : NumbersSumCalculator
 {
