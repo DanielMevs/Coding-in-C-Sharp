@@ -8,12 +8,6 @@
 //Console.WriteLine(pizza);
 
 
-var ingredient = new Ingredient(1);
-var cheddar = new Cheddar(2, 12);
-
-//var cheddar= new Cheddar();
-
-Console.WriteLine(cheddar);
 
 
 
@@ -72,18 +66,18 @@ Console.WriteLine(cheddar);
 
 
 
-int seasonNumber = 0;
+//int seasonNumber = 0;
 // Explicit cast express
-Season spring = (Season)seasonNumber;
+//Season spring = (Season)seasonNumber;
 
 // decimals ending with m denote money values
-decimal a = 10.01m;
+//decimal a = 10.01m;
 
-int integer = 10;
+//int integer = 10;
 // Although C# is statically typed,
 //an implicit conversion happens
 //behind the scenes
-decimal b = integer;
+//decimal b = integer;
 
 // Explicit conversion
 // is necessary in this
@@ -97,11 +91,58 @@ decimal b = integer;
 
 
 //int secondSeasonNumber = 1;
-int secondSeasonNumber = 11;
-Season summer = (Season)secondSeasonNumber;
-Console.WriteLine(summer);
+//int secondSeasonNumber = 11;
+//Season summer = (Season)secondSeasonNumber;
+//Console.WriteLine(summer);
+
+
+//var ingredient = new Ingredient(1);
+//var cheddar = new Cheddar(2, 12);
+
+Ingredient ingredient = new Cheddar(2, 12);
+
+Ingredient randomIngredient = GenerateRandomIngredient();
+Console.WriteLine("Random ingredient is " + randomIngredient);
+
+Console.WriteLine("is object?" + (ingredient is object));
+Console.WriteLine("is ingredient?" + (ingredient is Ingredient));
+Console.WriteLine("is cheddar?" + (ingredient is Cheddar));
+Console.WriteLine("is mozzarella?" + (ingredient is Mozarella));
+Console.WriteLine("is tomato sauce?" + (ingredient is TomatoSauce));
+
+if(randomIngredient is Cheddar cheddar)
+{
+    
+    Console.WriteLine("cheddar object: " + cheddar);
+}
+
+Ingredient nullIngredient = null;
+//if (nullIngredient != null)
+if(nullIngredient is not null)
+{
+    Console.WriteLine(nullIngredient.Name);
+}
+
 
 Console.ReadKey();
+
+Ingredient GenerateRandomIngredient()
+{
+    var random = new Random();
+    var number = random.Next(1, 4);
+    if(number == 1)
+    {
+        return new Cheddar(2, 12);
+    }
+    if(number == 2)
+    {
+        return new TomatoSauce(1);
+    }
+    else
+    {
+        return new Mozarella(2);
+    }
+}
 
 public enum Season
 {
@@ -142,6 +183,7 @@ public class NumbersSumCalculator
 
 public class Pizza
 {
+    public Ingredient ingredient;
     private List<Ingredient> _ingredients = new List<Ingredient>();
     public void AddIngredient(Ingredient ingredient) => 
         _ingredients.Add(ingredient);
