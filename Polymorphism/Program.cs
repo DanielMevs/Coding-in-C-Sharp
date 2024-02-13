@@ -99,28 +99,45 @@
 //var ingredient = new Ingredient(1);
 //var cheddar = new Cheddar(2, 12);
 
-Ingredient ingredient = new Cheddar(2, 12);
+//Ingredient ingredient = new Cheddar(2, 12);
 
-Ingredient randomIngredient = GenerateRandomIngredient();
-Console.WriteLine("Random ingredient is " + randomIngredient);
+//Ingredient randomIngredient = GenerateRandomIngredient();
+//Console.WriteLine("Random ingredient is " + randomIngredient);
 
-Console.WriteLine("is object?" + (ingredient is object));
-Console.WriteLine("is ingredient?" + (ingredient is Ingredient));
-Console.WriteLine("is cheddar?" + (ingredient is Cheddar));
-Console.WriteLine("is mozzarella?" + (ingredient is Mozarella));
-Console.WriteLine("is tomato sauce?" + (ingredient is TomatoSauce));
+//Console.WriteLine("is object?" + (ingredient is object));
+//Console.WriteLine("is ingredient?" + (ingredient is Ingredient));
+//Console.WriteLine("is cheddar?" + (ingredient is Cheddar));
+//Console.WriteLine("is mozzarella?" + (ingredient is Mozarella));
+//Console.WriteLine("is tomato sauce?" + (ingredient is TomatoSauce));
 
-if(randomIngredient is Cheddar cheddar)
-{
-    
-    Console.WriteLine("cheddar object: " + cheddar);
-}
+//if(randomIngredient is Cheddar cheddar)
+//{
 
-Ingredient nullIngredient = null;
+//    Console.WriteLine("cheddar object: " + cheddar);
+//}
+
+//Ingredient nullIngredient = null;
 //if (nullIngredient != null)
-if(nullIngredient is not null)
+//if(nullIngredient is not null)
+//{
+//    Console.WriteLine(nullIngredient.Name);
+//}
+
+Ingredient ingredient = GenerateRandomIngredient();
+
+// Will cause an exception if cast fails
+//Cheddar cheddar = (Cheddar)ingredient;
+
+// Will give null if cast fails
+Cheddar cheddar = ingredient as Cheddar;
+
+if (cheddar != null)
 {
-    Console.WriteLine(nullIngredient.Name);
+    Console.WriteLine(cheddar.Name);
+}
+else
+{
+    Console.WriteLine("Conversion falied");
 }
 
 
