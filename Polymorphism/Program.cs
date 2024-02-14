@@ -208,7 +208,7 @@ public class Pizza
         $"This is a pizza with {string.Join(", ", _ingredients)}";
 }
 
-public class Ingredient
+public abstract class Ingredient
 {
     public Ingredient(int priceIfExtraTopping)
     {
@@ -218,6 +218,9 @@ public class Ingredient
     public int PriceIfExtraTopping { get; }
     public override string ToString() => Name;
     public virtual string Name { get; } = "Some ingredient";
+
+    public abstract void Prepare();
+
     public int PublicField;
     public string PublicMethod() =>
         "This method is PUBLIC in the Ingredient class.";
@@ -226,7 +229,7 @@ public class Ingredient
     private string PrivateMethod() =>
         "This method is PRIVATE in the Ingredient class.";
 }
-public class Cheese : Ingredient
+public abstract class Cheese : Ingredient
 {
     public Cheese(int priceIfExtraTopping) : base(priceIfExtraTopping)
     {
@@ -240,6 +243,10 @@ public class TomatoSauce : Ingredient
 
     public override string Name => "Tomato sauce";
     public int TomatoIn100Grams { get; }
+
+    public override void Prepare() =>
+        Console.WriteLine("Cook tomatoes with basil, garlic and salt. " +
+            "Spread on pizza.");
 }
 
 // Used to illustrate the diamond problem
@@ -256,8 +263,11 @@ public class Mozarella : Cheese
 
     public override string Name => "Mozarella";
     public bool IsLight { get; }
+
+    public override void Prepare() => 
+        Console.WriteLine("Slice thinly and place on top of the pizza.")
 }
-public class Cheddar : Ingredient
+public class Cheddar : Cheese
 {
     public Cheddar(int priceIfExtraTopping, int agedForMonths) : base(priceIfExtraTopping)
     {
@@ -270,6 +280,10 @@ public class Cheddar : Ingredient
         $"a cheddar cheese aged for {AgedForMonths} months";
     
     public int AgedForMonths { get; }
+
+    public override void Prepare() =>
+        Console.WriteLine("Grate and sprinkle over pizza");
+
     public void UseMethodsFromBaseClass()
     {
         Console.WriteLine(PublicMethod());
