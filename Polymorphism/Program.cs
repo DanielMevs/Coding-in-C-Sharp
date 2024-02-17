@@ -123,43 +123,75 @@
 //    Console.WriteLine(nullIngredient.Name);
 //}
 
-Ingredient ingredient = GenerateRandomIngredient();
+//Ingredient ingredient = GenerateRandomIngredient();
 
 // Will cause an exception if cast fails
 //Cheddar cheddar = (Cheddar)ingredient;
 
 // Will give null if cast fails
-Cheddar cheddar = ingredient as Cheddar;
+//Cheddar cheddar = ingredient as Cheddar;
 
-if (cheddar != null)
+//if (cheddar != null)
+//{
+//    Console.WriteLine(cheddar.Name);
+//}
+//else
+//{
+//    Console.WriteLine("Conversion falied");
+//}
+var cheddar = new Cheddar(2, 12);
+var tomatoSauce = new TomatoSauce(1);
+cheddar.Prepare();
+tomatoSauce.Prepare();
+
+var ingredients = new List<Ingredient>()
 {
-    Console.WriteLine(cheddar.Name);
-}
-else
+    new Cheddar(2, 10),
+    new Mozarella(2),
+    new TomatoSauce(1)
+};
+
+foreach (Ingredient ingredient in ingredients)
 {
-    Console.WriteLine("Conversion falied");
+    ingredient.Prepare();
 }
 
 
+var pizza = RandomPizzaGenerator.Generate(3);
 Console.ReadKey();
 
-Ingredient GenerateRandomIngredient()
+public static class RandomPizzaGenerator
 {
-    var random = new Random();
-    var number = random.Next(1, 4);
-    if(number == 1)
+    public static Pizza Generate(int howManyIngredients)
     {
-        return new Cheddar(2, 12);
+        var pizza = new Pizza();
+        for(int i = 0; i < howManyIngredients; i++)
+        {
+            var randomIngredient = GenerateRandomIngredient();
+            pizza.AddIngredient(randomIngredient);  
+        }
+        return pizza;
     }
-    if(number == 2)
+    private static Ingredient GenerateRandomIngredient()
     {
-        return new TomatoSauce(1);
-    }
-    else
-    {
-        return new Mozarella(2);
+        var random = new Random();
+        var number = random.Next(1, 4);
+        if (number == 1)
+        {
+            return new Cheddar(2, 12);
+        }
+        if (number == 2)
+        {
+            return new TomatoSauce(1);
+        }
+        else
+        {
+            return new Mozarella(2);
+        }
     }
 }
+
+
 
 public enum Season
 {
@@ -198,6 +230,10 @@ public class NumbersSumCalculator
     }
 }
 
+//public class SpecialRandomPizzaGenerator: RandomPizzaGenerator
+//{
+
+//}
 public class Pizza
 {
     public Ingredient ingredient;
@@ -207,6 +243,8 @@ public class Pizza
     public override string ToString() => 
         $"This is a pizza with {string.Join(", ", _ingredients)}";
 }
+
+
 
 public abstract class Ingredient
 {
@@ -244,10 +282,25 @@ public class TomatoSauce : Ingredient
     public override string Name => "Tomato sauce";
     public int TomatoIn100Grams { get; }
 
-    public override void Prepare() =>
+    public sealed override void Prepare() =>
         Console.WriteLine("Cook tomatoes with basil, garlic and salt. " +
             "Spread on pizza.");
 }
+
+public class SpecialTomatoSauce : TomatoSauce
+{
+    public SpecialTomatoSauce(int priceIfExtraTopping) : base(priceIfExtraTopping)
+    {
+    }
+
+    //public override void Prepare() =>
+    //    Console.WriteLine("Special tomato sauce");
+}
+
+//public class MyBetterString: string
+//{
+
+//}
 
 // Used to illustrate the diamond problem
 public class ItalianFoodItem
@@ -255,7 +308,7 @@ public class ItalianFoodItem
 
 }
 
-public class Mozarella : Cheese
+public sealed class Mozarella : Cheese
 {
     public Mozarella(int priceIfExtraTopping) : base(priceIfExtraTopping)
     {
@@ -264,9 +317,12 @@ public class Mozarella : Cheese
     public override string Name => "Mozarella";
     public bool IsLight { get; }
 
-    public override void Prepare() => 
-        Console.WriteLine("Slice thinly and place on top of the pizza.")
+    public override void Prepare() =>
+        Console.WriteLine("Slice thinly and place on top of the pizza.");
 }
+//public class SpecialMozzarella: Mozarella
+//{
+//}
 public class Cheddar : Cheese
 {
     public Cheddar(int priceIfExtraTopping, int agedForMonths) : base(priceIfExtraTopping)
