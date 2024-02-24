@@ -139,26 +139,43 @@
 //{
 //    Console.WriteLine("Conversion falied");
 //}
-var cheddar = new Cheddar(2, 12);
-var tomatoSauce = new TomatoSauce(1);
-cheddar.Prepare();
-tomatoSauce.Prepare();
+using Polymorphism.Extensions;
 
-var ingredients = new List<Ingredient>()
-{
-    new Cheddar(2, 10),
-    new Mozarella(2),
-    new TomatoSauce(1)
-};
+//var cheddar = new Cheddar(2, 12);
+//var tomatoSauce = new TomatoSauce(1);
+//cheddar.Prepare();
+//tomatoSauce.Prepare();
 
-foreach (Ingredient ingredient in ingredients)
-{
-    ingredient.Prepare();
-}
+//var ingredients = new List<Ingredient>()
+//{
+//    new Cheddar(2, 10),
+//    new Mozarella(2),
+//    new TomatoSauce(1)
+//};
+
+//foreach (Ingredient ingredient in ingredients)
+//{
+//    ingredient.Prepare();
+//}
 
 
-var pizza = RandomPizzaGenerator.Generate(3);
+//var pizza = RandomPizzaGenerator.Generate(3);
+
+var multilineText = @"aaaa
+bbbb
+cccc
+dddd";
+
+//Console.WriteLine("Count of lines is " + CountLines(multilineText));
+Console.WriteLine("Count of lines is " + multilineText.CountLines());
+Console.WriteLine("Count of lines is "
+    + StringExtensions.CountLines(multilineText));
+
+Console.WriteLine("Next after spring is " + Season.Spring.Next());
+Console.WriteLine("Next after winter is " + Season.Winter.Next());
+
 Console.ReadKey();
+
 
 public static class RandomPizzaGenerator
 {
