@@ -170,3 +170,19 @@ public class Circle : Shape
 
     public override double CalculateArea() => Math.PI * (Radius * Radius);
 }
+
+public static class TakeEverySecondExtensions
+{
+    public static List<int> TakeEverySecond(this List<int> input)
+    {
+        List<int> output = new List<int>();
+        for (int i = 0; i < input.Count; i++)
+        {
+            if (i % 2 == 0)
+            {
+                output.Add(input[i]);
+            }
+        }
+        return output;
+    }
+}
