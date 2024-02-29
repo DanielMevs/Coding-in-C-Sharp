@@ -161,22 +161,62 @@ using Polymorphism.Extensions;
 
 //var pizza = RandomPizzaGenerator.Generate(3);
 
-var multilineText = @"aaaa
-bbbb
-cccc
-dddd";
+//var multilineText = @"aaaa
+//bbbb
+//cccc
+//dddd";
 
 //Console.WriteLine("Count of lines is " + CountLines(multilineText));
-Console.WriteLine("Count of lines is " + multilineText.CountLines());
-Console.WriteLine("Count of lines is "
-    + StringExtensions.CountLines(multilineText));
+//Console.WriteLine("Count of lines is " + multilineText.CountLines());
+//Console.WriteLine("Count of lines is "
+//    + StringExtensions.CountLines(multilineText));
 
-Console.WriteLine("Next after spring is " + Season.Spring.Next());
-Console.WriteLine("Next after winter is " + Season.Winter.Next());
+//Console.WriteLine("Next after spring is " + Season.Spring.Next());
+//Console.WriteLine("Next after winter is " + Season.Winter.Next());
+
+var bakeableDishes = new List<IBakeable>
+{
+    new Pizza(),
+    new Panettone()
+};
+
+foreach (var bakeableDish in bakeableDishes)
+{
+    Console.WriteLine(bakeableDish.GetInstructions());
+}
 
 Console.ReadKey();
 
+public abstract class Dessert
+{
 
+}
+
+public interface IBakeable
+{
+    string GetInstructions();
+}
+
+public class Panettone : Dessert, IBakeable
+{
+    public string GetInstructions() =>
+        "Bake at 180 degrees Celsius for 35 minutes.";
+}
+
+public class Pizza: IBakeable
+{
+    public Ingredient ingredient;
+    private List<Ingredient> _ingredients = new List<Ingredient>();
+    public void AddIngredient(Ingredient ingredient) => 
+        _ingredients.Add(ingredient);
+
+    public string GetInstructions() =>
+        "Bake at 250 degrees Celsius for 10 minutes, " + 
+        "ideally on a stone";
+
+    public override string ToString() => 
+        $"This is a pizza with {string.Join(", ", _ingredients)}";
+}
 public static class RandomPizzaGenerator
 {
     public static Pizza Generate(int howManyIngredients)
@@ -251,15 +291,6 @@ public class NumbersSumCalculator
 //{
 
 //}
-public class Pizza
-{
-    public Ingredient ingredient;
-    private List<Ingredient> _ingredients = new List<Ingredient>();
-    public void AddIngredient(Ingredient ingredient) => 
-        _ingredients.Add(ingredient);
-    public override string ToString() => 
-        $"This is a pizza with {string.Join(", ", _ingredients)}";
-}
 
 
 
