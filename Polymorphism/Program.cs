@@ -140,6 +140,7 @@
 //    Console.WriteLine("Conversion falied");
 //}
 using Polymorphism.Extensions;
+using System.Text.Json;
 
 //var cheddar = new Cheddar(2, 12);
 //var tomatoSauce = new TomatoSauce(1);
@@ -174,224 +175,248 @@ using Polymorphism.Extensions;
 //Console.WriteLine("Next after spring is " + Season.Spring.Next());
 //Console.WriteLine("Next after winter is " + Season.Winter.Next());
 
-var bakeableDishes = new List<IBakeable>
+//var bakeableDishes = new List<IBakeable>
+//{
+//    new Pizza(),
+//    new Panettone()
+//};
+
+//foreach (var bakeableDish in bakeableDishes)
+//{
+//    Console.WriteLine(bakeableDish.GetInstructions());
+//}
+
+using System.Text.Json;
+
+var person = new Person
 {
-    new Pizza(),
-    new Panettone()
+    FirstName = "John",
+    LastName = "Smith",
+    YearOfBirth = 1972
 };
 
-foreach (var bakeableDish in bakeableDishes)
-{
-    Console.WriteLine(bakeableDish.GetInstructions());
-}
+var asJson = JsonSerializer.Serialize(person);
+Console.WriteLine("As JSON: ");
+Console.WriteLine(asJson);
+
+var personJson = "{\"FirstName\":\"John\",\"LastName\":\"Smith\",\"YearOfBirth\":1972}";
+var personFromJson = JsonSerializer.Deserialize<Person>(personJson);
 
 Console.ReadKey();
 
-public abstract class Dessert
+public class Person
 {
-
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public int YearOfBirth { get; set; }
 }
 
-public interface IBakeable
-{
-    string GetInstructions();
-}
-
-public class Panettone : Dessert, IBakeable
-{
-    public string GetInstructions() =>
-        "Bake at 180 degrees Celsius for 35 minutes.";
-}
-
-public class Pizza: IBakeable
-{
-    public Ingredient ingredient;
-    private List<Ingredient> _ingredients = new List<Ingredient>();
-    public void AddIngredient(Ingredient ingredient) => 
-        _ingredients.Add(ingredient);
-
-    public string GetInstructions() =>
-        "Bake at 250 degrees Celsius for 10 minutes, " + 
-        "ideally on a stone";
-
-    public override string ToString() => 
-        $"This is a pizza with {string.Join(", ", _ingredients)}";
-}
-public static class RandomPizzaGenerator
-{
-    public static Pizza Generate(int howManyIngredients)
+    public abstract class Dessert
     {
-        var pizza = new Pizza();
-        for(int i = 0; i < howManyIngredients; i++)
-        {
-            var randomIngredient = GenerateRandomIngredient();
-            pizza.AddIngredient(randomIngredient);  
-        }
-        return pizza;
-    }
-    private static Ingredient GenerateRandomIngredient()
-    {
-        var random = new Random();
-        var number = random.Next(1, 4);
-        if (number == 1)
-        {
-            return new Cheddar(2, 12);
-        }
-        if (number == 2)
-        {
-            return new TomatoSauce(1);
-        }
-        else
-        {
-            return new Mozarella(2);
-        }
-    }
-}
 
-
-
-public enum Season
-{
-    Spring,
-    Summer,
-    Autumn,
-    Winter
-}
-
-public class PositiveNumbersSumCalculator : NumbersSumCalculator
-{
-    protected override bool ShallBeAdded(int number)
-    {
-        return number > 0;
     }
 
-}
-public class NumbersSumCalculator
-{
-    public int Calculate(List<int> numbers)
+    public interface IBakeable
     {
-        int sum = 0;
-        foreach (int number in numbers)
+        string GetInstructions();
+    }
+
+    public class Panettone : Dessert, IBakeable
+    {
+        public string GetInstructions() =>
+            "Bake at 180 degrees Celsius for 35 minutes.";
+    }
+
+    public class Pizza : IBakeable
+    {
+        public Ingredient ingredient;
+        private List<Ingredient> _ingredients = new List<Ingredient>();
+        public void AddIngredient(Ingredient ingredient) =>
+            _ingredients.Add(ingredient);
+
+        public string GetInstructions() =>
+            "Bake at 250 degrees Celsius for 10 minutes, " +
+            "ideally on a stone";
+
+        public override string ToString() =>
+            $"This is a pizza with {string.Join(", ", _ingredients)}";
+    }
+    public static class RandomPizzaGenerator
+    {
+        public static Pizza Generate(int howManyIngredients)
         {
-            if (ShallBeAdded(number))
+            var pizza = new Pizza();
+            for (int i = 0; i < howManyIngredients; i++)
             {
-                sum += number;
+                var randomIngredient = GenerateRandomIngredient();
+                pizza.AddIngredient(randomIngredient);
             }
-            
+            return pizza;
         }
-        return sum;
+        private static Ingredient GenerateRandomIngredient()
+        {
+            var random = new Random();
+            var number = random.Next(1, 4);
+            if (number == 1)
+            {
+                return new Cheddar(2, 12);
+            }
+            if (number == 2)
+            {
+                return new TomatoSauce(1);
+            }
+            else
+            {
+                return new Mozarella(2);
+            }
+        }
     }
-    protected virtual bool ShallBeAdded(int number)
+
+
+
+    public enum Season
     {
-        return true;
+        Spring,
+        Summer,
+        Autumn,
+        Winter
     }
-}
 
-//public class SpecialRandomPizzaGenerator: RandomPizzaGenerator
-//{
-
-//}
-
-
-
-public abstract class Ingredient
-{
-    public Ingredient(int priceIfExtraTopping)
+    public class PositiveNumbersSumCalculator : NumbersSumCalculator
     {
-        Console.WriteLine("Constructor from the Ingredient class");
-        PriceIfExtraTopping = priceIfExtraTopping;
+        protected override bool ShallBeAdded(int number)
+        {
+            return number > 0;
+        }
+
     }
-    public int PriceIfExtraTopping { get; }
-    public override string ToString() => Name;
-    public virtual string Name { get; } = "Some ingredient";
-
-    public abstract void Prepare();
-
-    public int PublicField;
-    public string PublicMethod() =>
-        "This method is PUBLIC in the Ingredient class.";
-    protected string ProtectedMethod() =>
-        "This method is PROTECTED in the Ingredient class.";
-    private string PrivateMethod() =>
-        "This method is PRIVATE in the Ingredient class.";
-}
-public abstract class Cheese : Ingredient
-{
-    public Cheese(int priceIfExtraTopping) : base(priceIfExtraTopping)
+    public class NumbersSumCalculator
     {
+        public int Calculate(List<int> numbers)
+        {
+            int sum = 0;
+            foreach (int number in numbers)
+            {
+                if (ShallBeAdded(number))
+                {
+                    sum += number;
+                }
+
+            }
+            return sum;
+        }
+        protected virtual bool ShallBeAdded(int number)
+        {
+            return true;
+        }
     }
-}
-public class TomatoSauce : Ingredient
-{
-    public TomatoSauce(int priceIfExtraTopping) : base(priceIfExtraTopping)
+
+    //public class SpecialRandomPizzaGenerator: RandomPizzaGenerator
+    //{
+
+    //}
+
+
+
+    public abstract class Ingredient
     {
+        public Ingredient(int priceIfExtraTopping)
+        {
+            Console.WriteLine("Constructor from the Ingredient class");
+            PriceIfExtraTopping = priceIfExtraTopping;
+        }
+        public int PriceIfExtraTopping { get; }
+        public override string ToString() => Name;
+        public virtual string Name { get; } = "Some ingredient";
+
+        public abstract void Prepare();
+
+        public int PublicField;
+        public string PublicMethod() =>
+            "This method is PUBLIC in the Ingredient class.";
+        protected string ProtectedMethod() =>
+            "This method is PROTECTED in the Ingredient class.";
+        private string PrivateMethod() =>
+            "This method is PRIVATE in the Ingredient class.";
     }
-
-    public override string Name => "Tomato sauce";
-    public int TomatoIn100Grams { get; }
-
-    public sealed override void Prepare() =>
-        Console.WriteLine("Cook tomatoes with basil, garlic and salt. " +
-            "Spread on pizza.");
-}
-
-public class SpecialTomatoSauce : TomatoSauce
-{
-    public SpecialTomatoSauce(int priceIfExtraTopping) : base(priceIfExtraTopping)
+    public abstract class Cheese : Ingredient
     {
+        public Cheese(int priceIfExtraTopping) : base(priceIfExtraTopping)
+        {
+        }
     }
-
-    //public override void Prepare() =>
-    //    Console.WriteLine("Special tomato sauce");
-}
-
-//public class MyBetterString: string
-//{
-
-//}
-
-// Used to illustrate the diamond problem
-public class ItalianFoodItem
-{
-
-}
-
-public sealed class Mozarella : Cheese
-{
-    public Mozarella(int priceIfExtraTopping) : base(priceIfExtraTopping)
+    public class TomatoSauce : Ingredient
     {
+        public TomatoSauce(int priceIfExtraTopping) : base(priceIfExtraTopping)
+        {
+        }
+
+        public override string Name => "Tomato sauce";
+        public int TomatoIn100Grams { get; }
+
+        public sealed override void Prepare() =>
+            Console.WriteLine("Cook tomatoes with basil, garlic and salt. " +
+                "Spread on pizza.");
     }
 
-    public override string Name => "Mozarella";
-    public bool IsLight { get; }
-
-    public override void Prepare() =>
-        Console.WriteLine("Slice thinly and place on top of the pizza.");
-}
-//public class SpecialMozzarella: Mozarella
-//{
-//}
-public class Cheddar : Cheese
-{
-    public Cheddar(int priceIfExtraTopping, int agedForMonths) : base(priceIfExtraTopping)
+    public class SpecialTomatoSauce : TomatoSauce
     {
-        AgedForMonths = agedForMonths;
-        Console.WriteLine(
-            "Constructor from the Cheddar class");
+        public SpecialTomatoSauce(int priceIfExtraTopping) : base(priceIfExtraTopping)
+        {
+        }
+
+        //public override void Prepare() =>
+        //    Console.WriteLine("Special tomato sauce");
     }
-    public override string Name =>
-        $"{base.Name}, more specifically, " +
-        $"a cheddar cheese aged for {AgedForMonths} months";
-    
-    public int AgedForMonths { get; }
 
-    public override void Prepare() =>
-        Console.WriteLine("Grate and sprinkle over pizza");
+    //public class MyBetterString: string
+    //{
 
-    public void UseMethodsFromBaseClass()
+    //}
+
+    // Used to illustrate the diamond problem
+    public class ItalianFoodItem
     {
-        Console.WriteLine(PublicMethod());
-        Console.WriteLine(ProtectedMethod());
-        //Console.WriteLine(PrivateMethod());
+
     }
-}
+
+    public sealed class Mozarella : Cheese
+    {
+        public Mozarella(int priceIfExtraTopping) : base(priceIfExtraTopping)
+        {
+        }
+
+        public override string Name => "Mozarella";
+        public bool IsLight { get; }
+
+        public override void Prepare() =>
+            Console.WriteLine("Slice thinly and place on top of the pizza.");
+    }
+    //public class SpecialMozzarella: Mozarella
+    //{
+    //}
+    public class Cheddar : Cheese
+    {
+        public Cheddar(int priceIfExtraTopping, int agedForMonths) : base(priceIfExtraTopping)
+        {
+            AgedForMonths = agedForMonths;
+            Console.WriteLine(
+                "Constructor from the Cheddar class");
+        }
+        public override string Name =>
+            $"{base.Name}, more specifically, " +
+            $"a cheddar cheese aged for {AgedForMonths} months";
+
+        public int AgedForMonths { get; }
+
+        public override void Prepare() =>
+            Console.WriteLine("Grate and sprinkle over pizza");
+
+        public void UseMethodsFromBaseClass()
+        {
+            Console.WriteLine(PublicMethod());
+            Console.WriteLine(ProtectedMethod());
+            //Console.WriteLine(PrivateMethod());
+        }
+    }
+
