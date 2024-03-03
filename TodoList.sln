@@ -41,11 +41,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Classes2", "Classes2\Classe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingleResponsibilityPrinciple", "SingleResponsibilityPrinciple\SingleResponsibilityPrinciple.csproj", "{A787468B-13DE-4D52-827D-6E2EEC2E815D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceRollGameFirstAttempt", "DiceRollGame\DiceRollGameFirstAttempt.csproj", "{CB910A3F-BF19-4952-8B85-C988FF0FA087}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceRollGameFirstAttempt", "DiceRollGame\DiceRollGameFirstAttempt.csproj", "{CB910A3F-BF19-4952-8B85-C988FF0FA087}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceRollGameFinal", "DiceRollGame2\DiceRollGameFinal.csproj", "{A5AD99CC-0271-47B1-9215-B61CF1B55705}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceRollGameFinal", "DiceRollGame2\DiceRollGameFinal.csproj", "{A5AD99CC-0271-47B1-9215-B61CF1B55705}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polymorphism", "Polymorphism\Polymorphism.csproj", "{D6B4C581-3F98-401E-AFF9-E72FA285A58A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polymorphism", "Polymorphism\Polymorphism.csproj", "{D6B4C581-3F98-401E-AFF9-E72FA285A58A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookieCookbook", "CookieCookbook\CookieCookbook.csproj", "{D8EBE972-05B9-4923-8CD4-F2FB267BEBC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +143,10 @@ Global
 		{D6B4C581-3F98-401E-AFF9-E72FA285A58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6B4C581-3F98-401E-AFF9-E72FA285A58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6B4C581-3F98-401E-AFF9-E72FA285A58A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8EBE972-05B9-4923-8CD4-F2FB267BEBC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8EBE972-05B9-4923-8CD4-F2FB267BEBC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8EBE972-05B9-4923-8CD4-F2FB267BEBC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8EBE972-05B9-4923-8CD4-F2FB267BEBC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
