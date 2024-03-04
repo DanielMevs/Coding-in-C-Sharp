@@ -1,5 +1,4 @@
-﻿
-var cookiesRecipesApp = new CookiesRecipesApp(
+﻿var cookiesRecipesApp = new CookiesRecipesApp(
     new RecipesRepository(),
     new RecipesConsoleUserInteraction());
 cookiesRecipesApp.Run();
@@ -67,9 +66,9 @@ public class RecipesConsoleUserInteraction : IRecipesUserInteraction
 
 public interface IRecipesRepository
 {
-
 }
 
 public class RecipesRepository : IRecipesRepository
 {
+
 }
