@@ -31,17 +31,28 @@
 
 //var invalidPersonObject = new Person("", -100);
 
-var emptyCollection = new List<int>();
-var firstElement = GetFirstElement(emptyCollection);
-var firstUsingLinq = emptyCollection.First();
+//var emptyCollection = new List<int>();
+//var firstElement = GetFirstElement(emptyCollection);
+//var firstUsingLinq = emptyCollection.First();
 
-var numbers = new int[] { 1, 2, 3, 4 };
-var forth = numbers[4];
+//var numbers = new int[] { 1, 2, 3, 4 };
+//var forth = numbers[4];
 
-bool has7 = CheckIfContains(7, numbers);
+//bool has7 = CheckIfContains(7, numbers);
+
+RecursiveMethod(1);
 
 
 Console.ReadKey();
+
+void RecursiveMethod(int counter)
+{
+    Console.WriteLine("I'm going to call myself. Counter is: " + counter);
+    if(counter < 10)
+    {
+        RecursiveMethod(counter + 1);
+    }
+}
 
 bool CheckIfContains(int value, int[] numbers)
 {
