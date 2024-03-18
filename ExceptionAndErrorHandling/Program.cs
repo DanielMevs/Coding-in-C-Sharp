@@ -40,11 +40,45 @@
 
 //bool has7 = CheckIfContains(7, numbers);
 
-RecursiveMethod(1);
+//RecursiveMethod(1);
+try
+{
+    var result = IsFirstElementPositive(null);
+}
+catch(ArgumentNullException ex)
+{
+
+}
 
 
 Console.ReadKey();
 
+int GetFirstElement(IEnumerable<int> numbers)
+{
+    foreach (var number in numbers)
+    {
+        return number;
+    }
+    throw new InvalidOperationException("The collection cannot be empty.");
+}
+bool IsFirstElementPositive(IEnumerable<int> numbers)
+{
+    try
+    {
+        var firstElement = GetFirstElement(numbers);
+        return firstElement > 0;
+    }
+    catch(InvalidOperationException ex)
+    {
+        Console.WriteLine("The collection is empty!");
+        return true;
+    }
+    catch(NullReferenceException ex)
+    {
+        //throw;
+        throw new ArgumentNullException("The collection is null.", ex);
+    }
+}
 void RecursiveMethod(int counter)
 {
     Console.WriteLine("I'm going to call myself. Counter is: " + counter);
@@ -59,14 +93,6 @@ bool CheckIfContains(int value, int[] numbers)
     throw new NotImplementedException();
 }
 
-int GetFirstElement(IEnumerable<int> numbers)
-{
-    foreach (var number in numbers)
-    {
-        return number;
-    }
-    throw new InvalidOperationException("The collection cannot be empty.");
-}
 
 int ParseStringToInt(string input)
 {
