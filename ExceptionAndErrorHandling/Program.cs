@@ -101,17 +101,42 @@
 
 using System.Runtime.Serialization;
 
+//try
+//{
+//    ComplexMethod();
+//}
+//catch(JsonParsingException ex)
+//{
+//    Console.WriteLine("Unable to parse JSON. JSON body is: " + ex.JsonBody);
+//    throw;
+//}
+
+var employee = new Employee { YearOfBirth = 1950 };
+
 try
 {
-    ComplexMethod();
+    int age = CalculateEmployeeAge(employee);
 }
-catch(JsonParsingException ex)
+catch(YearOfBirthOutOfValidRangeException ex)
 {
-    Console.WriteLine("Unable to parse JSON. JSON body is: " + ex.JsonBody);
-    throw;
+    Console.WriteLine("Could not calculate the employee's age.");
 }
 
+
 Console.ReadKey();
+
+int CalculateEmployeeAge(Employee employee)
+{
+    if (employee.YearOfBirth < 1900 ||
+        employee.YearOfBirth > DateTime.Now.Year)
+    {
+        throw new YearOfBirthOutOfValidRangeException(
+            $"Person's year of birth must be " +
+            $"between 1900 and current year.");
+    }
+    return DateTime.Now.Year - employee.YearOfBirth;
+}
+
 
 void ComplexMethod()
 {
@@ -175,7 +200,38 @@ int GetFirstElement(IEnumerable<int> numbers)
     }
     throw new InvalidOperationException("The collection cannot be empty.");
 }
+public class Employee
+{
+    public int YearOfBirth { get; set; }
+    public Employee(int yearOfBirth)
+    {
+        YearOfBirth = yearOfBirth;
+    }
+    public Employee()
+    {
 
+    }
+}
+
+[Serializable]
+public class YearOfBirthOutOfValidRangeException : Exception
+{
+    public YearOfBirthOutOfValidRangeException()
+    {
+    }
+
+    public YearOfBirthOutOfValidRangeException(string? message) : base(message)
+    {
+    }
+
+    public YearOfBirthOutOfValidRangeException(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
+
+    protected YearOfBirthOutOfValidRangeException(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
+    }
+}
 public class JsonParsingException : Exception
 {
     public string JsonBody { get; }
