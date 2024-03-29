@@ -2,25 +2,66 @@
 //var words = new List<string> { "aaa", "bbb" };
 //var dates = new List<DateTime> { new DateTime(2023, 1, 4) };
 
-var numbers = new SimpleList<int>();
-numbers.Add(1);
-numbers.Add(2);
-numbers.Add(3);
-numbers.Add(4);
-numbers.Add(5);
+//var numbers = new SimpleList<int>();
+//numbers.Add(1);
+//numbers.Add(2);
+//numbers.Add(3);
+//numbers.Add(4);
+//numbers.Add(5);
 
 //numbers.RemoveAt(2);
-var words = new SimpleList<string>();
-words.Add("aaa");
-words.Add("ccc");
-words.Add("ddd");
+//var words = new SimpleList<string>();
+//words.Add("aaa");
+//words.Add("ccc");
+//words.Add("ddd");
 
-var dates = new SimpleList<DateTime>();
-dates.Add(new DateTime(2025, 1, 6));
-dates.Add(new DateTime(2025, 1, 3));
-dates.Add(new DateTime(2025, 1, 9));
+//var dates = new SimpleList<DateTime>();
+//dates.Add(new DateTime(2025, 1, 6));
+//dates.Add(new DateTime(2025, 1, 3));
+//dates.Add(new DateTime(2025, 1, 9));
+
+var numbers = new List<int> { 5, 3, 2, 8, 16, 7 };
+TwoInts minAndMax = GetMinAndMax(numbers);
+Console.WriteLine("Smallest number is " + minAndMax.Int1);
+Console.WriteLine("Largest number is " + minAndMax.Int2);
 
 Console.ReadKey();
+
+TwoInts GetMinAndMax(IEnumerable<int> input)
+{
+    if (!input.Any())
+    {
+        throw new InvalidOperationException(
+            $"The input collection cannot be empty.");
+    }
+    int min = input.First();
+    int max = input.First();
+
+    foreach(var number in input)
+    {
+        if(number > max)
+        {
+            max = number;
+        }
+        if(number < min)
+        {
+            min = number;
+        }
+    }
+    return new TwoInts(min, max);
+}
+
+public class TwoInts
+{
+    public TwoInts(int int1, int int2)
+    {
+        Int1 = int1;
+        Int2 = int2;
+    }
+    public int Int1 { get; }
+    public int Int2 { get; }
+
+}
 
 class SimpleList<T>
 {
