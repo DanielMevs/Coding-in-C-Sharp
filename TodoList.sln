@@ -53,7 +53,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExceptionAndErrorHandling",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameDataParser", "GameDataParser\GameDataParser.csproj", "{DD6B426F-E8A2-4938-9BAC-7BDCCE30C887}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericTypes", "GenericTypes\GenericTypes.csproj", "{28CD36E0-30A4-4B5D-A285-DD0CE5689043}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generics", "GenericTypes\Generics.csproj", "{28CD36E0-30A4-4B5D-A285-DD0CE5689043}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

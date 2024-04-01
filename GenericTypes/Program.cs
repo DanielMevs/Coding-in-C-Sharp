@@ -22,18 +22,18 @@
 
 using System.Collections;
 
-var numbers = new List<int> { 5, 3, 2, 8, 16, 7 };
-Tuple<int, int> minAndMax = GetMinAndMax(numbers);
+//var numbers = new List<int> { 5, 3, 2, 8, 16, 7 };
+//Tuple<int, int> minAndMax = GetMinAndMax(numbers);
 
-var twoStrings = new Tuple<string, string>("aaa", "bbb");
-var differentTypes = new Tuple<string, int>("aaa", 2);
-var threeItems = new Tuple<string, int, bool>("aaa", 2, false);
+//var twoStrings = new Tuple<string, string>("aaa", "bbb");
+//var differentTypes = new Tuple<string, int>("aaa", 2);
+//var threeItems = new Tuple<string, int, bool>("aaa", 2, false);
 
-Console.WriteLine("Smallest number is " + minAndMax.Item1);
-Console.WriteLine("Largest number is " + minAndMax.Item2);
+//Console.WriteLine("Smallest number is " + minAndMax.Item1);
+//Console.WriteLine("Largest number is " + minAndMax.Item2);
 
-DateTime date = default;
-Console.WriteLine($"Date: {date}");
+//DateTime date = default;
+//Console.WriteLine($"Date: {date}");
 
 //ArrayList ints = new ArrayList { 2, 3, 4, 5 };
 
@@ -46,31 +46,50 @@ Console.WriteLine($"Date: {date}");
 //ArrayList variousItems = new ArrayList { 1, false, "abc", new DateTime() };
 //object[] objects = new object[] {1, false, "abc", new DateTime() };
 
+var ints = new List<int> { 1, 2, 3 };
+ints.AddToFront(10);
+ints.AddToFront(11);
+foreach(var i in ints)
+{
+
+    Console.WriteLine(i);
+}
+//ints.AddToFront<int>("abc");
+
+
 Console.ReadKey();
 
-Tuple<int, int> GetMinAndMax(IEnumerable<int> input)
+static class ListExtensions
 {
-    if (!input.Any())
+    public static void AddToFront<T>(this List<T> list, T item)
     {
-        throw new InvalidOperationException(
-            $"The input collection cannot be empty.");
+        list.Insert(0, item);
     }
-    int min = input.First();
-    int max = input.First();
-
-    foreach(var number in input)
-    {
-        if(number > max)
-        {
-            max = number;
-        }
-        if(number < min)
-        {
-            min = number;
-        }
-    }
-    return new Tuple<int, int>(min, max);
 }
+
+//Tuple<int, int> GetMinAndMax(IEnumerable<int> input)
+//{
+//    if (!input.Any())
+//    {
+//        throw new InvalidOperationException(
+//            $"The input collection cannot be empty.");
+//    }
+//    int min = input.First();
+//    int max = input.First();
+
+//    foreach(var number in input)
+//    {
+//        if(number > max)
+//        {
+//            max = number;
+//        }
+//        if(number < min)
+//        {
+//            min = number;
+//        }
+//    }
+//    return new Tuple<int, int>(min, max);
+//}
 
 //public class SimpleTuple <T1, T2>
 //{
