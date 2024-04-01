@@ -20,6 +20,8 @@
 //dates.Add(new DateTime(2025, 1, 3));
 //dates.Add(new DateTime(2025, 1, 9));
 
+using System.Collections;
+
 var numbers = new List<int> { 5, 3, 2, 8, 16, 7 };
 Tuple<int, int> minAndMax = GetMinAndMax(numbers);
 
@@ -29,6 +31,20 @@ var threeItems = new Tuple<string, int, bool>("aaa", 2, false);
 
 Console.WriteLine("Smallest number is " + minAndMax.Item1);
 Console.WriteLine("Largest number is " + minAndMax.Item2);
+
+DateTime date = default;
+Console.WriteLine($"Date: {date}");
+
+//ArrayList ints = new ArrayList { 2, 3, 4, 5 };
+
+//int sum = 0;
+//foreach(object number in ints){
+//    sum += (int)number;
+//}
+//ArrayList strings = new ArrayList { "a", "b", "c" };
+
+//ArrayList variousItems = new ArrayList { 1, false, "abc", new DateTime() };
+//object[] objects = new object[] {1, false, "abc", new DateTime() };
 
 Console.ReadKey();
 
