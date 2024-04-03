@@ -56,16 +56,45 @@ using System.Collections;
 //}
 //ints.AddToFront<int>("abc");
 
-var decimals = new List<decimal> { 1.1m, 0.5m, 22.5m, 12m};
-var ints = decimals.ConvertTo<decimal, int>();
+//var decimals = new List<decimal> { 1.1m, 0.5m, 22.5m, 12m};
+//var ints = decimals.ConvertTo<decimal, int>();
 
-var floats = new List<float> { 1.4f, -100.01f };
-var longs = floats.ConvertTo<float, long>();
+//var floats = new List<float> { 1.4f, -100.01f };
+//var longs = floats.ConvertTo<float, long>();
 
-var dates = new List<DateTime> { new DateTime(2023, 5, 1) };
-var ints2 = dates.ConvertTo<DateTime, int>();
+//var dates = new List<DateTime> { new DateTime(2023, 5, 1) };
+//var ints2 = dates.ConvertTo<DateTime, int>();
+
+//var points = CreateCollectionOfRandomLength<Point>(100);
+var dates = CreateCollectionOfRandomLength<DateTime>(100);
+
 
 Console.ReadKey();
+
+IEnumerable<T> CreateCollectionOfRandomLength<T>(int maxLength) where T : new()
+{
+    var length = new Random().Next(maxLength + 1);
+
+    var result = new List<T>();
+
+    for (int i = 0; i < length; ++i)
+    {
+        result.Add(new T());
+    }
+    
+    return result;
+}
+
+public class Point
+{
+    public Point(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
+    public int X { get; }
+    public int Y { get; }
+}
 
 static class ListExtensions
 {
@@ -78,6 +107,7 @@ static class ListExtensions
         {
             TTarget itemAfterCasting = 
                 (TTarget)Convert.ChangeType(item, typeof(TTarget));
+            
             result.Add(itemAfterCasting);
         }
         return result;
