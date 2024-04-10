@@ -21,6 +21,7 @@
 //dates.Add(new DateTime(2025, 1, 9));
 
 using System.Diagnostics;
+using System.Numerics;
 
 //var numbers = new List<int> { 5, 3, 2, 8, 16, 7 };
 //Tuple<int, int> minAndMax = GetMinAndMax(numbers);
@@ -72,87 +73,99 @@ using System.Diagnostics;
 //Console.WriteLine($"Execution took {stopwatch.ElapsedMilliseconds} ms.");
 
 
-var numbers = new List<int> { 5, 1, 7, 2};
-numbers.Sort();
+//var numbers = new List<int> { 5, 1, 7, 2};
+//numbers.Sort();
 
-var words = new List<string> { "ddd", "aaa", "ccc", "bbb" };
-words.Sort();
-
-
-var people = new List<Person>
-{
-    new Person {Name = "John", YearOfBirth = 1980},
-    new Person {Name = "Anna", YearOfBirth = 1815},
-    new Person {Name = "Bill", YearOfBirth = 2150},
-};
-people.Sort();
-
-var employees = new List<Employee>
-{
-    new Employee {Name = "John", YearOfBirth = 1980},
-    new Employee {Name = "Anna", YearOfBirth = 1815},
-    new Employee {Name = "Bill", YearOfBirth = 2150},
-};
-
-var validPeople = GetOnlyValid(people);
-var validEmployees = GetOnlyValid(employees);
+//var words = new List<string> { "ddd", "aaa", "ccc", "bbb" };
+//words.Sort();
 
 
-foreach(var employee in validEmployees)
-{
-    employee.GoToWork();
+//var people = new List<Person>
+//{
+//    new Person {Name = "John", YearOfBirth = 1980},
+//    new Person {Name = "Anna", YearOfBirth = 1815},
+//    new Person {Name = "Bill", YearOfBirth = 2150},
+//};
+//people.Sort();
 
-}
-var john = new Person { Name = "John", YearOfBirth = 1980 };
-var anna = new Person { Name = "Anna", YearOfBirth = 1915 };
+//var employees = new List<Employee>
+//{
+//    new Employee {Name = "John", YearOfBirth = 1980},
+//    new Employee {Name = "Anna", YearOfBirth = 1815},
+//    new Employee {Name = "Bill", YearOfBirth = 2150},
+//};
 
-PrintInOrder(10, 5);
-PrintInOrder("aaa", "bbb");
+//var validPeople = GetOnlyValid(people);
+//var validEmployees = GetOnlyValid(employees);
+
+
+//foreach(var employee in validEmployees)
+//{
+//    employee.GoToWork();
+
+//}
+//var john = new Person { Name = "John", YearOfBirth = 1980 };
+//var anna = new Person { Name = "Anna", YearOfBirth = 1915 };
+
+//PrintInOrder(10, 5);
+//PrintInOrder("aaa", "bbb");
 //PrintInOrder(anna, john);
+
+Console.WriteLine($"Square of 2 is {Calculator.Square(2)}");
+Console.WriteLine($"Square of 4m is {Calculator.Square(4m)}");
+Console.WriteLine($"Square of 6d is {Calculator.Square(6d)}");
 
 Console.ReadKey();
 
-void PrintInOrder<T>(T first, T second) where T: IComparable<T>
+public static class Calculator
 {
-    if(first.CompareTo(second) > 0)
-    {
-        Console.WriteLine($"{second} {first}");
-    }
-    else
-    {
-        Console.WriteLine($"{second} {first}");
-    }
+    public static T Square<T>(T input) where T : INumber<T>
+        => input * input;
+    //public static decimal Square(decimal input) => input * input;
+    //public static double Square(double input) => input * input;
 }
 
-IEnumerable<TPerson> GetOnlyValid<TPerson>(IEnumerable<TPerson> persons)
-    where TPerson : Person
-{
-    var result = new List<TPerson>();
+//void PrintInOrder<T>(T first, T second) where T: IComparable<T>
+//{
+//    if(first.CompareTo(second) > 0)
+//    {
+//        Console.WriteLine($"{second} {first}");
+//    }
+//    else
+//    {
+//        Console.WriteLine($"{second} {first}");
+//    }
+//}
 
-    foreach(var person in persons)
-    {
-        if(person.YearOfBirth > 1900 &&
-            person.YearOfBirth < DateTime.Now.Year)
-        {
-            result.Add(person);
-        }
-    }
-    return result;
-}
+//IEnumerable<TPerson> GetOnlyValid<TPerson>(IEnumerable<TPerson> persons)
+//    where TPerson : Person
+//{
+//    var result = new List<TPerson>();
 
-IEnumerable<T> CreateCollectionOfRandomLength<T>(int maxLength) where T : new()
-{
-    var length = 100000000;//new Random().Next(maxLength + 1);
+//    foreach(var person in persons)
+//    {
+//        if(person.YearOfBirth > 1900 &&
+//            person.YearOfBirth < DateTime.Now.Year)
+//        {
+//            result.Add(person);
+//        }
+//    }
+//    return result;
+//}
 
-    var result = new List<T>(length);
+//IEnumerable<T> CreateCollectionOfRandomLength<T>(int maxLength) where T : new()
+//{
+//    var length = 100000000;//new Random().Next(maxLength + 1);
 
-    for (int i = 0; i < length; ++i)
-    {
-        result.Add(new T());
-    }
+//    var result = new List<T>(length);
+
+//    for (int i = 0; i < length; ++i)
+//    {
+//        result.Add(new T());
+//    }
     
-    return result;
-}
+//    return result;
+//}
 public class Person //: IComparable<Person>
 {
     public string Name { get; init; }
