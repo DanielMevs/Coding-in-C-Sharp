@@ -77,58 +77,34 @@ public class NumbersFilter
         switch (filteringType)
         {
             case "Even":
-                return SelectEven(numbers);
+                return Select(numbers, number => number % 2 == 0);
                 
             case "Odd":
-                return SelectOdd(numbers);
+                return Select(numbers, number => number % 2 == 1);
                 
             case "Positive":
-                return SelectPositive(numbers);
+                return Select(numbers, number => number > 0);
                 
             default:
                 throw new NotSupportedException(
                     $"{filteringType} is not a valid filter");
         }
     }
-    private List<int> SelectEven(List<int> numbers)
+
+    private List<int> Select(List<int> numbers, Func<int, bool> predicate)
     {
         var result = new List<int>();
 
         foreach (var number in numbers)
         {
-            if (number % 2 == 0)
+            if (predicate(number))
             {
                 result.Add(number);
             }
         }
         return result;
     }
-    private List<int> SelectOdd(List<int> numbers)
-    {
-        var result = new List<int>();
-
-        foreach (var number in numbers)
-        {
-            if (number % 2 == 1)
-            {
-                result.Add(number);
-            }
-        }
-        return result;
-    }
-    private List<int> SelectPositive(List<int> numbers)
-    {
-        var result = new List<int>();
-
-        foreach (var number in numbers)
-        {
-            if (number > 0)
-            {
-                result.Add(number);
-            }
-        }
-        return result;
-    }
+    
 }
 
 
