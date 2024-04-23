@@ -55,9 +55,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameDataParser", "GameDataP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generics", "GenericTypes\Generics.csproj", "{28CD36E0-30A4-4B5D-A285-DD0CE5689043}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedUseOfMethods", "AdvancedUseOfMethods\AdvancedUseOfMethods.csproj", "{FB8B3DF1-6E22-457F-B961-72C934DBBCC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvancedUseOfMethods", "AdvancedUseOfMethods\AdvancedUseOfMethods.csproj", "{FB8B3DF1-6E22-457F-B961-72C934DBBCC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dictionaries", "Dictionaries\Dictionaries.csproj", "{11510BEA-794C-4D28-B377-A9F211E7F5D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dictionaries", "Dictionaries\Dictionaries.csproj", "{11510BEA-794C-4D28-B377-A9F211E7F5D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCache", "CustomCache\CustomCache.csproj", "{121FE7A7-946E-461B-865E-C6EDAA85334D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -177,6 +179,10 @@ Global
 		{11510BEA-794C-4D28-B377-A9F211E7F5D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11510BEA-794C-4D28-B377-A9F211E7F5D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11510BEA-794C-4D28-B377-A9F211E7F5D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{121FE7A7-946E-461B-865E-C6EDAA85334D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{121FE7A7-946E-461B-865E-C6EDAA85334D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{121FE7A7-946E-461B-865E-C6EDAA85334D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{121FE7A7-946E-461B-865E-C6EDAA85334D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
