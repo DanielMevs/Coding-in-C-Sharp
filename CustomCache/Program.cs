@@ -1,4 +1,6 @@
-﻿IDataDownloader dataDownloader = new SlowDataDownloader();
+﻿IDataDownloader dataDownloader = 
+    new CachingDataDownloader(
+        new SlowDataDownloader());
 
 Console.WriteLine(dataDownloader.DownloadData("id1"));
 Console.WriteLine(dataDownloader.DownloadData("id2"));
@@ -24,6 +26,22 @@ public class Cache<TKey, TData>
     }
 }
 
+public class CachingDataDownloader : IDataDownloader
+{
+    private readonly IDataDownloader _dataDownloader;
+    private readonly Cache<string, string> _cache = new();
+
+    public CachingDataDownloader(IDataDownloader dataDownloader)
+    {
+        _dataDownloader = dataDownloader;
+    }
+
+    public string DownloadData(string resourceId)
+    {
+        return _cache.Get(resourceId, _dataDownloader.DownloadData);
+    }
+}
+
 public interface IDataDownloader
 {
     string DownloadData(string resourceId);
@@ -31,12 +49,8 @@ public interface IDataDownloader
 
 public class SlowDataDownloader : IDataDownloader
 {
-    private readonly Cache<string, string> _cache = new();
+    
     public string DownloadData(string resourceId)
-    {
-        return _cache.Get(resourceId, DownloadDataWithoutCaching);
-    }
-    private string DownloadDataWithoutCaching(string resourceId)
     {
         //let's imagine this method downloads real data,
         //and it does it slowly
