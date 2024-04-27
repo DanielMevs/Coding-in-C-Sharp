@@ -59,9 +59,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvancedUseOfMethods", "Adv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dictionaries", "Dictionaries\Dictionaries.csproj", "{11510BEA-794C-4D28-B377-A9F211E7F5D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCache", "CustomCache\CustomCache.csproj", "{121FE7A7-946E-461B-865E-C6EDAA85334D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomCache", "CustomCache\CustomCache.csproj", "{121FE7A7-946E-461B-865E-C6EDAA85334D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq", "Linq\Linq.csproj", "{E3843561-527F-462C-A114-2ED340DC3544}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqTutorial", "Linq\LinqTutorial.csproj", "{E3843561-527F-462C-A114-2ED340DC3544}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
