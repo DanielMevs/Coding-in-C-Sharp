@@ -16,8 +16,13 @@ namespace LinqTutorial
         static void Main(string[] args)
         {
             var numbers = new[] { 5, 9, 2, 12, 6 };
-            bool isAnyLargerThan10 = numbers.Any(number => number > 10);
-            Console.WriteLine(isAnyLargerThan10);
+            var areAllLargerThanZero = numbers.All(number => number > 0);
+            Console.WriteLine(
+                "Are all numbers larger than zero: "
+                + areAllLargerThanZero
+            );
+            //bool isAnyLargerThan10 = numbers.Any(number => number > 10);
+            //Console.WriteLine(isAnyLargerThan10);
 
             var pets =
             new[]
@@ -32,17 +37,29 @@ namespace LinqTutorial
                 new Pet(8, "Nyan", PetType.Cat, 2.2f)
 
             };
-            var isAnyPetNamedBruce = pets.Any(pet => pet.Name == "Bruce");
-            Console.WriteLine("is any pet named Bruce: " +  isAnyPetNamedBruce);
+            var doAllHaveNonEmptyNames = pets.All(pet =>
+                !string.IsNullOrEmpty(pet.Name));
 
-            var isAnyFish = pets.Any(pet => pet.Type == PetType.Fish);
-            Console.WriteLine("is any pet a fish: " + isAnyFish);
+            Console.WriteLine(
+                "Do all pets have non empty names:" +
+                doAllHaveNonEmptyNames
+            );
 
-            var isThereAVerySpecificPet = pets.Any(pet =>
-                pet.Name.Length > 6 && pet.Id % 2 == 0);
-            Console.WriteLine("is there a very specific pet: " + isThereAVerySpecificPet);
+            var areAllCats = pets.All(
+                pet => pet.Type == PetType.Cat);
 
-            var isNotEmpty = pets.Any();
+            Console.WriteLine("Are all pets cats: " + areAllCats);
+            //var isAnyPetNamedBruce = pets.Any(pet => pet.Name == "Bruce");
+            //Console.WriteLine("is any pet named Bruce: " +  isAnyPetNamedBruce);
+
+            //var isAnyFish = pets.Any(pet => pet.Type == PetType.Fish);
+            //Console.WriteLine("is any pet a fish: " + isAnyFish);
+
+            //var isThereAVerySpecificPet = pets.Any(pet =>
+            //    pet.Name.Length > 6 && pet.Id % 2 == 0);
+            //Console.WriteLine("is there a very specific pet: " + isThereAVerySpecificPet);
+
+            //var isNotEmpty = pets.Any();
 
             //var words = new List<string> { "a",  "bb", "ccc", "dddd" };
 
