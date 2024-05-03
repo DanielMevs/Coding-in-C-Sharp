@@ -15,13 +15,13 @@ namespace LinqTutorial
     {
         static void Main(string[] args)
         {
-            var numbers = new[] { 16, 8, 9, -1, 2 };
-            bool is7Present = numbers.Contains(7);
-            Console.WriteLine("Is 7 present: " + is7Present);
+            //var numbers = new[] { 16, 8, 9, -1, 2 };
+            //bool is7Present = numbers.Contains(7);
+            //Console.WriteLine("Is 7 present: " + is7Present);
 
-            var words = new[] { "lion", "tiger", "snow leopard" };
-            bool isTigerPresent = words.Contains("tiger");
-            Console.WriteLine("Is tiger present: " + isTigerPresent);
+            //var words = new[] { "lion", "tiger", "snow leopard" };
+            //bool isTigerPresent = words.Contains("tiger");
+            //Console.WriteLine("Is tiger present: " + isTigerPresent);
             //var numbers = new[] { 5, 9, 2, 12, 6 };
             //var areAllLargerThanZero = numbers.All(number => number > 0);
             //Console.WriteLine(
@@ -44,20 +44,40 @@ namespace LinqTutorial
                 new Pet(8, "Nyan", PetType.Cat, 2.2f)
 
             };
-            var countOfDogs = pets.Count(pet => pet.Type == PetType.Dog);
-            Console.WriteLine(countOfDogs);
+            var petsOrderedByName = pets.OrderBy(pet => pet.Name);
+            Printer.PrintPets(petsOrderedByName, nameof(petsOrderedByName));
 
-            var countOfPetsNamedBruce = pets.LongCount(pet => pet.Name == "Bruce");
-            Console.WriteLine("Count of dogs named Bruce: " + countOfPetsNamedBruce);
+            var petsOrderedByIdDescending = pets.OrderByDescending(pet => pet.Id);
+            Printer.PrintPets(petsOrderedByIdDescending, nameof(petsOrderedByIdDescending));
 
-            var countOfAllSmallDogs = pets.Count(pet =>
-                pet.Type == PetType.Dog &&
-                pet.Weight < 10);
+            var numbers = new[] { 16, 8, 9, -1, 2 };
+            var orderedNumbers = numbers.OrderBy(number => number);
+            Printer.Print(orderedNumbers, nameof(orderedNumbers));
 
-            Console.WriteLine("Small dogs count: " + countOfAllSmallDogs);
 
-            var allPetsCount = pets.Count();
-            Console.WriteLine("All pets count: " + allPetsCount);
+            var words = new[] { "lion", "tiger", "snow leopard" };
+            var orderedWordsDesc = words.OrderByDescending(word => word);
+            Printer.Print(orderedWordsDesc, nameof(orderedWordsDesc));
+
+            var petsOrderedByTypeThenName = pets
+                .OrderBy(pet => pet.Type)
+                .ThenBy(pet => pet.Name);
+            Printer.PrintPets(
+                petsOrderedByTypeThenName, nameof(petsOrderedByTypeThenName));
+            //var countOfDogs = pets.Count(pet => pet.Type == PetType.Dog);
+            //Console.WriteLine(countOfDogs);
+
+            //var countOfPetsNamedBruce = pets.LongCount(pet => pet.Name == "Bruce");
+            //Console.WriteLine("Count of dogs named Bruce: " + countOfPetsNamedBruce);
+
+            //var countOfAllSmallDogs = pets.Count(pet =>
+            //    pet.Type == PetType.Dog &&
+            //    pet.Weight < 10);
+
+            //Console.WriteLine("Small dogs count: " + countOfAllSmallDogs);
+
+            //var allPetsCount = pets.Count();
+            //Console.WriteLine("All pets count: " + allPetsCount);
             //var doAllHaveNonEmptyNames = pets.All(pet =>
             //    !string.IsNullOrEmpty(pet.Name));
 
@@ -138,6 +158,32 @@ namespace LinqTutorial
             //    "orderedOddNumbers: " + string.Join(", ", orderedOddNumbers));
 
             Console.ReadKey();
+        }
+    }
+    public static class Printer
+    {
+        public static void PrintPets(IOrderedEnumerable<Pet> pets, string petsName)
+        {
+            Console.WriteLine(petsName);
+            foreach(var pet in pets)
+            {
+                Console.WriteLine(
+                    $"Id: {pet.Id} " +
+                    $"Name: {pet.Name} " +
+                    $"Type: {pet.Type} " +
+                    $"Weight: {pet.Weight}"
+                    );
+            }
+            Console.WriteLine();
+        }
+        public static void Print<T>(IOrderedEnumerable<T> items, string itemsName)
+        {
+            Console.WriteLine(itemsName);
+            foreach(var item in items)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
         }
     }
     public enum PetType
