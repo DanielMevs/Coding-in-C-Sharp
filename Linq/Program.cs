@@ -15,14 +15,10 @@ namespace LinqTutorial
     {
         static void Main(string[] args)
         {
-            var numbers = new[] { 16, 8, 9, -1, 2 };
-            var firstNumber = numbers.First();
-            Console.WriteLine("first number: " + firstNumber);
 
-            var firstOdd = numbers.First(number => number % 2 == 1);
-            Console.WriteLine("First odd: " + firstOdd);
-
-
+            var numbers = new[] { 10, 1, 4, 17, 122 };
+            var evenNumbers = numbers.Where(number => number % 2 == 0);
+            Printer.Print(evenNumbers, nameof(evenNumbers));
 
             var pets =
             new[]
@@ -37,13 +33,51 @@ namespace LinqTutorial
                 new Pet(8, "Nyan", PetType.Cat, 2.2f)
 
             };
+
+            var heavierThan10Kilos = pets.Where(pet => pet.Weight > 10);
+            Printer.PrintPets(heavierThan10Kilos, nameof(heavierThan10Kilos));
+
+            var heavierThan100Kilos = pets.Where((pet) => pet.Weight > 100);
+            Printer.Print(heavierThan100Kilos, nameof(heavierThan100Kilos));
+
+            var verySpecificPets = pets.Where(pet =>
+                (pet.Type == PetType.Cat || 
+                pet.Type == PetType.Dog) &&
+                pet.Weight > 10 &&
+                pet.Id % 2 == 0);
+            Printer.PrintPets(verySpecificPets, nameof(verySpecificPets));
+
+            var indexesSelectedByUser = new[] { 1, 6, 7 };
+            var petsSelectedByUserAndLighterThan5Kilos = pets
+                .Where((pet, index) =>
+                    pet.Weight < 5 &&
+                    indexesSelectedByUser.Contains(index));
+
+            Printer.PrintPets(petsSelectedByUserAndLighterThan5Kilos,
+                nameof(petsSelectedByUserAndLighterThan5Kilos));
+
+            int countOfHeavyPets1 = pets.Count(pet => pet.Weight > 30);
+            int countOfHeavyPets2 = pets
+                .Where(pet => pet.Weight > 30).Count();
+
+            Console.WriteLine($"{nameof(countOfHeavyPets1)}:" +
+                $" {countOfHeavyPets1}");
+            Console.WriteLine($"{nameof(countOfHeavyPets2)}:" +
+                $" {countOfHeavyPets2}");
+            
+            //var numbers = new[] { 16, 8, 9, -1, 2 };
+            //var firstNumber = numbers.First();
+            //Console.WriteLine("first number: " + firstNumber);
+
+            //var firstOdd = numbers.First(number => number % 2 == 1);
+            //Console.WriteLine("First odd: " + firstOdd);
             //var lastPetHeavierThan100 = pets.Last(pet => pet.Weight > 100);
-            var lastPetHeavierThan100 = pets
-                .LastOrDefault(pet => pet.Weight > 100);
+            //var lastPetHeavierThan100 = pets
+            //    .LastOrDefault(pet => pet.Weight > 100);
             //Console.WriteLine(nameof(lastPetHeavierThan100) + lastPetHeavierThan100);
 
-            var heaviestPet = pets.OrderBy(pet => pet.Weight).Last();
-            Printer.PrintPet(heaviestPet, nameof(heaviestPet));
+            //var heaviestPet = pets.OrderBy(pet => pet.Weight).Last();
+            //Printer.PrintPet(heaviestPet, nameof(heaviestPet));
 
             //var numbers = new[] { 16, 8, 9, -1, 2 };
             //bool is7Present = numbers.Contains(7);
@@ -178,7 +212,7 @@ namespace LinqTutorial
     }
     public static class Printer
     {
-        public static void PrintPets(IOrderedEnumerable<Pet> pets, string petsName)
+        public static void PrintPets(IEnumerable<Pet> pets, string petsName)
         {
             Console.WriteLine(petsName);
             foreach(var pet in pets)
@@ -206,7 +240,7 @@ namespace LinqTutorial
     
             Console.WriteLine();
         }
-        public static void Print<T>(IOrderedEnumerable<T> items, string itemsName)
+        public static void Print<T>(IEnumerable<T> items, string itemsName)
         {
             Console.WriteLine(itemsName);
             foreach(var item in items)
