@@ -15,6 +15,36 @@ namespace LinqTutorial
     {
         static void Main(string[] args)
         {
+            var numbers = new[] { 16, 8, 9, -1, 2 };
+            var firstNumber = numbers.First();
+            Console.WriteLine("first number: " + firstNumber);
+
+            var firstOdd = numbers.First(number => number % 2 == 1);
+            Console.WriteLine("First odd: " + firstOdd);
+
+
+
+            var pets =
+            new[]
+            {
+                new Pet(1, "Hannibal", PetType.Fish, 1.1f),
+                new Pet(2, "Anthony", PetType.Cat, 2f),
+                new Pet(3, "Ed", PetType.Cat, 0.7f),
+                new Pet(4, "Taiga", PetType.Dog, 35f),
+                new Pet(5, "Rex", PetType.Dog, 40f),
+                new Pet(6, "Lucky", PetType.Dog, 5f),
+                new Pet(7, "Storm", PetType.Cat, 0.9f),
+                new Pet(8, "Nyan", PetType.Cat, 2.2f)
+
+            };
+            //var lastPetHeavierThan100 = pets.Last(pet => pet.Weight > 100);
+            var lastPetHeavierThan100 = pets
+                .LastOrDefault(pet => pet.Weight > 100);
+            //Console.WriteLine(nameof(lastPetHeavierThan100) + lastPetHeavierThan100);
+
+            var heaviestPet = pets.OrderBy(pet => pet.Weight).Last();
+            Printer.PrintPet(heaviestPet, nameof(heaviestPet));
+
             //var numbers = new[] { 16, 8, 9, -1, 2 };
             //bool is7Present = numbers.Contains(7);
             //Console.WriteLine("Is 7 present: " + is7Present);
@@ -30,40 +60,26 @@ namespace LinqTutorial
             //);
             //bool isAnyLargerThan10 = numbers.Any(number => number > 10);
             //Console.WriteLine(isAnyLargerThan10);
+            //var petsOrderedByName = pets.OrderBy(pet => pet.Name);
+            //Printer.PrintPets(petsOrderedByName, nameof(petsOrderedByName));
 
-            var pets =
-            new[]
-            {
-                new Pet(1, "Hannibal", PetType.Fish, 1.1f),
-                new Pet(2, "Anthony", PetType.Cat, 2f),
-                new Pet(3, "Ed", PetType.Cat, 0.7f),
-                new Pet(4, "Taiga", PetType.Dog, 35f),
-                new Pet(5, "Rex", PetType.Dog, 40f),
-                new Pet(6, "Lucky", PetType.Dog, 5f),
-                new Pet(7, "Storm", PetType.Cat, 0.9f),
-                new Pet(8, "Nyan", PetType.Cat, 2.2f)
+            //var petsOrderedByIdDescending = pets.OrderByDescending(pet => pet.Id);
+            //Printer.PrintPets(petsOrderedByIdDescending, nameof(petsOrderedByIdDescending));
 
-            };
-            var petsOrderedByName = pets.OrderBy(pet => pet.Name);
-            Printer.PrintPets(petsOrderedByName, nameof(petsOrderedByName));
-
-            var petsOrderedByIdDescending = pets.OrderByDescending(pet => pet.Id);
-            Printer.PrintPets(petsOrderedByIdDescending, nameof(petsOrderedByIdDescending));
-
-            var numbers = new[] { 16, 8, 9, -1, 2 };
-            var orderedNumbers = numbers.OrderBy(number => number);
-            Printer.Print(orderedNumbers, nameof(orderedNumbers));
+            //var numbers = new[] { 16, 8, 9, -1, 2 };
+            //var orderedNumbers = numbers.OrderBy(number => number);
+            //Printer.Print(orderedNumbers, nameof(orderedNumbers));
 
 
-            var words = new[] { "lion", "tiger", "snow leopard" };
-            var orderedWordsDesc = words.OrderByDescending(word => word);
-            Printer.Print(orderedWordsDesc, nameof(orderedWordsDesc));
+            //var words = new[] { "lion", "tiger", "snow leopard" };
+            //var orderedWordsDesc = words.OrderByDescending(word => word);
+            //Printer.Print(orderedWordsDesc, nameof(orderedWordsDesc));
 
-            var petsOrderedByTypeThenName = pets
-                .OrderBy(pet => pet.Type)
-                .ThenBy(pet => pet.Name);
-            Printer.PrintPets(
-                petsOrderedByTypeThenName, nameof(petsOrderedByTypeThenName));
+            //var petsOrderedByTypeThenName = pets
+            //    .OrderBy(pet => pet.Type)
+            //    .ThenBy(pet => pet.Name);
+            //Printer.PrintPets(
+            //    petsOrderedByTypeThenName, nameof(petsOrderedByTypeThenName));
             //var countOfDogs = pets.Count(pet => pet.Type == PetType.Dog);
             //Console.WriteLine(countOfDogs);
 
@@ -174,6 +190,20 @@ namespace LinqTutorial
                     $"Weight: {pet.Weight}"
                     );
             }
+            Console.WriteLine();
+        }
+        public static void PrintPet(Pet pet, string petName)
+        {
+            Console.WriteLine();
+
+            Console.WriteLine(
+                petName + ": " +
+                $"Id: {pet.Id} " +
+                $"Name: {pet.Name} " +
+                $"Type: {pet.Type} " +
+                $"Weight: {pet.Weight}"
+            );
+    
             Console.WriteLine();
         }
         public static void Print<T>(IOrderedEnumerable<T> items, string itemsName)
