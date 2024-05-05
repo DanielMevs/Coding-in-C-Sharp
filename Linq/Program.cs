@@ -15,56 +15,69 @@ namespace LinqTutorial
     {
         static void Main(string[] args)
         {
+            var numbers = new[] { 10, 1, 10, 4, 17, 17, 122 };
+            var numbersNoDuplicates = numbers.Distinct();
+            Printer.Print(numbersNoDuplicates, nameof(numbersNoDuplicates));
 
-            var numbers = new[] { 10, 1, 4, 17, 122 };
-            var evenNumbers = numbers.Where(number => number % 2 == 0);
-            Printer.Print(evenNumbers, nameof(evenNumbers));
+            //var pets = new[]
+            //{
+            //    new Pet(1, "Hannibal", PetType.Fish, 1.1f),
+            //    new Pet(1, "Hannibal", PetType.Fish, 1.1f)
+            //};
+            //var petsNoDuplicates = pets.Distinct();
+            //Printer.PrintPets(petsNoDuplicates, nameof(petsNoDuplicates));
 
-            var pets =
-            new[]
-            {
-                new Pet(1, "Hannibal", PetType.Fish, 1.1f),
-                new Pet(2, "Anthony", PetType.Cat, 2f),
-                new Pet(3, "Ed", PetType.Cat, 0.7f),
-                new Pet(4, "Taiga", PetType.Dog, 35f),
-                new Pet(5, "Rex", PetType.Dog, 40f),
-                new Pet(6, "Lucky", PetType.Dog, 5f),
-                new Pet(7, "Storm", PetType.Cat, 0.9f),
-                new Pet(8, "Nyan", PetType.Cat, 2.2f)
 
-            };
 
-            var heavierThan10Kilos = pets.Where(pet => pet.Weight > 10);
-            Printer.PrintPets(heavierThan10Kilos, nameof(heavierThan10Kilos));
+            //var numbers = new[] { 10, 1, 4, 17, 122 };
+            //var evenNumbers = numbers.Where(number => number % 2 == 0);
+            //Printer.Print(evenNumbers, nameof(evenNumbers));
 
-            var heavierThan100Kilos = pets.Where((pet) => pet.Weight > 100);
-            Printer.Print(heavierThan100Kilos, nameof(heavierThan100Kilos));
+            //var pets =
+            //new[]
+            //{
+            //    new Pet(1, "Hannibal", PetType.Fish, 1.1f),
+            //    new Pet(2, "Anthony", PetType.Cat, 2f),
+            //    new Pet(3, "Ed", PetType.Cat, 0.7f),
+            //    new Pet(4, "Taiga", PetType.Dog, 35f),
+            //    new Pet(5, "Rex", PetType.Dog, 40f),
+            //    new Pet(6, "Lucky", PetType.Dog, 5f),
+            //    new Pet(7, "Storm", PetType.Cat, 0.9f),
+            //    new Pet(8, "Nyan", PetType.Cat, 2.2f)
 
-            var verySpecificPets = pets.Where(pet =>
-                (pet.Type == PetType.Cat || 
-                pet.Type == PetType.Dog) &&
-                pet.Weight > 10 &&
-                pet.Id % 2 == 0);
-            Printer.PrintPets(verySpecificPets, nameof(verySpecificPets));
+            //};
 
-            var indexesSelectedByUser = new[] { 1, 6, 7 };
-            var petsSelectedByUserAndLighterThan5Kilos = pets
-                .Where((pet, index) =>
-                    pet.Weight < 5 &&
-                    indexesSelectedByUser.Contains(index));
+            //var heavierThan10Kilos = pets.Where(pet => pet.Weight > 10);
+            //Printer.PrintPets(heavierThan10Kilos, nameof(heavierThan10Kilos));
 
-            Printer.PrintPets(petsSelectedByUserAndLighterThan5Kilos,
-                nameof(petsSelectedByUserAndLighterThan5Kilos));
+            //var heavierThan100Kilos = pets.Where((pet) => pet.Weight > 100);
+            //Printer.Print(heavierThan100Kilos, nameof(heavierThan100Kilos));
 
-            int countOfHeavyPets1 = pets.Count(pet => pet.Weight > 30);
-            int countOfHeavyPets2 = pets
-                .Where(pet => pet.Weight > 30).Count();
+            //var verySpecificPets = pets.Where(pet =>
+            //    (pet.Type == PetType.Cat || 
+            //    pet.Type == PetType.Dog) &&
+            //    pet.Weight > 10 &&
+            //    pet.Id % 2 == 0);
+            //Printer.PrintPets(verySpecificPets, nameof(verySpecificPets));
 
-            Console.WriteLine($"{nameof(countOfHeavyPets1)}:" +
-                $" {countOfHeavyPets1}");
-            Console.WriteLine($"{nameof(countOfHeavyPets2)}:" +
-                $" {countOfHeavyPets2}");
-            
+            //var indexesSelectedByUser = new[] { 1, 6, 7 };
+            //var petsSelectedByUserAndLighterThan5Kilos = pets
+            //    .Where((pet, index) =>
+            //        pet.Weight < 5 &&
+            //        indexesSelectedByUser.Contains(index));
+
+            //Printer.PrintPets(petsSelectedByUserAndLighterThan5Kilos,
+            //    nameof(petsSelectedByUserAndLighterThan5Kilos));
+
+            //int countOfHeavyPets1 = pets.Count(pet => pet.Weight > 30);
+            //int countOfHeavyPets2 = pets
+            //    .Where(pet => pet.Weight > 30).Count();
+
+            //Console.WriteLine($"{nameof(countOfHeavyPets1)}:" +
+            //    $" {countOfHeavyPets1}");
+            //Console.WriteLine($"{nameof(countOfHeavyPets2)}:" +
+            //    $" {countOfHeavyPets2}");
+
             //var numbers = new[] { 16, 8, 9, -1, 2 };
             //var firstNumber = numbers.First();
             //Console.WriteLine("first number: " + firstNumber);
