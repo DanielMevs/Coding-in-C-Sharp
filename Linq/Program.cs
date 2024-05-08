@@ -16,8 +16,59 @@ namespace LinqTutorial
         static void Main(string[] args)
         {
             var numbers = new[] { 10, 1, 10, 4, 17, 17, 122 };
-            var numbersNoDuplicates = numbers.Distinct();
-            Printer.Print(numbersNoDuplicates, nameof(numbersNoDuplicates));
+            var doubledNumbers = numbers.Select(number => number * 2);
+            Printer.Print(doubledNumbers, nameof(doubledNumbers));
+
+            var wordsNoUpperCase = new[]
+            {
+                "quick", "brown", "fox"
+            };
+            var toUppercase = wordsNoUpperCase.Select(word => word.ToUpper());
+            Printer.Print(toUppercase, nameof(toUppercase));
+
+            IEnumerable<string> numbersAsStrings = numbers
+                .Select(number => number.ToString());
+
+            var numberedWords = wordsNoUpperCase.Select(
+                (word, index) => $"{index + 1}. {word}");
+            Printer.Print(numberedWords, nameof(numberedWords));
+
+
+            var pets =
+            new[]
+            {
+                new Pet(1, "Hannibal", PetType.Fish, 1.1f),
+                new Pet(2, "Anthony", PetType.Cat, 2f),
+                new Pet(3, "Ed", PetType.Cat, 0.7f),
+                new Pet(4, "Taiga", PetType.Dog, 35f),
+                new Pet(5, "Rex", PetType.Dog, 40f),
+                new Pet(6, "Lucky", PetType.Dog, 5f),
+                new Pet(7, "Storm", PetType.Cat, 0.9f),
+                new Pet(8, "Nyan", PetType.Cat, 2.2f)
+
+            };
+
+            var weights = pets.Select(pet => pet.Weight);
+            Printer.Print(weights, nameof(weights));
+
+            var heavyPetTypes = pets
+                .Where(pet => pet.Weight > 4)
+                .Select(pet => pet.Type)
+                .Distinct();
+            Printer.Print(heavyPetTypes, nameof(weights));
+
+            var petsInitials = pets
+                .OrderBy(pet => pet.Name)
+                .Select(pet => $"{pet.Name.First()}.");
+            Printer.Print(petsInitials, nameof(petsInitials));
+
+            var petsData = pets.Select(pet =>
+                $"Pet named {pet.Name}, of type {pet.Type}" +
+                $"and weight {pet.Weight}");
+            Printer.Print(petsData, nameof(petsData));
+
+            //var numbersNoDuplicates = numbers.Distinct();
+            //Printer.Print(numbersNoDuplicates, nameof(numbersNoDuplicates));
 
             //var pets = new[]
             //{
