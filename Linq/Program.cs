@@ -15,57 +15,107 @@ namespace LinqTutorial
     {
         static void Main(string[] args)
         {
-            var numbers = new[] { 10, 1, 10, 4, 17, 17, 122 };
-            var doubledNumbers = numbers.Select(number => number * 2);
-            Printer.Print(doubledNumbers, nameof(doubledNumbers));
-
-            var wordsNoUpperCase = new[]
+            var listsOfNumbers = new List<List<int>>
             {
-                "quick", "brown", "fox"
-            };
-            var toUppercase = wordsNoUpperCase.Select(word => word.ToUpper());
-            Printer.Print(toUppercase, nameof(toUppercase));
-
-            IEnumerable<string> numbersAsStrings = numbers
-                .Select(number => number.ToString());
-
-            var numberedWords = wordsNoUpperCase.Select(
-                (word, index) => $"{index + 1}. {word}");
-            Printer.Print(numberedWords, nameof(numberedWords));
-
-
-            var pets =
-            new[]
-            {
-                new Pet(1, "Hannibal", PetType.Fish, 1.1f),
-                new Pet(2, "Anthony", PetType.Cat, 2f),
-                new Pet(3, "Ed", PetType.Cat, 0.7f),
-                new Pet(4, "Taiga", PetType.Dog, 35f),
-                new Pet(5, "Rex", PetType.Dog, 40f),
-                new Pet(6, "Lucky", PetType.Dog, 5f),
-                new Pet(7, "Storm", PetType.Cat, 0.9f),
-                new Pet(8, "Nyan", PetType.Cat, 2.2f)
-
+                new List<int> { 15, 68, 20, 12, 19, 8, 55 },
+                new List<int> { 12, 1, 3, 4, -19, 8, 7, 6 },
+                new List<int> { 5, -6, -2, -12, -10, 7 },
             };
 
-            var weights = pets.Select(pet => pet.Weight);
-            Printer.Print(weights, nameof(weights));
+            //var result = listsOfNumbers
+            //    .Select(listOfNumbers => new CountAndAverage
+            //    { 
+            //        Count = listOfNumbers.Count(),
+            //        Average = listOfNumbers.Average()
+            //    })
+            //    .OrderByDescending(countAndAverage => countAndAverage.Average)
+            //    .Select(countAndAverage =>
+            //        $"Count is: {countAndAverage.Count}, " +
+            //        $"Average is: {countAndAverage.Average}"
+            //    );
 
-            var heavyPetTypes = pets
-                .Where(pet => pet.Weight > 4)
-                .Select(pet => pet.Type)
-                .Distinct();
-            Printer.Print(heavyPetTypes, nameof(weights));
+            //var result = listsOfNumbers
+            //    .Select(listOfNumbers => new Tuple<int, double>
+            //    (
+            //        listOfNumbers.Count(),
+            //        listOfNumbers.Average()
+            //    ))
+            //    .OrderByDescending(countAndAverage => countAndAverage.Item2)
+            //    .Select(countAndAverage =>
+            //        $"Count is: {countAndAverage.Item1}, " +
+            //        $"Average is: {countAndAverage.Item2}"
+            //    );
 
-            var petsInitials = pets
-                .OrderBy(pet => pet.Name)
-                .Select(pet => $"{pet.Name.First()}.");
-            Printer.Print(petsInitials, nameof(petsInitials));
+            var result = listsOfNumbers
+                .Select(listOfNumbers => new
+                {
+                    Count = listOfNumbers.Count(),
+                    Average = listOfNumbers.Average()
+                })
+                .OrderByDescending(countAndAverage => countAndAverage.Average)
+                .Select(countAndAverage =>
+                    $"Count is: {countAndAverage.Count}, " +
+                    $"Average is: {countAndAverage.Average}"
+                );
 
-            var petsData = pets.Select(pet =>
-                $"Pet named {pet.Name}, of type {pet.Type}" +
-                $"and weight {pet.Weight}");
-            Printer.Print(petsData, nameof(petsData));
+            Console.WriteLine(string.Join(Environment.NewLine, result));
+
+            var pet = new { Name = "Jackie", Type = "Dog" };
+            // Anonymous types are readonly
+            //pet.Name = "King";
+
+
+            //var numbers = new[] { 10, 1, 10, 4, 17, 17, 122 };
+            //var doubledNumbers = numbers.Select(number => number * 2);
+            //Printer.Print(doubledNumbers, nameof(doubledNumbers));
+
+            //var wordsNoUpperCase = new[]
+            //{
+            //    "quick", "brown", "fox"
+            //};
+            //var toUppercase = wordsNoUpperCase.Select(word => word.ToUpper());
+            //Printer.Print(toUppercase, nameof(toUppercase));
+
+            //IEnumerable<string> numbersAsStrings = numbers
+            //    .Select(number => number.ToString());
+
+            //var numberedWords = wordsNoUpperCase.Select(
+            //    (word, index) => $"{index + 1}. {word}");
+            //Printer.Print(numberedWords, nameof(numberedWords));
+
+
+            //var pets =
+            //new[]
+            //{
+            //    new Pet(1, "Hannibal", PetType.Fish, 1.1f),
+            //    new Pet(2, "Anthony", PetType.Cat, 2f),
+            //    new Pet(3, "Ed", PetType.Cat, 0.7f),
+            //    new Pet(4, "Taiga", PetType.Dog, 35f),
+            //    new Pet(5, "Rex", PetType.Dog, 40f),
+            //    new Pet(6, "Lucky", PetType.Dog, 5f),
+            //    new Pet(7, "Storm", PetType.Cat, 0.9f),
+            //    new Pet(8, "Nyan", PetType.Cat, 2.2f)
+
+            //};
+
+            //var weights = pets.Select(pet => pet.Weight);
+            //Printer.Print(weights, nameof(weights));
+
+            //var heavyPetTypes = pets
+            //    .Where(pet => pet.Weight > 4)
+            //    .Select(pet => pet.Type)
+            //    .Distinct();
+            //Printer.Print(heavyPetTypes, nameof(weights));
+
+            //var petsInitials = pets
+            //    .OrderBy(pet => pet.Name)
+            //    .Select(pet => $"{pet.Name.First()}.");
+            //Printer.Print(petsInitials, nameof(petsInitials));
+
+            //var petsData = pets.Select(pet =>
+            //    $"Pet named {pet.Name}, of type {pet.Type}" +
+            //    $"and weight {pet.Weight}");
+            //Printer.Print(petsData, nameof(petsData));
 
             //var numbersNoDuplicates = numbers.Distinct();
             //Printer.Print(numbersNoDuplicates, nameof(numbersNoDuplicates));
@@ -274,122 +324,127 @@ namespace LinqTutorial
             Console.ReadKey();
         }
     }
-    public static class Printer
-    {
-        public static void PrintPets(IEnumerable<Pet> pets, string petsName)
+    //public class CountAndAverage
+    //{
+    //    public int Count { get; init; }
+    //    public double Average { get; init; }
+    //}
+        public static class Printer
         {
-            Console.WriteLine(petsName);
-            foreach(var pet in pets)
+            public static void PrintPets(IEnumerable<Pet> pets, string petsName)
             {
+                Console.WriteLine(petsName);
+                foreach (var pet in pets)
+                {
+                    Console.WriteLine(
+                        $"Id: {pet.Id} " +
+                        $"Name: {pet.Name} " +
+                        $"Type: {pet.Type} " +
+                        $"Weight: {pet.Weight}"
+                        );
+                }
+                Console.WriteLine();
+            }
+            public static void PrintPet(Pet pet, string petName)
+            {
+                Console.WriteLine();
+
                 Console.WriteLine(
+                    petName + ": " +
                     $"Id: {pet.Id} " +
                     $"Name: {pet.Name} " +
                     $"Type: {pet.Type} " +
                     $"Weight: {pet.Weight}"
-                    );
-            }
-            Console.WriteLine();
-        }
-        public static void PrintPet(Pet pet, string petName)
-        {
-            Console.WriteLine();
+                );
 
-            Console.WriteLine(
-                petName + ": " +
-                $"Id: {pet.Id} " +
-                $"Name: {pet.Name} " +
-                $"Type: {pet.Type} " +
-                $"Weight: {pet.Weight}"
-            );
-    
-            Console.WriteLine();
-        }
-        public static void Print<T>(IEnumerable<T> items, string itemsName)
-        {
-            Console.WriteLine(itemsName);
-            foreach(var item in items)
+                Console.WriteLine();
+            }
+            public static void Print<T>(IEnumerable<T> items, string itemsName)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(itemsName);
+                foreach (var item in items)
+                {
+                    Console.WriteLine(item);
+                }
+                Console.WriteLine();
             }
-            Console.WriteLine();
         }
-    }
-    public enum PetType
-    {
-        Fish,
-        Cat,
-        Dog
-    }
-    public class Pet
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public PetType Type { get; set; }
-        public float Weight { get; set; }
-        public Pet(int id, string name, PetType type, float weight)
+        public enum PetType
         {
-            Id = id;
-            Name = name;
-            Type = type;
-            Weight = weight;
+            Fish,
+            Cat,
+            Dog
         }
-    }
-
-    public class Person
-    {
-        public string Name { get; set; }
-        public string Country { get; set; }
-
-        public Person(string name, string country)
+        public class Pet
         {
-            Name = name;
-            Country = country;
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public PetType Type { get; set; }
+            public float Weight { get; set; }
+            public Pet(int id, string name, PetType type, float weight)
+            {
+                Id = id;
+                Name = name;
+                Type = type;
+                Weight = weight;
+            }
         }
 
-    }
+        public class Person
+        {
+            public string Name { get; set; }
+            public string Country { get; set; }
 
-    //class LinqExample
-    //{
-    //    static void Main(string[] args)
-    //    {
-    //        var wordsNoUpperCase = new string[]
-    //        {
-    //            "quick", "brown", "fox"
-    //        };
-    //        Console.WriteLine(IsAnyWordUpperCase(wordsNoUpperCase));
-    //        var wordsWithUpperCase = new string[]
-    //        {
-    //            "quick", "brown", "FOX"
-    //        };
-    //        Console.WriteLine(IsAnyWordUpperCase(wordsWithUpperCase));
-    //        Console.ReadKey();
-    //    }
-    //    public static bool IsAnyWordUpperCase_Linq(
-    //        IEnumerable<string> words)
-    //    {
-    //        return words.Any(word =>
-    //            word.All(letter => char.IsUpper(letter)));
-    //    }
-    //    public static bool IsAnyWordUpperCase(
-    //        IEnumerable<string> words)
-    //    {
-    //        foreach (var word in words)
-    //        {
-    //            bool areAllUpperCase = true;
-    //            foreach(var letter in word)
-    //            {
-    //                if (char.IsLower(letter))
-    //                {
-    //                    areAllUpperCase = false;
-    //                }
-    //            }
-    //            if(areAllUpperCase)
-    //            {
-    //                return true;
-    //            }
-    //        }
-    //        return false;
-    //    }
-    //}
+            public Person(string name, string country)
+            {
+                Name = name;
+                Country = country;
+            }
 
+        }
+
+        //class LinqExample
+        //{
+        //    static void Main(string[] args)
+        //    {
+        //        var wordsNoUpperCase = new string[]
+        //        {
+        //            "quick", "brown", "fox"
+        //        };
+        //        Console.WriteLine(IsAnyWordUpperCase(wordsNoUpperCase));
+        //        var wordsWithUpperCase = new string[]
+        //        {
+        //            "quick", "brown", "FOX"
+        //        };
+        //        Console.WriteLine(IsAnyWordUpperCase(wordsWithUpperCase));
+        //        Console.ReadKey();
+        //    }
+        //    public static bool IsAnyWordUpperCase_Linq(
+        //        IEnumerable<string> words)
+        //    {
+        //        return words.Any(word =>
+        //            word.All(letter => char.IsUpper(letter)));
+        //    }
+        //    public static bool IsAnyWordUpperCase(
+        //        IEnumerable<string> words)
+        //    {
+        //        foreach (var word in words)
+        //        {
+        //            bool areAllUpperCase = true;
+        //            foreach(var letter in word)
+        //            {
+        //                if (char.IsLower(letter))
+        //                {
+        //                    areAllUpperCase = false;
+        //                }
+        //            }
+        //            if(areAllUpperCase)
+        //            {
+        //                return true;
+        //            }
+        //        }
+        //        return false;
+        //    }
+        //}
+    
 }
