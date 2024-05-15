@@ -1,24 +1,29 @@
 ﻿// Integers are value types => value semantics
-int number = 5;
-int anotherNumber = number; // copies the value
-anotherNumber++;
+//int number = 5;
+//int anotherNumber = number; // copies the value
+//anotherNumber++;
 
-Console.WriteLine("Number is " + number);
-Console.WriteLine("anotherNumber is " + anotherNumber);
+//Console.WriteLine("Number is " + number);
+//Console.WriteLine("anotherNumber is " + anotherNumber);
 
 // Classes have reference semantics
 var john = new Person { Name = "John", Age = 34 };
 var person = john; // copies the reference
-person.Age = 32;
+//person.Age = 32;
 
+
+//Console.WriteLine("John's age is " + john.Age);
+//Console.WriteLine("person's age is " + person.Age + "\n");
+
+//AddOneToNumber(number);
+//AddOneToPersonAge(john);
+
+//Console.WriteLine("Number now is " + number);
+//Console.WriteLine("John's age now is " + john.Age);
+
+var olderJohn = AddOneToPersonsAge(john);
 Console.WriteLine("John's age is " + john.Age);
-Console.WriteLine("person's age is " + person.Age + "\n");
-
-AddOneToNumber(number);
-AddOneToPersonAge(john);
-
-Console.WriteLine("Number now is " + number);
-Console.WriteLine("John's age now is " + john.Age);
+Console.WriteLine("Older John's age is " + olderJohn.Age);
 
 Console.ReadKey();
 
@@ -27,14 +32,19 @@ void AddOneToNumber(int number)
     ++number;
 }
 
-void AddOneToPersonAge(Person person)
+//void AddOneToPersonAge(Person person)
+//{
+//    ++person.Age;
+//}
+
+Person AddOneToPersonsAge(Person person)
 {
-    ++person.Age;
+    return new Person { Name = person.Name, Age = person.Age + 1 };
 }
-class Person
+struct Person
 {
-    public string Name { get; set; }
-    public int Age { get; set; }
+    public string Name { get; init; }
+    public int Age { get; init; }
 }
 
 // structs are value types
