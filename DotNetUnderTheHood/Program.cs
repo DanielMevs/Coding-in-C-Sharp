@@ -1,5 +1,5 @@
 ﻿// Integers are value types => value semantics
-//int number = 5;
+int number = 5;
 //int anotherNumber = number; // copies the value
 //anotherNumber++;
 
@@ -25,9 +25,21 @@ var olderJohn = AddOneToPersonsAge(john);
 Console.WriteLine("John's age is " + john.Age);
 Console.WriteLine("Older John's age is " + olderJohn.Age);
 
+AddOneToNumber(ref number);
+
+Console.WriteLine("\nNumber now is " + number);
+
+MethodWithOutParameter(out int otherNumber);
+Console.WriteLine("\nother number is " + otherNumber);
+
 Console.ReadKey();
 
-void AddOneToNumber(int number)
+void MethodWithOutParameter(out int number)
+{
+    number = 10;
+}
+
+void AddOneToNumber(ref int number)
 {
     ++number;
 }
