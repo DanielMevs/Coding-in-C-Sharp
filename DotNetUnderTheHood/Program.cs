@@ -21,18 +21,29 @@ var person = john; // copies the reference
 //Console.WriteLine("Number now is " + number);
 //Console.WriteLine("John's age now is " + john.Age);
 
-var olderJohn = AddOneToPersonsAge(john);
-Console.WriteLine("John's age is " + john.Age);
-Console.WriteLine("Older John's age is " + olderJohn.Age);
+//var olderJohn = AddOneToPersonsAge(john);
+//Console.WriteLine("John's age is " + john.Age);
+//Console.WriteLine("Older John's age is " + olderJohn.Age);
 
-AddOneToNumber(ref number);
+//AddOneToNumber(ref number);
 
-Console.WriteLine("\nNumber now is " + number);
+//Console.WriteLine("\nNumber now is " + number);
 
-MethodWithOutParameter(out int otherNumber);
-Console.WriteLine("\nother number is " + otherNumber);
+//MethodWithOutParameter(out int otherNumber);
+//Console.WriteLine("\nother number is " + otherNumber);
+
+var list = new List<int> { 1, 2, 3 };
+AddOneToList(ref list);
+Console.WriteLine(string.Join(", ", list));
+
 
 Console.ReadKey();
+
+void AddOneToList(ref List<int> numbers)
+{
+    //numbers.Add(1); // ref not needed
+    numbers = null;
+}
 
 void MethodWithOutParameter(out int number)
 {
