@@ -32,11 +32,24 @@ var person = john; // copies the reference
 //MethodWithOutParameter(out int otherNumber);
 //Console.WriteLine("\nother number is " + otherNumber);
 
-var list = new List<int> { 1, 2, 3 };
-AddOneToList(ref list);
-Console.WriteLine(string.Join(", ", list));
+//var list = new List<int> { 1, 2, 3 };
+//AddOneToList(ref list);
+//Console.WriteLine(string.Join(", ", list));
 
+var variousObjects = new List<object>
+{
+    1,
+    1.5m,
+    new DateTime(2024, 6, 1),
+    "hello",
+    new Person {Name = "Anna", Age = 61 }
+};
 
+foreach(object someObject in variousObjects)
+{
+    Console.WriteLine(
+        someObject.GetType().Name);
+}
 Console.ReadKey();
 
 void AddOneToList(ref List<int> numbers)
