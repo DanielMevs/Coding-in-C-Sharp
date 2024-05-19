@@ -1,5 +1,5 @@
 ﻿// Integers are value types => value semantics
-int number = 5;
+//int number = 5;
 //int anotherNumber = number; // copies the value
 //anotherNumber++;
 
@@ -8,7 +8,7 @@ int number = 5;
 
 // Classes have reference semantics
 var john = new Person { Name = "John", Age = 34 };
-var person = john; // copies the reference
+/*var person = john;*/ // copies the reference
 //person.Age = 32;
 
 
@@ -35,6 +35,20 @@ var person = john; // copies the reference
 //var list = new List<int> { 1, 2, 3 };
 //AddOneToList(ref list);
 //Console.WriteLine(string.Join(", ", list));
+int number = 5;
+var person = new Person { Name = "Ted", Age = 19 };
+// number is boxed; wrapped inside a new instance of a 
+// System.Objec class and stored on the heap
+object boxedNumber = number;
+
+// Unboxing must be done explicitly
+//short unboxedNumber = (short)number;
+int unboxedNumber = (int)number;
+
+
+// Interfaces are reference types
+// so boxing will be performed
+IComparable<int> intAsComparable = number;
 
 var variousObjects = new List<object>
 {
