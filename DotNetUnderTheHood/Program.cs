@@ -7,6 +7,8 @@
 //Console.WriteLine("anotherNumber is " + anotherNumber);
 
 // Classes have reference semantics
+using System.Collections;
+
 var john = new Person { Name = "John", Age = 34 };
 /*var person = john;*/ // copies the reference
 //person.Age = 32;
@@ -36,7 +38,7 @@ var john = new Person { Name = "John", Age = 34 };
 //AddOneToList(ref list);
 //Console.WriteLine(string.Join(", ", list));
 int number = 5;
-var person = new Person { Name = "Ted", Age = 19 };
+//var person = new Person { Name = "Ted", Age = 19 };
 // number is boxed; wrapped inside a new instance of a 
 // System.Objec class and stored on the heap
 object boxedNumber = number;
@@ -48,22 +50,36 @@ int unboxedNumber = (int)number;
 
 // Interfaces are reference types
 // so boxing will be performed
-IComparable<int> intAsComparable = number;
+//IComparable<int> intAsComparable = number;
 
-var variousObjects = new List<object>
-{
-    1,
-    1.5m,
-    new DateTime(2024, 6, 1),
-    "hello",
-    new Person {Name = "Anna", Age = 61 }
-};
+//var numbers1 = new List<int> { 1, 2, 3, 4, 5 };
+//var numbers2 = new ArrayList { 1, 2, 3, 4, 5 };
 
-foreach(object someObject in variousObjects)
+//var numbers3 = new List<IComparable<int>> { 1, 2, 3, 4, 5 };
+
+//var variousObjects = new List<object>
+//{
+//    1,
+//    1.5m,
+//    new DateTime(2024, 6, 1),
+//    "hello",
+//    new Person {Name = "Anna", Age = 61 }
+//};
+
+//foreach(object someObject in variousObjects)
+//{
+//    Console.WriteLine(
+//        someObject.GetType().Name);
+//}
+string userInput = Console.ReadLine();
+if (userInput == "Print person")
 {
-    Console.WriteLine(
-        someObject.GetType().Name);
+    Person person = new Person() { Name = "Shivay", Age = 37 };
+    Console.WriteLine($"{person.Name} is {person.Age} years old.");
 }
+// Should not be used in production
+// For debugging memory consumption
+GC.Collect();
 Console.ReadKey();
 
 void AddOneToList(ref List<int> numbers)
