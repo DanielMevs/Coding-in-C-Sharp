@@ -71,15 +71,43 @@ int unboxedNumber = (int)number;
 //    Console.WriteLine(
 //        someObject.GetType().Name);
 //}
-string userInput = Console.ReadLine();
-if (userInput == "Print person")
-{
-    Person person = new Person() { Name = "Shivay", Age = 37 };
-    Console.WriteLine($"{person.Name} is {person.Age} years old.");
-}
+//string userInput = Console.ReadLine();
+//if (userInput == "Print person")
+//{
+//    Person person = new Person() { Name = "Shivay", Age = 37 };
+//    Console.WriteLine($"{person.Name} is {person.Age} years old.");
+//}
 // Should not be used in production
 // For debugging memory consumption
+//GC.Collect();
+
+//bool flag = true;
+//Person person = new Person();
+//if (flag)
+//{
+//    string textinsideif = "aaa";
+//    person.Name = "tom";
+//}
+//string text = "bbb";
+
+bool someCondition = true;
+
+if (someCondition)
+{
+    var someClassInstance = new SomeClass();
+}
+
+Console.WriteLine(
+    "Count of all instances is now " + SomeClass.CountOfInstances);
+
+for(var i = 0; i < 5; ++i)
+{
+    var person = new Person { Name = "Shivay", Age = 37 };
+}
+
 GC.Collect();
+Console.WriteLine("Ready to close.");
+
 Console.ReadKey();
 
 void AddOneToList(ref List<int> numbers)
@@ -107,10 +135,19 @@ Person AddOneToPersonsAge(Person person)
 {
     return new Person { Name = person.Name, Age = person.Age + 1 };
 }
-struct Person
+class Person
 {
     public string Name { get; init; }
     public int Age { get; init; }
+
+    ~Person()
+    {
+        Console.WriteLine($"Person named {Name} is being destructed.");
+    }
+    //protected override void Finalize()
+    //{
+    //    Console.WriteLine($"Person named {Name} is being destructed.");
+    //}
 }
 
 // structs are value types
@@ -123,5 +160,16 @@ struct Point
     {
         X = x;
         Y = y;
+    }
+}
+
+public class SomeClass
+{
+    private static List<SomeClass> _allExistingInstances =
+        new List<SomeClass>();
+    public static int CountOfInstances => _allExistingInstances.Count;
+    public SomeClass()
+    {
+        _allExistingInstances.Add(this);
     }
 }
