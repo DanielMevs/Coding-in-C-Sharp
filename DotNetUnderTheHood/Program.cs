@@ -107,22 +107,28 @@ int unboxedNumber = (int)number;
 
 //GC.Collect();
 //Console.WriteLine("Ready to close.");
-const string filePath = "file.txt";
-// Syntactic sugar. Equivalent to try finally block
-using (var writer = new FileWriter(filePath))
-{
-    writer.Write("some Text");
-    writer.Write("Some other text");
-}
+//const string filePath = "file.txt";
+//// Syntactic sugar. Equivalent to try finally block
+//using (var writer = new FileWriter(filePath))
+//{
+//    writer.Write("some Text");
+//    writer.Write("Some other text");
+//}
 
 
-using var reader = new SpecificLineFromTextFileReader(filePath);
-var third = reader.ReadLineNumber(3);
-var fourth = reader.ReadLineNumber(4);
-reader.Dispose();
+//using var reader = new SpecificLineFromTextFileReader(filePath);
+//var third = reader.ReadLineNumber(3);
+//var fourth = reader.ReadLineNumber(4);
+//reader.Dispose();
 
-Console.WriteLine("Third line is: " + third);
-Console.WriteLine("Fourth line is: " + fourth);
+//Console.WriteLine("Third line is: " + third);
+//Console.WriteLine("Fourth line is: " + fourth);
+
+// @ symbol interprets all characters within quotes literally
+//const string path = "C:\\Users\\danny\\Downloads\\sampleData.csv";
+const string path = @"C:\Users\danny\Downloads\sampleData.csv";
+var data = new CsvReader().Read(path);
+//var stringWithQuotesInside = "The book titlle is \"The Name of the  Rose\"";
 
 
 Console.WriteLine("Press any key to close.");
@@ -152,6 +158,35 @@ void AddOneToNumber(ref int number)
 Person AddOneToPersonsAge(Person person)
 {
     return new Person { Name = person.Name, Age = person.Age + 1 };
+}
+public class CsvReader
+{
+    public CsvData Read(string path)
+    {
+        using var streamReader = new StreamReader(path);
+
+        const string Separator = ",";
+        var columns = streamReader.ReadLine().Split(Separator);
+
+        var rows = new List<string[]>();
+
+        while (!streamReader.EndOfStream)
+        {
+            var cellsInRow = streamReader.ReadLine().Split(Separator);
+            rows.Add(cellsInRow);
+        }
+        return new CsvData(columns, rows);
+    }
+}
+public class CsvData
+{
+    public string[] Columns { get;  }
+    public IEnumerable<string[]> Rows { get; }
+    public CsvData(string[] columns, IEnumerable<string[]> rows)
+    {
+        Columns = columns;
+        Rows = rows;
+    }
 }
 public class FileWriter : IDisposable
 {
