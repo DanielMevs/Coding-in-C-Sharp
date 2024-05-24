@@ -108,13 +108,18 @@ int unboxedNumber = (int)number;
 //GC.Collect();
 //Console.WriteLine("Ready to close.");
 const string filePath = "file.txt";
-var writer = new FileWriter(filePath);
-writer.Write("some Text");
-writer.Write("Some other text");
+// Syntactic sugar. Equivalent to try finally block
+using (var writer = new FileWriter(filePath))
+{
+    writer.Write("some Text");
+    writer.Write("Some other text");
+}
 
-var reader = new SpecificLineFromTextFileReader(filePath);
+
+using var reader = new SpecificLineFromTextFileReader(filePath);
 var third = reader.ReadLineNumber(3);
 var fourth = reader.ReadLineNumber(4);
+reader.Dispose();
 
 Console.WriteLine("Third line is: " + third);
 Console.WriteLine("Fourth line is: " + fourth);
@@ -148,26 +153,34 @@ Person AddOneToPersonsAge(Person person)
 {
     return new Person { Name = person.Name, Age = person.Age + 1 };
 }
-public class FileWriter
+public class FileWriter : IDisposable
 {
     private readonly StreamWriter _streamWriter;
     public FileWriter(string filePath)
     {
         _streamWriter = new StreamWriter(filePath, true);
     }
+
+
     public void Write(string text)
     {
         _streamWriter.WriteLine(text);
         _streamWriter.Flush();
     }
+    public void Dispose()
+    {
+        _streamWriter.Dispose();
+    }
+    
 }
-public class SpecificLineFromTextFileReader
+public class SpecificLineFromTextFileReader : IDisposable
 {
     private readonly StreamReader _streamReader;
     public SpecificLineFromTextFileReader(string filePath)
     {
         _streamReader = new StreamReader(filePath);
     }
+
 
     public string ReadLineNumber(int lineNumber)
     {
@@ -178,6 +191,10 @@ public class SpecificLineFromTextFileReader
             _streamReader.ReadLine();
         }
         return _streamReader.ReadLine();
+    }
+    public void Dispose()
+    {
+        _streamReader.Dispose();
     }
 }
 class Person
