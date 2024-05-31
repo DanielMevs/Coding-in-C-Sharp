@@ -71,6 +71,21 @@ class StringLengthValidateAttribute: Attribute
     }
 }
 
+[Some(new int[] { 1, 2, 3 })]
+public class SomeClass
+{
+
+}
+
+public class SomeAttribute : Attribute
+{
+    public SomeAttribute(int[] numbers)
+    {
+        numbers = numbers;
+    }
+    public int[] Numbers { get; }
+}
+
 class Validator
 {
     public bool Validate(object obj)
