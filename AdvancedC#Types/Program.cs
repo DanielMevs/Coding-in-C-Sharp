@@ -4,19 +4,51 @@
 //Console.WriteLine(converter.Convert(
 //    new House("123 Maple Rd", 179.6, 2)));
 
-var validPerson = new Person("John", 1981);
-var invalidDog = new Dog("R");
-var validator = new Validator();
+//var validPerson = new Person("John", 1981);
+//var invalidDog = new Dog("R");
+//var validator = new Validator();
 
-Console.WriteLine(validator.Validate(validPerson) ?
-    "Person is valid" :
-    "Person is invalid");
+//Console.WriteLine(validator.Validate(validPerson) ?
+//    "Person is valid" :
+//    "Person is invalid");
 
-Console.WriteLine(validator.Validate(invalidDog) ?
-    "Dog is valid" :
-    "Dog is invalid");
+//Console.WriteLine(validator.Validate(invalidDog) ?
+//    "Dog is valid" :
+//    "Dog is invalid");
+
+var point = new Point(1, 3);
+var anotherPoint = point;
+anotherPoint.Y = 100;
+
+Console.WriteLine($"point is {point}");
+Console.WriteLine($"anotherPoint is {anotherPoint}");
+
+//SomeMethod(5);
+SomeMethod(new Person());
 
 Console.ReadKey();
+
+//void SomeMethod<T>(T param) where T : struct
+//{
+
+//}
+void SomeMethod<T>(T param) where T : class
+{
+
+}
+
+struct Point
+{
+    public int X { get; set; }
+    public int Y { get; set; }
+
+    public Point(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
+    public override string ToString() => $"X: {X}, Y: {Y}";
+}
 class ObjectToTextConverter
 {
     public string Convert(object obj)
@@ -54,6 +86,10 @@ public class Person
     {
         Name = name;
         YearOfBirth = yearOfBirth;
+    }
+    public Person()
+    {
+       
     }
     public Person(string name) => Name = name;
 }
