@@ -16,15 +16,18 @@
 //    "Dog is valid" :
 //    "Dog is invalid");
 
-var point = new Point(1, 3);
-var anotherPoint = point;
-anotherPoint.Y = 100;
+//var point = new Point(1, 3);
+//var anotherPoint = point;
+//anotherPoint.Y = 100;
 
-Console.WriteLine($"point is {point}");
-Console.WriteLine($"anotherPoint is {anotherPoint}");
+//Console.WriteLine($"point is {point}");
+//Console.WriteLine($"anotherPoint is {anotherPoint}");
 
-//SomeMethod(5);
-SomeMethod(new Person());
+////SomeMethod(5);
+//SomeMethod(new Person());
+//Point nullPoint = null;
+//Person nullPerson = null;
+Person person = new Person();
 
 Console.ReadKey();
 
@@ -37,7 +40,7 @@ void SomeMethod<T>(T param) where T : class
 
 }
 
-struct Point
+struct Point/* : IComparable<Point>*/
 {
     public int X { get; set; }
     public int Y { get; set; }
@@ -48,7 +51,17 @@ struct Point
         Y = y;
     }
     public override string ToString() => $"X: {X}, Y: {Y}";
+
+    //public int CompareTo(Point other)
+    //{
+    //    throw new NotImplementedException();
+    //}
 }
+// All structs are sealed
+//struct DerivedPoint : Point
+//{
+
+//}
 class ObjectToTextConverter
 {
     public string Convert(object obj)
@@ -78,20 +91,14 @@ public class Dog
 }
 public class Person
 {
-    [StringLengthValidate(2, 25)]
-    public string Name { get; } //length must be between 2 and 25
-    public int YearOfBirth { get; }
+    //[StringLengthValidate(2, 25)]
+    private Point _favoritePoint;
+    private Person _favoritePerson;
+    public string Name { get; init; } //length must be between 2 and 25
+    public int Id { get; init; }
     
-    public Person(string name, int yearOfBirth)
-    {
-        Name = name;
-        YearOfBirth = yearOfBirth;
-    }
-    public Person()
-    {
-       
-    }
-    public Person(string name) => Name = name;
+    
+    //public Person(string name) => Name = name;
 }
 
 [AttributeUsage(AttributeTargets.Property)]
