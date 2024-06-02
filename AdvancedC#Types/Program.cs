@@ -27,7 +27,8 @@
 //SomeMethod(new Person());
 //Point nullPoint = null;
 //Person nullPerson = null;
-Person person = new Person();
+//Person person = new Person();
+//var point = new Point();
 
 Console.ReadKey();
 
@@ -42,9 +43,18 @@ void SomeMethod<T>(T param) where T : class
 
 struct Point/* : IComparable<Point>*/
 {
+    //public Point ClosetPoint { get; }
     public int X { get; set; }
     public int Y { get; set; }
+    //~Point()
+    //{
 
+    //}
+    //public Point()
+    //{
+    //    X = 1;
+    //    Y = 2;
+    //}
     public Point(int x, int y)
     {
         X = x;
@@ -92,12 +102,18 @@ public class Dog
 public class Person
 {
     //[StringLengthValidate(2, 25)]
-    private Point _favoritePoint;
-    private Person _favoritePerson;
+    //private Point _favoritePoint;
+    //private Person _favoritePerson;
+    public Person ClosestPerson { get; }
     public string Name { get; init; } //length must be between 2 and 25
     public int Id { get; init; }
-    
-    
+    public Person(string name, int id)
+    {
+        Name = name;
+        Id = id;
+    }
+
+
     //public Person(string name) => Name = name;
 }
 
