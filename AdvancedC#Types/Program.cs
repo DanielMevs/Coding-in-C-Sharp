@@ -30,7 +30,27 @@
 //Person person = new Person();
 //var point = new Point();
 
+var fishyStruct1 = new FishyStruct { Numbers = new List<int> { 1, 2, 3 } };
+var fishyStruct2 = fishyStruct1;
+
+fishyStruct2.Numbers.Clear();
+
+var point = new Point(10, 20);
+
+// move to right by 1
+//point.X++;
+
+//MoveToRightBy1Unit(point);
+
+//var dateTime = new DateTime(2023, 6, 7);
+//dateTime.Day += 7;
+
 Console.ReadKey();
+
+//void MoveToRightBy1Unit(Point point)
+//{
+//    point.X++;
+//}
 
 //void SomeMethod<T>(T param) where T : struct
 //{
@@ -41,11 +61,23 @@ void SomeMethod<T>(T param) where T : class
 
 }
 
+struct FishyStruct
+{
+    public List<int> Numbers { get; init; }
+}
+
 struct Point/* : IComparable<Point>*/
 {
     //public Point ClosetPoint { get; }
-    public int X { get; set; }
-    public int Y { get; set; }
+    public int X { get; init; }
+    public int Y { get; init; }
+
+    public Point(int x, int y)
+    {
+        Y = y;
+        X = x;
+    }
+    public override string ToString() => $"X: {X}, Y: {Y}";
     //~Point()
     //{
 
@@ -55,12 +87,7 @@ struct Point/* : IComparable<Point>*/
     //    X = 1;
     //    Y = 2;
     //}
-    public Point(int x, int y)
-    {
-        X = x;
-        Y = y;
-    }
-    public override string ToString() => $"X: {X}, Y: {Y}";
+
 
     //public int CompareTo(Point other)
     //{
