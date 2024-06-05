@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 //var converter = new ObjectToTextConverter();
 //Console.WriteLine(converter.Convert(
@@ -36,6 +37,18 @@ var fishyStruct2 = fishyStruct1;
 fishyStruct2.Numbers.Clear();
 
 var point = new Point(10, 20);
+//var pointMoved = point with { X = 11 };
+//var pointMoved = point with { X = 5, Y = 9 };
+var pointMoved = point with { X = point.X + 1 };
+
+// with expression does not work with classes
+// only works with structs, records,
+// record structs, anonymous types
+//var person = new Person(1, "Matthieu");
+//var person2 = person with { Id = 2 };
+
+var pet = new { Name = "Hannibal", Type = "Fish" };
+var asCrab = pet with { Type = "Crab" };
 
 // move to right by 1
 //point.X++;
@@ -44,6 +57,9 @@ var point = new Point(10, 20);
 
 //var dateTime = new DateTime(2023, 6, 7);
 //dateTime.Day += 7;
+
+var dateTime = new DateTime(2023, 6, 7);
+var dateWeekAfter = dateTime.AddDays(7);
 
 Console.ReadKey();
 
@@ -66,9 +82,10 @@ struct FishyStruct
     public List<int> Numbers { get; init; }
 }
 
-struct Point/* : IComparable<Point>*/
+readonly struct Point/* : IComparable<Point>*/
 {
     //public Point ClosetPoint { get; }
+    private readonly int _z;
     public int X { get; init; }
     public int Y { get; init; }
 
@@ -134,7 +151,7 @@ public class Person
     public Person ClosestPerson { get; }
     public string Name { get; init; } //length must be between 2 and 25
     public int Id { get; init; }
-    public Person(string name, int id)
+    public Person(int id, string name)
     {
         Name = name;
         Id = id;
