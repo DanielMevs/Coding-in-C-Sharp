@@ -61,6 +61,15 @@ var asCrab = pet with { Type = "Crab" };
 var dateTime = new DateTime(2023, 6, 7);
 var dateWeekAfter = dateTime.AddDays(7);
 
+var john = new Person(1, "John");
+//var theSameAsJohn = new Person(1, "John");
+var theSameAsJohn = john;
+
+Console.WriteLine(object.ReferenceEquals(null, null));
+//Console.WriteLine(object.ReferenceEquals(1, 1));
+//Console.WriteLine("Are references equal? " + 
+//    object.ReferenceEquals(john, theSameAsJohn));
+
 Console.ReadKey();
 
 //void MoveToRightBy1Unit(Point point)
