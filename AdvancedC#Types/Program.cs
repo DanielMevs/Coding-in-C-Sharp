@@ -69,26 +69,29 @@ var dateWeekAfter = dateTime.AddDays(7);
 //    object.ReferenceEquals(john, theSameAsJohn));
 
 
+
+Console.WriteLine("1.Equals(1): " + 1.Equals(1));
+Console.WriteLine("1.Equals(2): " + 1.Equals(2));
+Console.WriteLine("1.Equals(null): " + 1.Equals(null));
+
+Console.WriteLine(
+    "\"abc\".Equals(\"abc\"): " + "abc".Equals("abc"));
+Console.WriteLine();
+
+var john = new Person(1, "John");
+var theSameAsJohn = new Person(1, "John");
+var marie = new Person(2, "Marie");
+Console.WriteLine(
+    "john.Equals(theSameAsJohn): " + john.Equals(theSameAsJohn));
+
+Console.WriteLine("john.Equals(marie): " + john.Equals(marie));
+Console.WriteLine("john.Equals(null): " + john.Equals(null));
+Console.WriteLine();
+
+
 var point1 = new Point(1, 5);
 var point2 = new Point(1, 5);
 Console.WriteLine("point1.Equals(point2): " + point1.Equals(point2));
-
-//Console.WriteLine("1.Equals(1): " + 1.Equals(1));
-//Console.WriteLine("1.Equals(2): " + 1.Equals(2));
-//Console.WriteLine("1.Equals(null): " + 1.Equals(null));
-
-//Console.WriteLine(
-//    "\"abc\".Equals(\"abc\"): " + "abc".Equals("abc"));
-//Console.WriteLine();
-
-//var john = new Person(1, "John");
-//var theSameAsJohn = new Person(1, "John");
-//var marie = new Person(2, "Marie");
-//Console.WriteLine(
-//    "john.Equals(theSameAsJohn): " + john.Equals(theSameAsJohn));
-
-//Console.WriteLine("john.Equals(marie): " + john.Equals(marie));
-//Console.WriteLine("john.Equals(null): " + john.Equals(null));
 Console.ReadKey();
 
 //void MoveToRightBy1Unit(Point point)
@@ -113,7 +116,7 @@ struct FishyStruct
 readonly struct Point/* : IComparable<Point>*/
 {
     //public Point ClosetPoint { get; }
-    private readonly int _z;
+    //private readonly int _z;
     public int X { get; init; }
     public int Y { get; init; }
 
@@ -122,7 +125,16 @@ readonly struct Point/* : IComparable<Point>*/
         Y = y;
         X = x;
     }
+
+
     public override string ToString() => $"X: {X}, Y: {Y}";
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Point point &&
+               X == point.X &&
+               Y == point.Y;
+    }
     //~Point()
     //{
 
@@ -184,7 +196,15 @@ public class Person
         Name = name;
         Id = id;
     }
-
+    public override bool Equals(object? obj)
+    {
+        return obj is Person other &&
+            Id == other.Id;
+    }
+    //public override int GetHashCode()
+    //{
+    //    return Id;
+    //}
 
     //public Person(string name) => Name = name;
 }
