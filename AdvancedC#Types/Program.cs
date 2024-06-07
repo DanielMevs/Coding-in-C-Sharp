@@ -61,15 +61,34 @@ var asCrab = pet with { Type = "Crab" };
 var dateTime = new DateTime(2023, 6, 7);
 var dateWeekAfter = dateTime.AddDays(7);
 
-var john = new Person(1, "John");
-//var theSameAsJohn = new Person(1, "John");
-var theSameAsJohn = john;
 
-Console.WriteLine(object.ReferenceEquals(null, null));
+
+//Console.WriteLine(object.ReferenceEquals(null, null));
 //Console.WriteLine(object.ReferenceEquals(1, 1));
 //Console.WriteLine("Are references equal? " + 
 //    object.ReferenceEquals(john, theSameAsJohn));
 
+
+var point1 = new Point(1, 5);
+var point2 = new Point(1, 5);
+Console.WriteLine("point1.Equals(point2): " + point1.Equals(point2));
+
+//Console.WriteLine("1.Equals(1): " + 1.Equals(1));
+//Console.WriteLine("1.Equals(2): " + 1.Equals(2));
+//Console.WriteLine("1.Equals(null): " + 1.Equals(null));
+
+//Console.WriteLine(
+//    "\"abc\".Equals(\"abc\"): " + "abc".Equals("abc"));
+//Console.WriteLine();
+
+//var john = new Person(1, "John");
+//var theSameAsJohn = new Person(1, "John");
+//var marie = new Person(2, "Marie");
+//Console.WriteLine(
+//    "john.Equals(theSameAsJohn): " + john.Equals(theSameAsJohn));
+
+//Console.WriteLine("john.Equals(marie): " + john.Equals(marie));
+//Console.WriteLine("john.Equals(null): " + john.Equals(null));
 Console.ReadKey();
 
 //void MoveToRightBy1Unit(Point point)
