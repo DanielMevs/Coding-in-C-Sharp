@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
-
-//var converter = new ObjectToTextConverter();
+﻿//var converter = new ObjectToTextConverter();
 //Console.WriteLine(converter.Convert(
 //    new House("123 Maple Rd", 179.6, 2)));
 
@@ -113,10 +110,9 @@ struct FishyStruct
     public List<int> Numbers { get; init; }
 }
 
-readonly struct Point/* : IComparable<Point>*/
+readonly struct Point : IEquatable<Point>
 {
-    //public Point ClosetPoint { get; }
-    //private readonly int _z;
+
     public int X { get; init; }
     public int Y { get; init; }
 
@@ -129,27 +125,16 @@ readonly struct Point/* : IComparable<Point>*/
 
     public override string ToString() => $"X: {X}, Y: {Y}";
 
+    public bool Equals (Point other)
+    {
+        return X == other.X && Y == other.Y;
+    }
     public override bool Equals(object? obj)
     {
         return obj is Point point &&
-               X == point.X &&
-               Y == point.Y;
+               Equals(point);
     }
-    //~Point()
-    //{
 
-    //}
-    //public Point()
-    //{
-    //    X = 1;
-    //    Y = 2;
-    //}
-
-
-    //public int CompareTo(Point other)
-    //{
-    //    throw new NotImplementedException();
-    //}
 }
 // All structs are sealed
 //struct DerivedPoint : Point
