@@ -67,28 +67,47 @@ var dateWeekAfter = dateTime.AddDays(7);
 
 
 
-Console.WriteLine("1.Equals(1): " + 1.Equals(1));
-Console.WriteLine("1.Equals(2): " + 1.Equals(2));
-Console.WriteLine("1.Equals(null): " + 1.Equals(null));
+//Console.WriteLine("1.Equals(1): " + 1.Equals(1));
+//Console.WriteLine("1.Equals(2): " + 1.Equals(2));
+//Console.WriteLine("1.Equals(null): " + 1.Equals(null));
 
-Console.WriteLine(
-    "\"abc\".Equals(\"abc\"): " + "abc".Equals("abc"));
-Console.WriteLine();
+//Console.WriteLine(
+//    "\"abc\".Equals(\"abc\"): " + "abc".Equals("abc"));
+//Console.WriteLine();
 
-var john = new Person(1, "John");
-var theSameAsJohn = new Person(1, "John");
-var marie = new Person(2, "Marie");
-Console.WriteLine(
-    "john.Equals(theSameAsJohn): " + john.Equals(theSameAsJohn));
+//var john = new Person(1, "John");
+//var theSameAsJohn = new Person(1, "John");
+//var marie = new Person(2, "Marie");
+//Console.WriteLine(
+//    "john.Equals(theSameAsJohn): " + john.Equals(theSameAsJohn));
 
-Console.WriteLine("john.Equals(marie): " + john.Equals(marie));
-Console.WriteLine("john.Equals(null): " + john.Equals(null));
-Console.WriteLine();
+//Console.WriteLine("john.Equals(marie): " + john.Equals(marie));
+//Console.WriteLine("john.Equals(null): " + john.Equals(null));
+//Console.WriteLine();
 
+
+//var point1 = new Point(1, 5);
+//var point2 = new Point(1, 5);
+//Console.WriteLine("point1.Equals(point2): " + point1.Equals(point2));
+
+//Console.WriteLine("point1 == point2" +
+//    (point1 == point2));
+
+//Console.WriteLine("point1 == point2" +
+//    (1 == 1));
+
+
+int sum = 5 + 8;
+string concatenated = "Hello" + " " + "there";
 
 var point1 = new Point(1, 5);
-var point2 = new Point(1, 5);
-Console.WriteLine("point1.Equals(point2): " + point1.Equals(point2));
+var point2 = new Point(2, 4);
+//var added = point1.Add(point2);
+var added = point1 + point2;
+
+Console.WriteLine("point1 == point2 " +
+    (point1 == point2));
+
 Console.ReadKey();
 
 //void MoveToRightBy1Unit(Point point)
@@ -125,6 +144,11 @@ readonly struct Point : IEquatable<Point>
 
     public override string ToString() => $"X: {X}, Y: {Y}";
 
+    public static bool operator ==(Point point1, Point point2) =>
+        point1.Equals(point2);
+    public static bool operator !=(Point point1, Point point2) =>
+        !point1.Equals(point2);
+
     public bool Equals (Point other)
     {
         return X == other.X && Y == other.Y;
@@ -135,6 +159,10 @@ readonly struct Point : IEquatable<Point>
                Equals(point);
     }
 
+    //public Point Add(Point point2) =>
+    //    new Point(X + point2.X, Y + point2.Y);
+    public static Point operator +(Point a, Point b) =>
+        new Point(a.X + b.X, a.Y + b.Y);
 }
 // All structs are sealed
 //struct DerivedPoint : Point
