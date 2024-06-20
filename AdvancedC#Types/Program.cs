@@ -108,6 +108,16 @@ var added = point1 + point2;
 Console.WriteLine("point1 == point2 " +
     (point1 == point2));
 
+int tenAsInt = 10;
+decimal tenAsDecimal = tenAsInt;
+
+decimal someDecimal = 20.01m;
+int someInt = (int)someDecimal;
+
+var tuple = Tuple.Create(10, 20);
+Point point3 = tuple;
+//Point point3 = (Point)tuple;
+
 Console.ReadKey();
 
 //void MoveToRightBy1Unit(Point point)
@@ -153,6 +163,12 @@ readonly struct Point : IEquatable<Point>
     {
         return X == other.X && Y == other.Y;
     }
+
+    public static implicit operator Point(Tuple<int, int> tuple) =>
+        new Point(tuple.Item1, tuple.Item2);
+
+    //public static explicit operator Point(Tuple<int, int> tuple) =>
+    //    new Point(tuple.Item1, tuple.Item2);
     public override bool Equals(object? obj)
     {
         return obj is Point point &&
