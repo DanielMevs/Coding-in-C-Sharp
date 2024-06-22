@@ -105,8 +105,8 @@ var point2 = new Point(2, 4);
 //var added = point1.Add(point2);
 var added = point1 + point2;
 
-Console.WriteLine("point1 == point2 " +
-    (point1 == point2));
+//Console.WriteLine("point1 == point2 " +
+//    (point1 == point2));
 
 int tenAsInt = 10;
 decimal tenAsDecimal = tenAsInt;
@@ -117,6 +117,14 @@ int someInt = (int)someDecimal;
 var tuple = Tuple.Create(10, 20);
 Point point3 = tuple;
 //Point point3 = (Point)tuple;
+
+var hash1 = 123.GetHashCode();
+var hash2 = "abc".GetHashCode();
+Console.WriteLine(hash1);
+Console.WriteLine(hash2);
+
+var dictionary = new Dictionary<Point, string>();
+dictionary[new Point(10, 20)] = "abc";
 
 Console.ReadKey();
 
