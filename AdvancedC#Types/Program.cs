@@ -100,10 +100,10 @@ var dateWeekAfter = dateTime.AddDays(7);
 int sum = 5 + 8;
 string concatenated = "Hello" + " " + "there";
 
-var point1 = new Point(1, 5);
-var point2 = new Point(2, 4);
+//var point1 = new Point(1, 5);
+//var point2 = new Point(2, 4);
 //var added = point1.Add(point2);
-var added = point1 + point2;
+//var added = point1 + point2;
 
 //Console.WriteLine("point1 == point2 " +
 //    (point1 == point2));
@@ -120,12 +120,28 @@ Point point3 = tuple;
 
 var hash1 = 123.GetHashCode();
 var hash2 = "abc".GetHashCode();
-Console.WriteLine(hash1);
-Console.WriteLine(hash2);
+//Console.WriteLine(hash1);
+//Console.WriteLine(hash2);
 
-var dictionary = new Dictionary<Point, string>();
-dictionary[new Point(10, 20)] = "abc";
+//var dictionary = new Dictionary<Point, string>();
+//dictionary[new Point(10, 20)] = "abc";
 
+//var dictionary = new Dictionary<Person,int>();
+//var martin = new Person(6, "Martin");
+//dictionary[martin] = 5;
+//var theSameAsMartin = new Person(6, "Martin");
+//Console.WriteLine(dictionary[martin]);
+//Console.WriteLine(dictionary[theSameAsMartin]);
+//Console.WriteLine(martin.GetHashCode());
+//Console.WriteLine(theSameAsMartin.GetHashCode());
+
+var dictionary = new Dictionary<Point, int>();
+var point1 = new Point(27, 1);
+dictionary[point1] = 99;
+var point2 = new Point(27, 1);
+Console.WriteLine(dictionary[point2]);
+Console.WriteLine(point1.GetHashCode());
+Console.WriteLine(point2.GetHashCode());
 Console.ReadKey();
 
 //void MoveToRightBy1Unit(Point point)
