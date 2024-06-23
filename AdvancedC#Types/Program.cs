@@ -115,7 +115,7 @@ decimal someDecimal = 20.01m;
 int someInt = (int)someDecimal;
 
 var tuple = Tuple.Create(10, 20);
-Point point3 = tuple;
+//Point point3 = tuple;
 //Point point3 = (Point)tuple;
 
 var hash1 = 123.GetHashCode();
@@ -136,12 +136,22 @@ var hash2 = "abc".GetHashCode();
 //Console.WriteLine(theSameAsMartin.GetHashCode());
 
 var dictionary = new Dictionary<Point, int>();
-var point1 = new Point(27, 1);
-dictionary[point1] = 99;
-var point2 = new Point(27, 1);
-Console.WriteLine(dictionary[point2]);
-Console.WriteLine(point1.GetHashCode());
-Console.WriteLine(point2.GetHashCode());
+//var point1 = new Point(27, 1);
+//dictionary[point1] = 99;
+//var point2 = new Point(27, 1);
+//var point3 = new Point(6, -1);
+////Console.WriteLine(dictionary[point2]);
+//Console.WriteLine(point1.GetHashCode());
+//Console.WriteLine(point2.GetHashCode());
+//Console.WriteLine(point3.GetHashCode());
+
+var person1 = new Person(6, "Martin");
+var person2 = new Person(6, "Martin");
+var person3 = new Person(7, "Bella");
+Console.WriteLine(person1.GetHashCode());
+Console.WriteLine(person2.GetHashCode());
+Console.WriteLine(person3.GetHashCode());
+
 Console.ReadKey();
 
 //void MoveToRightBy1Unit(Point point)
@@ -199,6 +209,11 @@ readonly struct Point : IEquatable<Point>
                Equals(point);
     }
 
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(X, Y);
+    }
+
     //public Point Add(Point point2) =>
     //    new Point(X + point2.X, Y + point2.Y);
     public static Point operator +(Point a, Point b) =>
@@ -253,6 +268,10 @@ public class Person
     {
         return obj is Person other &&
             Id == other.Id;
+    }
+    public override int GetHashCode()
+    {
+        return Id;
     }
     //public override int GetHashCode()
     //{
