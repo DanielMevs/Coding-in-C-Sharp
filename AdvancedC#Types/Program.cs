@@ -169,6 +169,8 @@ var valueTuple2 = (Number: 5, Text: "ccc");
 valueTuple2.Item1 = 20;
 valueTuple2.Text = "ddd";
 
+var person = new Person("123456789", "John", 1982);
+person.Id = null;
 
 Console.ReadKey();
 
@@ -276,11 +278,27 @@ public class Person
     //private Person _favoritePerson;
     public Person ClosestPerson { get; }
     public string Name { get; init; } //length must be between 2 and 25
-    public int Id { get; init; }
-    public Person(int id, string name)
+    public string Id { get; init; }
+    public int YearOfBirth { get; init; }
+    public Person(string id, string name, int yearOfBirth)
     {
-        Name = name;
+        if (string.IsNullOrEmpty(id) ||
+            id.Length != 9 ||
+            !id.All(character => char.IsDigit(character)))
+        {
+            throw new ArgumentException("Id is invalid");
+        }
+        if (string.IsNullOrEmpty (name) || name.Length < 2 || name.Length > 100)
+        {
+            throw new ArgumentException("Name is invalid");
+        }
+        if (yearOfBirth < 1900 || yearOfBirth > DateTime.Now.Year)
+        {
+            throw new ArgumentException("YearOfBirth is invalid");
+        }
+            Name = name;
         Id = id;
+        YearOfBirth = yearOfBirth;
     }
     public override bool Equals(object? obj)
     {
@@ -289,7 +307,7 @@ public class Person
     }
     public override int GetHashCode()
     {
-        return Id;
+        return Id.GetHashCode();
     }
     //public override int GetHashCode()
     //{
