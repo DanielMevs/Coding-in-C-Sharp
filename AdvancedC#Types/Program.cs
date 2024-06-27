@@ -152,26 +152,30 @@ var dictionary = new Dictionary<Point, int>();
 //Console.WriteLine(person2.GetHashCode());
 //Console.WriteLine(person3.GetHashCode());
 
-var tuple1 = new Tuple<string, bool>("aaa", false);
-var tuple2 = Tuple.Create(10, true);
-var tuple3 = Tuple.Create(10, true);
-Console.WriteLine(tuple2 == tuple3);
-Console.WriteLine(tuple2.Equals(tuple3));
-Console.WriteLine(tuple2.GetHashCode());
-Console.WriteLine(tuple3.GetHashCode());
+//var tuple1 = new Tuple<string, bool>("aaa", false);
+//var tuple2 = Tuple.Create(10, true);
+//var tuple3 = Tuple.Create(10, true);
+//Console.WriteLine(tuple2 == tuple3);
+//Console.WriteLine(tuple2.Equals(tuple3));
+//Console.WriteLine(tuple2.GetHashCode());
+//Console.WriteLine(tuple3.GetHashCode());
 
-var number = tuple2.Item1;
-// Tuples are Readonly
-//tuple2.Item1 = 20;
+//var number = tuple2.Item1;
+//// Tuples are Readonly
+////tuple2.Item1 = 20;
 
-var valueTuple1 = new ValueTuple<int, string>(1, "bbb");
-var valueTuple2 = (Number: 5, Text: "ccc");
-valueTuple2.Item1 = 20;
-valueTuple2.Text = "ddd";
+//var valueTuple1 = new ValueTuple<int, string>(1, "bbb");
+//var valueTuple2 = (Number: 5, Text: "ccc");
+//valueTuple2.Item1 = 20;
+//valueTuple2.Text = "ddd";
 
-var person = new Person("123456789", "John", 1982);
-person.Id = null;
+//var person = new Person("123456789", "John", 1982);
+//person.Id = null;
 
+var weatherData = new WeatherData(25.1m, 65);
+Console.WriteLine(weatherData);
+
+var warmerWeatherData = weatherData with { Temperature = 30 };
 Console.ReadKey();
 
 //void MoveToRightBy1Unit(Point point)
@@ -378,3 +382,65 @@ class Validator
         return true;
     }
 }
+
+// Properties are readonly with positional records
+public record WeatherData(decimal Temperature, int Humidity);
+
+// With regular records, we can make Properties writable
+// and define our own methods.
+//public record WeatherData
+//{
+//    public decimal Temperature { get; set; }
+//    public int Humidity { get; }
+
+//    public WeatherData(decimal temperature, int humidity)
+//    {
+//        Temperature = temperature;
+//        Humidity = humidity;
+//    }
+//    public void SomeMethod()
+//    {
+
+//    }
+//}
+
+//public class WeatherData : IEquatable<WeatherData?>
+//{
+//    public decimal Temperature { get; }
+//    public int Humidity { get; }
+
+//    public WeatherData(decimal temperature, int humidity)
+//    {
+//        Temperature = temperature;
+//        Humidity = humidity;
+//    }
+//    public override string ToString() =>
+//        $"Temperature: {Temperature}, Humidity: {Humidity}";
+
+//    public override bool Equals(object? obj)
+//    {
+//        return Equals(obj as WeatherData);
+//    }
+
+//    public bool Equals(WeatherData? other)
+//    {
+//        return other is not null &&
+//               Temperature == other.Temperature &&
+//               Humidity == other.Humidity;
+//    }
+
+//    public override int GetHashCode()
+//    {
+//        return HashCode.Combine(Temperature, Humidity);
+//    }
+
+//    public static bool operator ==(WeatherData? left, WeatherData? right)
+//    {
+//        return EqualityComparer<WeatherData>.Default.Equals(left, right);
+//    }
+
+//    public static bool operator !=(WeatherData? left, WeatherData? right)
+//    {
+//        return !(left == right);
+//    }
+//}
