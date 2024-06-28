@@ -176,6 +176,10 @@ var weatherData = new WeatherData(25.1m, 65);
 Console.WriteLine(weatherData);
 
 var warmerWeatherData = weatherData with { Temperature = 30 };
+
+var rectangle = new Rectangle(10, 20);
+//rectangle.A = 30;
+
 Console.ReadKey();
 
 //void MoveToRightBy1Unit(Point point)
@@ -385,6 +389,8 @@ class Validator
 
 // Properties are readonly with positional records
 public record WeatherData(decimal Temperature, int Humidity);
+
+public readonly record struct Rectangle(int A, int B);
 
 // With regular records, we can make Properties writable
 // and define our own methods.
