@@ -180,6 +180,34 @@ var warmerWeatherData = weatherData with { Temperature = 30 };
 var rectangle = new Rectangle(10, 20);
 //rectangle.A = 30;
 
+//int number = null;
+string text = null;
+
+int? numberOrNull = null;
+Nullable<bool> boolOrNull = true;
+//Nullable<string> stringOrNull = null;
+
+var heights = new List<Nullable<int>>
+{
+    160, null, 185, null, 170
+};
+
+var averageHeight = heights
+    .Average();
+
+
+if (numberOrNull.HasValue)
+{
+    int number = numberOrNull.Value;
+    Console.WriteLine("not null");
+}
+if(boolOrNull is not null)
+{
+    var someBool = boolOrNull.Value;
+    Console.WriteLine(someBool);
+}
+
+
 Console.ReadKey();
 
 //void MoveToRightBy1Unit(Point point)
