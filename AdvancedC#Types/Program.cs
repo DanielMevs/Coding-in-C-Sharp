@@ -212,6 +212,12 @@ if(boolOrNull is not null)
 
 Console.ReadKey();
 
+void OddClassInit_ShallThrowExceptionWhenGivenNull()
+{
+    // validates this line throws an exception
+    new OddClass().Init(null!);
+}
+
 
 
 //void MoveToRightBy1Unit(Point point)
@@ -278,6 +284,33 @@ readonly struct Point : IEquatable<Point>
     //    new Point(X + point2.X, Y + point2.Y);
     public static Point operator +(Point a, Point b) =>
         new Point(a.X + b.X, a.Y + b.Y);
+}
+
+public class OddClass
+{
+    public string? Text { get; private set; }
+    private bool _isInitialized;
+
+    public void Init(string text)
+    {
+        if(text is null)
+        {
+            throw new ArgumentException(nameof(text));
+        }
+        Text = text;
+        _isInitialized = true;
+    }
+    public void DoWork()
+    {
+        if (!_isInitialized)
+        {
+            throw new InvalidCastException(
+                $"The class is not initialized.");
+        }
+
+        Console.WriteLine(
+            "The length of text is: " + Text!.Length);
+    }
 }
 // All structs are sealed
 //struct DerivedPoint : Point
