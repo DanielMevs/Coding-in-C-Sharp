@@ -28,6 +28,8 @@
 //Person person = new Person();
 //var point = new Point();
 
+using System.Net;
+
 var fishyStruct1 = new FishyStruct { Numbers = new List<int> { 1, 2, 3 } };
 var fishyStruct2 = fishyStruct1;
 
@@ -210,6 +212,8 @@ if(boolOrNull is not null)
 
 Console.ReadKey();
 
+
+
 //void MoveToRightBy1Unit(Point point)
 //{
 //    point.X++;
@@ -280,6 +284,73 @@ readonly struct Point : IEquatable<Point>
 //{
 
 //}
+class Main
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //string? nonNullableString = null;
+            //Console.WriteLine(nonNullableString);
+            var array = new string[10];
+            Console.WriteLine(array[0].Length);
+        }
+        static int GetLength(string? nullableText)
+        {
+            if(nullableText == null)
+            {
+                return 0;
+            }
+            return nullableText.Length;
+        }
+        static string FormatHousesData(IEnumerable<House> houses)
+        {
+            return string.Join("\n",
+                houses.Select(house =>
+                $"Owner is {house.OwnerName}, " +
+                $"address is {house.Address.Number}" +
+                $"{house.Address.Street}"));
+        }
+    }
+}
+
+class House
+{
+    public string OwnerName { get; }
+    public Address Address { get; }
+    public House(string ownerName, Address address)
+    {
+        if(ownerName == null)
+        {
+            throw new ArgumentNullException(nameof(ownerName));
+        }
+        if (address == null)
+        {
+            throw new ArgumentNullException(nameof(address));
+        }
+        OwnerName = ownerName;
+        Address = address;
+    }
+}
+
+class Address
+{
+    public string Street { get; }
+    public string Number { get; }
+    public Address(string number)
+    {
+        //if (street == null)
+        //{
+        //    throw new ArgumentNullException(nameof(street));
+        //}
+        //if (Number == null)
+        //{
+        //    throw new ArgumentNullException(nameof(Number));
+        //}
+        //Street = street;
+        Number = number;
+    }
+}
 class ObjectToTextConverter
 {
     public string Convert(object obj)
@@ -298,7 +369,7 @@ class ObjectToTextConverter
 }
 
 public record Pet(string Name, PetType PetType, float Weight);
-public record House(string Address, double Area, int Floors);
+//public record House(string Address, double Area, int Floors);
 public enum PetType {  Cat, Dog, Fish };
 
 public class Dog
