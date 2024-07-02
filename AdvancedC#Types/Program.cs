@@ -216,9 +216,14 @@ string text1 = null;
 string? otherText = null;
 //SomeMethod2(otherText);
 
+SomeMethod3(null!);
+
 Console.ReadKey();
 
-
+void SomeMethod3(string someString)
+{
+    Console.WriteLine(someString);
+}
 void SomeMethod2<T>(T input) where T : Person?
 {
 
