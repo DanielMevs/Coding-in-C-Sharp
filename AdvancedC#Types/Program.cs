@@ -209,15 +209,26 @@ if(boolOrNull is not null)
     Console.WriteLine(someBool);
 }
 
+#nullable disable
+string text1 = null;
+
+#nullable enable
+string? otherText = null;
+//SomeMethod2(otherText);
 
 Console.ReadKey();
+
+
+void SomeMethod2<T>(T input) where T : Person?
+{
+
+}
 
 void OddClassInit_ShallThrowExceptionWhenGivenNull()
 {
     // validates this line throws an exception
     new OddClass().Init(null!);
 }
-
 
 
 //void MoveToRightBy1Unit(Point point)
