@@ -73,6 +73,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvancedC#Types", "Advanced
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroToApis", "IntroToApis\IntroToApis.csproj", "{D8E371D0-163A-434C-8C67-0AC2CCEEB64E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsPlanetsStats", "StarWarsPlanetsStats\StarWarsPlanetsStats.csproj", "{4D211E67-3EBC-4400-9B96-2E9FE979AE60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -219,6 +221,10 @@ Global
 		{D8E371D0-163A-434C-8C67-0AC2CCEEB64E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8E371D0-163A-434C-8C67-0AC2CCEEB64E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8E371D0-163A-434C-8C67-0AC2CCEEB64E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D211E67-3EBC-4400-9B96-2E9FE979AE60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D211E67-3EBC-4400-9B96-2E9FE979AE60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D211E67-3EBC-4400-9B96-2E9FE979AE60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D211E67-3EBC-4400-9B96-2E9FE979AE60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
