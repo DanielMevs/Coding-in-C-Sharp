@@ -26,7 +26,7 @@
 //    Console.WriteLine(currentWord);
 //}
 
-IEnumerable customCollection = new CustomCollection(
+var customCollection = new CustomCollection(
     new string[] { "aaa", "bbb", "ccc" });
 var enumerator = customCollection.GetEnumerator();
 
@@ -34,6 +34,9 @@ foreach(var word in customCollection)
 {
     Console.WriteLine(word);
 }
+
+var first = customCollection[0];
+customCollection[1] = "abc";
 
 Console.ReadKey();
 
@@ -45,19 +48,24 @@ public class CustomCollection : IEnumerable<string>
         Words = words;
     }
 
+    public string this[int index]
+    {
+        get => Words[index];
+        set => Words[index] = value;
+    }
+
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return new WordsEnumerator(Words);
+        return GetEnumerator();
     }
 
     public IEnumerator<string> GetEnumerator()
     {
-        //return new WordsEnumerator(Words);
-        throw new NotImplementedException();    
+        return new WordsEnumerator(Words);
     }
 }
 
-public class WordsEnumerator : IEnumerator
+public class WordsEnumerator : IEnumerator<string>
 {
     private const int InitialPosition = -1;
     private int _currentPosition = InitialPosition;
@@ -67,7 +75,9 @@ public class WordsEnumerator : IEnumerator
     {
         _words = words;
     }
-    public object Current
+
+    object IEnumerator.Current => Current;
+    public string Current
     {
         get
         {
@@ -93,5 +103,10 @@ public class WordsEnumerator : IEnumerator
     public void Reset()
     {
         _currentPosition = InitialPosition;
+    }
+
+    public void Dispose()
+    {
+
     }
 }
