@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 
 //var text = "hello there";
 //foreach(char character in text)
@@ -26,23 +27,23 @@
 //    Console.WriteLine(currentWord);
 //}
 
-var customCollection = new CustomCollection(
-    new string[] { "aaa", "bbb", "ccc" });
-var enumerator = customCollection.GetEnumerator();
+//var customCollection = new CustomCollection(
+//    new string[] { "aaa", "bbb", "ccc" });
+//var enumerator = customCollection.GetEnumerator();
 
-foreach(var word in customCollection)
-{
-    Console.WriteLine(word);
-}
+//foreach(var word in customCollection)
+//{
+//    Console.WriteLine(word);
+//}
 
-var first = customCollection[0];
-customCollection[1] = "abc";
+//var first = customCollection[0];
+//customCollection[1] = "abc";
 
 //var numbers = new List<int> { 1, 2, 3, 4, 5 };
 //var array = new int[10];
 //numbers.CopyTo(array, 2);
 
-var numbers = new List<int>(new int[] { 1, 2, 3 });
+//var numbers = new List<int>(new int[] { 1, 2, 3 });
 
 //var array = new int[] { 1, 2, 3 };
 //var implementedInterfaces = array.GetType().GetInterfaces();
@@ -50,16 +51,48 @@ var numbers = new List<int>(new int[] { 1, 2, 3 });
 //ICollection<int> arrayAsCollection = array;
 //arrayAsCollection.Add(4);
 
-var sortedList = new List<int>
-{
-    1, 3, 4, 5, 6, 11, 12, 14, 16, 18
-};
+//var sortedList = new List<int>
+//{
+//    1, 3, 4, 5, 6, 11, 12, 14, 16, 18
+//};
 
-var indexOf1 = sortedList.FindIndexInSorted(1);
-var indexOf11 = sortedList.FindIndexInSorted(11);
-var indexOf12 = sortedList.FindIndexInSorted(12);
-var indexOf18 = sortedList.FindIndexInSorted(18);
-var indexOf13 = sortedList.FindIndexInSorted(13);
+//var indexOf1 = sortedList.FindIndexInSorted(1);
+//var indexOf11 = sortedList.FindIndexInSorted(11);
+//var indexOf12 = sortedList.FindIndexInSorted(12);
+//var indexOf18 = sortedList.FindIndexInSorted(18);
+//var indexOf13 = sortedList.FindIndexInSorted(13);
+
+var input = Enumerable.Range(0, 100_000_000).ToArray();
+
+Stopwatch stopwatch = Stopwatch.StartNew(); 
+
+// Slowest
+//var list = new List<int>();
+//foreach(var item in input)
+//{
+//    list.Add(item);
+//}
+
+//Fastest 
+//var list = new List<int>(input);
+
+// Faster than slowest and slower than fastest
+var list = new List<int>(input.Length);
+foreach(var item in input)
+{
+    list.Add(item);
+}
+
+stopwatch.Stop();
+Console.WriteLine($"Took: {stopwatch.ElapsedMilliseconds} ms");
+
+list.Clear();
+list.TrimExcess();
+
+list.AddRange(input);
+list.RemoveRange(5, 10);
+list.RemoveAt(7);
+list.Remove(99);
 
 Console.ReadKey();
 
