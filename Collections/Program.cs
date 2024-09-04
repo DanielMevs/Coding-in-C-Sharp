@@ -77,25 +77,44 @@ Stopwatch stopwatch = Stopwatch.StartNew();
 //var list = new List<int>(input);
 
 // Faster than slowest and slower than fastest
-var list = new List<int>(input.Length);
-foreach(var item in input)
-{
-    list.Add(item);
-}
+//var list = new List<int>(input.Length);
+//foreach(var item in input)
+//{
+//    list.Add(item);
+//}
 
-stopwatch.Stop();
-Console.WriteLine($"Took: {stopwatch.ElapsedMilliseconds} ms");
+//stopwatch.Stop();
+//Console.WriteLine($"Took: {stopwatch.ElapsedMilliseconds} ms");
 
-list.Clear();
-list.TrimExcess();
+//list.Clear();
+//list.TrimExcess();
 
-list.AddRange(input);
-list.RemoveRange(5, 10);
-list.RemoveAt(7);
-list.Remove(99);
+//list.AddRange(input);
+//list.RemoveRange(5, 10);
+//list.RemoveAt(7);
+//list.Remove(99);
+
+var hashSet = new HashSet<string>();
+hashSet.Add("aaa");
+hashSet.Add("aaa");
+hashSet.Add("bbb");
+
 
 Console.ReadKey();
 
+public class SpellChecker
+{
+    private readonly HashSet<string> _correctWords = new()
+    {
+        "dog", "cat", "fish"
+    };
+
+    public bool IsCorrect(string word) =>
+        _correctWords.Contains(word);
+
+    public void AddCorrectWord(string word) =>
+        _correctWords.Add(word);
+}
 public static class ListExtensions
 {
     // Binary Search
