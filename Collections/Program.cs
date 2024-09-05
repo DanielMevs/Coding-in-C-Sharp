@@ -94,11 +94,34 @@ Stopwatch stopwatch = Stopwatch.StartNew();
 //list.RemoveAt(7);
 //list.Remove(99);
 
-var hashSet = new HashSet<string>();
-hashSet.Add("aaa");
-hashSet.Add("aaa");
-hashSet.Add("bbb");
+//var hashSet = new HashSet<string>();
+//hashSet.Add("aaa");
+//hashSet.Add("aaa");
+//hashSet.Add("bbb");
+var queue = new Queue<string>();
+queue.Enqueue("a");
+queue.Enqueue("b");
+queue.Enqueue("c");
+queue.Enqueue("d");
 
+var first = queue.Dequeue();
+var second = queue.Peek();
+
+var priorityQueue = new PriorityQueue<string, int>();
+priorityQueue.Enqueue("a", 5);
+priorityQueue.Enqueue("b", 5);
+priorityQueue.Enqueue("c", 2);
+priorityQueue.Enqueue("d", 3);
+
+var firstPriority = priorityQueue.Dequeue();
+
+var stack = new Stack<string>();
+stack.Push("a");
+stack.Push("b");
+stack.Push("c");
+
+var top = stack.Pop();
+var secondToTop = stack.Peek();
 
 Console.ReadKey();
 
