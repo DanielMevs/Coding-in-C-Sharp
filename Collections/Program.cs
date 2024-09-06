@@ -123,7 +123,24 @@ stack.Push("c");
 var top = stack.Pop();
 var secondToTop = stack.Peek();
 
+Console.WriteLine(Calculator.Add(1, 2));
+Console.WriteLine(Calculator.Add(1, 2, 3));
+Console.WriteLine(Calculator.Add(1, 2, 3, 4));
+Console.WriteLine(Calculator.Add());
+//Console.WriteLine(Calculator.Add(new int[] {1, 2}));
+//Console.WriteLine(Calculator.Add(new int[] {1, 2, 3}));
+//Console.WriteLine(Calculator.Add(new int[] {1, 2, 3, 4}));
+
 Console.ReadKey();
+
+public static class Calculator
+{
+    //public static int Add(int a, int b) => a + b;
+    //public static int Add(int a, int b, int c) => a + b + c;
+    //public static int Add(int a, int b, int c, int d) => a + b + c + d;
+    //public static int Add(IEnumerable<int> numbers) => numbers.Sum();
+    public static int Add(params int[] numbers) => numbers.Sum();
+}
 
 public class SpellChecker
 {
