@@ -123,15 +123,54 @@ stack.Push("c");
 var top = stack.Pop();
 var secondToTop = stack.Peek();
 
-Console.WriteLine(Calculator.Add(1, 2));
-Console.WriteLine(Calculator.Add(1, 2, 3));
-Console.WriteLine(Calculator.Add(1, 2, 3, 4));
-Console.WriteLine(Calculator.Add());
+//Console.WriteLine(Calculator.Add(1, 2));
+//Console.WriteLine(Calculator.Add(1, 2, 3));
+//Console.WriteLine(Calculator.Add(1, 2, 3, 4));
+//Console.WriteLine(Calculator.Add());
 //Console.WriteLine(Calculator.Add(new int[] {1, 2}));
 //Console.WriteLine(Calculator.Add(new int[] {1, 2, 3}));
 //Console.WriteLine(Calculator.Add(new int[] {1, 2, 3, 4}));
 
+//var smallSubset = GenerateEvenNumbers()
+//    .Skip(5)
+//    .Take(10);
+
+//foreach(var number in GenerateEvenNumbers())
+//{
+//    if(number == 50)
+//    {
+//        break;
+//    }
+//    Console.WriteLine(number);
+//}
+
+//var firstEvenNumber = GenerateEvenNumbers().First();
+var evenNumbers = GenerateEvenNumbers();
+//foreach(var evenNumber in evenNumbers.Take(3))
+//{
+//    Console.WriteLine($"Number is {evenNumber}");
+//}
+var firstThreeEvenNumbers = evenNumbers.Take(3).ToList();
+foreach(var evenNumber in firstThreeEvenNumbers)
+{
+    Console.WriteLine($"Number is {evenNumber}");
+}
+foreach (var evenNumber in firstThreeEvenNumbers)
+{
+    Console.WriteLine($"Number is {evenNumber}");
+}
+
 Console.ReadKey();
+
+IEnumerable<int> GenerateEvenNumbers()
+{
+    var result = new List<int>();
+    for (int i = 0; i < int.MaxValue; i += 2)
+    {
+        Console.WriteLine($"Yielding {i}");
+        yield return i;
+    }
+}
 
 public static class Calculator
 {
