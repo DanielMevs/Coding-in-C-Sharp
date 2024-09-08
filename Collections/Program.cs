@@ -62,9 +62,9 @@ using System.Diagnostics;
 //var indexOf18 = sortedList.FindIndexInSorted(18);
 //var indexOf13 = sortedList.FindIndexInSorted(13);
 
-var input = Enumerable.Range(0, 100_000_000).ToArray();
+//var input = Enumerable.Range(0, 100_000_000).ToArray();
 
-Stopwatch stopwatch = Stopwatch.StartNew(); 
+//Stopwatch stopwatch = Stopwatch.StartNew(); 
 
 // Slowest
 //var list = new List<int>();
@@ -145,22 +145,83 @@ var secondToTop = stack.Peek();
 //}
 
 //var firstEvenNumber = GenerateEvenNumbers().First();
-var evenNumbers = GenerateEvenNumbers();
+//var evenNumbers = GenerateEvenNumbers();
 //foreach(var evenNumber in evenNumbers.Take(3))
 //{
 //    Console.WriteLine($"Number is {evenNumber}");
 //}
-var firstThreeEvenNumbers = evenNumbers.Take(3).ToList();
-foreach(var evenNumber in firstThreeEvenNumbers)
+//var firstThreeEvenNumbers = evenNumbers.Take(3).ToList();
+//foreach(var evenNumber in firstThreeEvenNumbers)
+//{
+//    Console.WriteLine($"Number is {evenNumber}");
+//}
+//foreach (var evenNumber in firstThreeEvenNumbers)
+//{
+//    Console.WriteLine($"Number is {evenNumber}");
+//}
+
+//foreach(var number in GetSingleDigitNumbers())
+//{
+//    Console.WriteLine(number);
+//}
+
+//var input = new[] { "a", "b", "c", "d" };
+//foreach(var item in input)
+//{
+//    Console.WriteLine(item);
+//}
+
+var numbers = new int[] { 1, 4, 2, -5, 6, -2, 1 };
+foreach(var number in GetBeforeFirstNegative(numbers))
 {
-    Console.WriteLine($"Number is {evenNumber}");
-}
-foreach (var evenNumber in firstThreeEvenNumbers)
-{
-    Console.WriteLine($"Number is {evenNumber}");
+    Console.WriteLine(number);
 }
 
 Console.ReadKey();
+
+IEnumerable<int> GetBeforeFirstNegative(
+    IEnumerable<int> input)
+{
+    foreach(var number in input)
+    {
+        if(number >= 0)
+        {
+            yield return number;
+        }
+        else
+        {
+            yield break;
+        }
+    }
+}
+
+//IEnumerable<T> Distinct<T>(
+//    IEnumerable<T> input)
+//{
+//    var hashSet = new HashSet<T>();
+//    foreach(var item in input)
+//    {
+//        if (!hashSet.Contains(item))
+//        {
+//            hashSet.Add(item);
+//            yield return item;
+//        }
+//    }
+//}
+
+//IEnumerable<int> GetSingleDigitNumbers()
+//{
+//    yield return 0;
+//    yield return 1;
+//    yield return 2;
+//    yield return 4;
+//    yield return 5;
+//    yield return 6;
+//    yield return 7;
+//    yield return 8;
+//    yield return 9;
+    
+//}
 
 IEnumerable<int> GenerateEvenNumbers()
 {
