@@ -7,13 +7,7 @@ using System.Diagnostics;
 //    Console.WriteLine(character);
 //}
 
-//var customCollection = new CustomCollection(
-//    new string[] { "aaa", "bbb", "ccc" });
 
-//foreach(var word in customCollection)
-//{
-//    Console.WriteLine(word);
-//}
 //var words = new string[] { "aaa", "bbb", "ccc" };
 //foreach(var word in words)
 //{
@@ -171,10 +165,18 @@ var secondToTop = stack.Peek();
 //    Console.WriteLine(item);
 //}
 
-var numbers = new int[] { 1, 4, 2, -5, 6, -2, 1 };
-foreach(var number in GetBeforeFirstNegative(numbers))
+//var numbers = new int[] { 1, 4, 2, -5, 6, -2, 1 };
+//foreach(var number in GetBeforeFirstNegative(numbers))
+//{
+//    Console.WriteLine(number);
+//}
+
+var customCollection = new CustomCollection(
+    new string[] { "aaa", "bbb", "ccc" });
+
+foreach (var word in customCollection)
 {
-    Console.WriteLine(number);
+    Console.WriteLine(word);
 }
 
 Console.ReadKey();
@@ -307,7 +309,13 @@ public class CustomCollection : IEnumerable<string>
 
     public IEnumerator<string> GetEnumerator()
     {
-        return new WordsEnumerator(Words);
+        //return new WordsEnumerator(Words);
+        //foreach(var word in Words)
+        //{
+        //    yield return word;
+        //}
+        IEnumerable<string> words = Words;
+        return words.GetEnumerator();
     }
 }
 
