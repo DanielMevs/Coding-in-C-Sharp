@@ -6,7 +6,7 @@
         {
             foreach (var item in input.AsEnumerable().Reverse())
             {
-                if (item != null)
+                if (item is not null)
                 {
                     yield return item;
                 }
