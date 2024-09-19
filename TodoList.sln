@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Methods", "Methods\Methods.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parsing", "Parsing\Parsing.csproj", "{A26B9F8A-8CFF-40AD-9284-CB8D1132951D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Strings", "StringInterpolation\Strings.csproj", "{63871ACB-EAA6-41EE-A48B-5B9898A54139}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchStatement", "SwitchStatement\SwitchStatement.csproj", "{1B03DEB9-8472-440B-A6C9-71C25F27B7A1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhileLoop", "WhileLoop\WhileLoop.csproj", "{E558D0F0-99EF-416B-ABEC-61F94C85CE42}"
@@ -75,9 +73,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntroToApis", "IntroToApis\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsPlanetsStats", "StarWarsPlanetsStats\StarWarsPlanetsStats.csproj", "{4D211E67-3EBC-4400-9B96-2E9FE979AE60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collections", "Collections\Collections.csproj", "{6EB5B1DA-D99B-47BF-9283-5FC1871A2396}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collections", "Collections\Collections.csproj", "{6EB5B1DA-D99B-47BF-9283-5FC1871A2396}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomLinkedList", "CustomLinkedList\CustomLinkedList.csproj", "{5D034DD1-ED9E-4EF4-AB61-529F874DB918}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomLinkedList", "CustomLinkedList\CustomLinkedList.csproj", "{5D034DD1-ED9E-4EF4-AB61-529F874DB918}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringProject", "StringProject\StringProject.csproj", "{B5E8B7E9-8E42-4FA1-9675-D417C7423B9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,10 +113,6 @@ Global
 		{A26B9F8A-8CFF-40AD-9284-CB8D1132951D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A26B9F8A-8CFF-40AD-9284-CB8D1132951D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A26B9F8A-8CFF-40AD-9284-CB8D1132951D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{63871ACB-EAA6-41EE-A48B-5B9898A54139}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63871ACB-EAA6-41EE-A48B-5B9898A54139}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63871ACB-EAA6-41EE-A48B-5B9898A54139}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63871ACB-EAA6-41EE-A48B-5B9898A54139}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1B03DEB9-8472-440B-A6C9-71C25F27B7A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1B03DEB9-8472-440B-A6C9-71C25F27B7A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B03DEB9-8472-440B-A6C9-71C25F27B7A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -237,6 +233,10 @@ Global
 		{5D034DD1-ED9E-4EF4-AB61-529F874DB918}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D034DD1-ED9E-4EF4-AB61-529F874DB918}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D034DD1-ED9E-4EF4-AB61-529F874DB918}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5E8B7E9-8E42-4FA1-9675-D417C7423B9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5E8B7E9-8E42-4FA1-9675-D417C7423B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5E8B7E9-8E42-4FA1-9675-D417C7423B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5E8B7E9-8E42-4FA1-9675-D417C7423B9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
