@@ -1,7 +1,7 @@
 ﻿// Chars
 using System.Diagnostics;
 using System.Text;
-
+using System.Globalization;
 //char letter = 'a';
 //char digit = '4';
 //char symbol = '!';
@@ -84,14 +84,53 @@ using System.Text;
 //Console.WriteLine(
 //    $"Concatenation took {stopwatch.ElapsedMilliseconds} ms");
 
-const int Count = 1000;
-TestCharArraysMemoryConsumption(Count);
-TestStringsMemoryConsumption(Count);
+//const int Count = 1000;
+//TestCharArraysMemoryConsumption(Count);
+//TestStringsMemoryConsumption(Count);
 
-string text1 = "abc";
-string text2 = "abc";
+//string text1 = "abc";
+//string text2 = "abc";
 
-Console.WriteLine(object.ReferenceEquals(text1, text2));
+//Console.WriteLine(object.ReferenceEquals(text1, text2));
+
+var number1 = 100;
+var number2 = 200;
+
+var text = string.Format("Number 1 {0}, number 2 is {1,10:C}",
+    number1, number2);
+
+Console.WriteLine(text);
+
+decimal someDecimal = 1.46m;
+Console.WriteLine(
+    String.Format("Number is {0:C3}", someDecimal));
+Console.WriteLine(
+    String.Format("Number is {0:F1}", someDecimal));
+Console.WriteLine(
+    String.Format("Number is {0:P}", someDecimal));
+
+DateTime someDate = new DateTime(2024, 5, 6, 12, 54, 12);
+Console.WriteLine(
+    $"Date is {someDate:d}");
+Console.WriteLine(
+    $"Date is {someDate:D}");
+Console.WriteLine(
+    String.Format("Date is {0:MM/yyyy}", someDate));
+
+CultureInfo currentCulture = CultureInfo.CurrentCulture;
+Console.WriteLine("en-US culture");
+Console.WriteLine(currentCulture);
+
+var date = new DateTime(2025, 3, 2, 12, 16, 14);
+var number = 1.9m;
+
+Console.WriteLine(date.ToString("d"));
+Console.WriteLine(number);
+
+Console.WriteLine("pl-PL culture");
+CultureInfo.CurrentCulture = new CultureInfo("pl-PL");
+Console.WriteLine(date.ToString("d"));
+Console.WriteLine(number);
 
 
 Console.ReadKey();
