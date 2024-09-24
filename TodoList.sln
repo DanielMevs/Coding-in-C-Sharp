@@ -77,7 +77,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collections", "Collections\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomLinkedList", "CustomLinkedList\CustomLinkedList.csproj", "{5D034DD1-ED9E-4EF4-AB61-529F874DB918}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringsProj", "StringsProj\StringsProj.csproj", "{5F8B58A2-C75C-4DD0-BA76-90F23E43764E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringsProj", "StringsProj\StringsProj.csproj", "{5F8B58A2-C75C-4DD0-BA76-90F23E43764E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketsDataAggregator", "TicketsDataAggregator\TicketsDataAggregator.csproj", "{3C1EF2EC-1B7F-4850-AF20-6B404AD1E9CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -237,6 +239,10 @@ Global
 		{5F8B58A2-C75C-4DD0-BA76-90F23E43764E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F8B58A2-C75C-4DD0-BA76-90F23E43764E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F8B58A2-C75C-4DD0-BA76-90F23E43764E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C1EF2EC-1B7F-4850-AF20-6B404AD1E9CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C1EF2EC-1B7F-4850-AF20-6B404AD1E9CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C1EF2EC-1B7F-4850-AF20-6B404AD1E9CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C1EF2EC-1B7F-4850-AF20-6B404AD1E9CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
