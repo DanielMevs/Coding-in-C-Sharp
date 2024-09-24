@@ -1,7 +1,6 @@
 ﻿// Get the current working directory
 using System.Reflection;
-using UglyToad.PdfPig;
-using UglyToad.PdfPig.Content;
+using TicketsDataAgrregator.TicketsAggregator;
 
 
 string assemblyPath = Assembly.GetExecutingAssembly().Location;
@@ -16,8 +15,10 @@ Console.WriteLine(TicketsFolder);
 try
 {
     var ticketsAggregator = new TicketsAggregator(
-        TicketsFolder);
-    ticketsAggregator.Run();
+        TicketsFolder,
+        new FileWriter(),
+        new DocumentsFromPdfsReader());
+    
 }
 catch (Exception ex)
 {
@@ -27,29 +28,4 @@ catch (Exception ex)
 
 Console.WriteLine("Press any key to close.");
 Console.ReadKey();
-
-public class TicketsAggregator
-{
-    private readonly string _ticketsFolder;
-
-    public TicketsAggregator(string ticketsFolder)
-    {
-        _ticketsFolder = ticketsFolder;
-    }
-
-    public void Run()
-    {
-        foreach (var filePath in Directory.GetFiles(
-            _ticketsFolder, "*.pdf"))
-        {
-            using (PdfDocument document = PdfDocument.Open(filePath))
-            {
-                // Page number starts from 1, not 0.
-                Page page = document.GetPage(1);
-                string text = page.Text;
-            }
-        }
-        
-    }
-}
 
