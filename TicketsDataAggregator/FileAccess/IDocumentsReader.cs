@@ -1,5 +1,4 @@
-﻿// Get the current working directory
-namespace TicketsDataAggregator.FileAccess;
+﻿namespace TicketsDataAggregator.FileAccess;
 
 public interface IDocumentsReader
 {

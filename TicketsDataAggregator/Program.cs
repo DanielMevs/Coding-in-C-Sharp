@@ -1,5 +1,6 @@
 ﻿// Get the current working directory
 using System.Reflection;
+using TicketsDataAggregator.FileAccess;
 using TicketsDataAgrregator.TicketsAggregator;
 
 
@@ -18,7 +19,7 @@ try
         TicketsFolder,
         new FileWriter(),
         new DocumentsFromPdfsReader());
-    
+
 }
 catch (Exception ex)
 {
@@ -28,4 +29,3 @@ catch (Exception ex)
 
 Console.WriteLine("Press any key to close.");
 Console.ReadKey();
-
