@@ -1,19 +1,19 @@
-﻿var twoBillion = 2_000_000_000;
+﻿//var twoBillion = 2_000_000_000;
 
-int sumSoFar = 1_900_000_000;
-int nextTransaction = 1_000_000_000;
+//int sumSoFar = 1_900_000_000;
+//int nextTransaction = 1_000_000_000;
 
-long sumAfterTransaction =
-    (long)sumSoFar + (long)nextTransaction;
+//long sumAfterTransaction =
+//    (long)sumSoFar + (long)nextTransaction;
 
-if (sumSoFar + nextTransaction > twoBillion)
-{
-    Console.WriteLine("Transaction blocked");
-}
-else
-{
-    Console.WriteLine("Transaction executed.");
-}
+//if (sumSoFar + nextTransaction > twoBillion)
+//{
+//    Console.WriteLine("Transaction blocked");
+//}
+//else
+//{
+//    Console.WriteLine("Transaction executed.");
+//}
 
 //checked
 //{
@@ -31,9 +31,18 @@ else
 //        //will not be checked
 //    }
 //}
-SomeMethodWithCheckedContext(twoBillion, twoBillion);
+//SomeMethodWithCheckedContext(twoBillion, twoBillion);
+
+Console.WriteLine(0.3d == (0.2d + 0.1d));
+Console.WriteLine(AreEqual(0.3d, 0.2d + 0.1d, 0.000001d));
+
+Console.WriteLine(0d/0d);
+Console.WriteLine(10d / 0d);
 
 Console.ReadKey();
+
+bool AreEqual(double a, double b, double tolerance) =>
+    Math.Abs(a - b) < tolerance;
 
 void SomeMethodWithCheckedContext(int a, int b)
 {
