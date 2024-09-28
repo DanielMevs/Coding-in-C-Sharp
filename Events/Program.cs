@@ -6,42 +6,60 @@ var emailPriceChangeNotifier = new EmailPriceChangeNotifier(
 var pushPriceChangeNotifier = new PushPriceChangeNotifier(
         threshold);
 
-var goldPriceReader = new GoldPriceReader(
-    emailPriceChangeNotifier,
-    pushPriceChangeNotifier);
+var goldPriceReader = new GoldPriceReader();
+goldPriceReader.AttachObserver(emailPriceChangeNotifier);
+goldPriceReader.AttachObserver(pushPriceChangeNotifier);
 
 for(int i = 0; i < 3; ++i)
 {
     goldPriceReader.ReadCurrentPrice();
 }
 
+Console.WriteLine("Turning push notifications off");
+
+goldPriceReader.DetachObserver(pushPriceChangeNotifier);
+
+for (int i = 0; i < 3; ++i)
+{
+    goldPriceReader.ReadCurrentPrice();
+}
+
 Console.ReadKey();
 
-public class GoldPriceReader
+public class GoldPriceReader : IObservable<decimal>
 {
     private int _currentGoldPrice;
-    private readonly EmailPriceChangeNotifier _emailPriceChangeNotifier;
-    private readonly PushPriceChangeNotifier _pushPriceChangeNotifier;
+    private readonly List<IObserver<decimal>> _observers = new List<IObserver<decimal>>();
 
-    public GoldPriceReader(
-        EmailPriceChangeNotifier emailPriceChangeNotifier,
-        PushPriceChangeNotifier pushPriceChangeNotifier)
-    {
-        _emailPriceChangeNotifier = emailPriceChangeNotifier;
-        _pushPriceChangeNotifier = pushPriceChangeNotifier;
-    }
 
     public void ReadCurrentPrice()
     {
         _currentGoldPrice = new Random().Next(
             20_000,50_000);
 
-        _emailPriceChangeNotifier.Update(_currentGoldPrice);
-        _pushPriceChangeNotifier.Update(_currentGoldPrice);
+        NotifyObservers();
+    }
+
+    public void AttachObserver(IObserver<decimal> observer)
+    {
+        _observers.Add(observer);
+    }
+
+    public void DetachObserver(IObserver<decimal> observer)
+    {
+        _observers.Remove(observer);
+    }
+
+    public void NotifyObservers()
+    {
+        foreach(var observer in _observers)
+        {
+            observer.Update(_currentGoldPrice);
+        }
     }
 }
 
-public class EmailPriceChangeNotifier
+public class EmailPriceChangeNotifier : IObserver<decimal>
 {
     private readonly decimal _notifiationThreashold;
 
@@ -63,7 +81,7 @@ public class EmailPriceChangeNotifier
     }
 }
 
-public class PushPriceChangeNotifier
+public class PushPriceChangeNotifier : IObserver<decimal>
 {
     private readonly decimal _notificationThreashold;
 
@@ -82,4 +100,16 @@ public class PushPriceChangeNotifier
                 $"and is now {price}\n");
         }
     }
+}
+
+public interface IObserver<TData>
+{
+    void Update(TData data);
+}
+
+public interface IObservable<TData>
+{
+    void AttachObserver(IObserver<TData> observer);
+    void DetachObserver(IObserver<TData> observer);
+    void NotifyObservers();
 }
