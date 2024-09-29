@@ -1,4 +1,6 @@
-﻿const int threshold = 30_000;
+﻿using System.Runtime.Intrinsics.Arm;
+
+const int threshold = 30_000;
 
 var emailPriceChangeNotifier = new EmailPriceChangeNotifier(
         threshold);
@@ -7,56 +9,52 @@ var pushPriceChangeNotifier = new PushPriceChangeNotifier(
         threshold);
 
 var goldPriceReader = new GoldPriceReader();
-goldPriceReader.AttachObserver(emailPriceChangeNotifier);
-goldPriceReader.AttachObserver(pushPriceChangeNotifier);
+//goldPriceReader.AttachObserver(emailPriceChangeNotifier);
+//goldPriceReader.AttachObserver(pushPriceChangeNotifier);
 
-for(int i = 0; i < 3; ++i)
-{
-    goldPriceReader.ReadCurrentPrice();
-}
+//for(int i = 0; i < 3; ++i)
+//{
+//    goldPriceReader.ReadCurrentPrice();
+//}
 
-Console.WriteLine("Turning push notifications off");
+//Console.WriteLine("Turning push notifications off");
 
-goldPriceReader.DetachObserver(pushPriceChangeNotifier);
-
+//goldPriceReader.DetachObserver(pushPriceChangeNotifier);
+goldPriceReader.PriceRead += emailPriceChangeNotifier.Update;
+goldPriceReader.PriceRead += pushPriceChangeNotifier.Update;
 for (int i = 0; i < 3; ++i)
 {
     goldPriceReader.ReadCurrentPrice();
 }
 
+SomeMethod methods = Test1;
+//SomeMethod methods2 = Test2;
+methods += Test3;
+methods -= Test3;
+
+methods(10, 2);
+
 Console.ReadKey();
 
-public class GoldPriceReader : IObservable<decimal>
+void Test1(int number1, int number2) { }
+void Test2(int a, int b, int c) { }
+void Test3(int number1, int number2) { }
+
+public delegate void PriceRead(decimal price);
+
+public class GoldPriceReader 
 {
+    public event PriceRead? PriceRead;
     private int _currentGoldPrice;
-    private readonly List<IObserver<decimal>> _observers = new List<IObserver<decimal>>();
-
-
+    
     public void ReadCurrentPrice()
     {
         _currentGoldPrice = new Random().Next(
             20_000,50_000);
 
-        NotifyObservers();
     }
 
-    public void AttachObserver(IObserver<decimal> observer)
-    {
-        _observers.Add(observer);
-    }
-
-    public void DetachObserver(IObserver<decimal> observer)
-    {
-        _observers.Remove(observer);
-    }
-
-    public void NotifyObservers()
-    {
-        foreach(var observer in _observers)
-        {
-            observer.Update(_currentGoldPrice);
-        }
-    }
+   
 }
 
 public class EmailPriceChangeNotifier : IObserver<decimal>
@@ -113,3 +111,6 @@ public interface IObservable<TData>
     void DetachObserver(IObserver<TData> observer);
     void NotifyObservers();
 }
+
+
+public delegate void SomeMethod(int a, int b);
