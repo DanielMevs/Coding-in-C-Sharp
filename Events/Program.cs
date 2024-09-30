@@ -42,22 +42,39 @@ void Test3(int number1, int number2) { }
 
 public delegate void PriceRead(decimal price);
 
+public class PriceReadEventArgs : EventArgs
+{
+    public decimal Price { get; }
+    public PriceReadEventArgs(decimal price)
+    {
+        Price = price;
+    }
+}
+
 public class GoldPriceReader 
 {
-    public event PriceRead? PriceRead;
-    private int _currentGoldPrice;
-    
+    public event EventHandler<PriceReadEventArgs>? PriceRead;
+        
     public void ReadCurrentPrice()
     {
-        _currentGoldPrice = new Random().Next(
+        var currentGoldPrice = new Random().Next(
             20_000,50_000);
 
+        OnPriceRead(currentGoldPrice);
+
+    }
+
+    private void OnPriceRead(decimal price)
+    {
+        PriceRead?.Invoke(
+            this,
+            new PriceReadEventArgs(price));
     }
 
    
 }
 
-public class EmailPriceChangeNotifier : IObserver<decimal>
+public class EmailPriceChangeNotifier
 {
     private readonly decimal _notifiationThreashold;
 
@@ -66,20 +83,21 @@ public class EmailPriceChangeNotifier : IObserver<decimal>
     {
         _notifiationThreashold = notifiationThreashold;
     }
-    public void Update(decimal price)
+    public void Update(
+        object? sender, PriceReadEventArgs eventArgs)
     {
-        if(price > _notifiationThreashold)
+        if(eventArgs.Price > _notifiationThreashold)
         {
             //imagine this is actually sending an email
             Console.WriteLine(
                 $"Sending an email saying that " +
                 $"the gold price exceed {_notifiationThreashold}" +
-                $"and is now {price}\n");
+                $"and is now {eventArgs.Price}\n");
         }
     }
 }
 
-public class PushPriceChangeNotifier : IObserver<decimal>
+public class PushPriceChangeNotifier
 {
     private readonly decimal _notificationThreashold;
 
@@ -88,14 +106,15 @@ public class PushPriceChangeNotifier : IObserver<decimal>
         _notificationThreashold = notificationThreashold;
     }
 
-    public void Update(decimal price)
+    public void Update(
+        object? sender, PriceReadEventArgs eventArgs)
     {
-        if(price > _notificationThreashold)
+        if(eventArgs.Price > _notificationThreashold)
         {
             Console.WriteLine(
                 $"Sending a push notification saying that " +
                 $"the gold price exceeded {_notificationThreashold}" +
-                $"and is now {price}\n");
+                $"and is now {eventArgs.Price}\n");
         }
     }
 }
