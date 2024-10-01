@@ -81,9 +81,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringsProj", "StringsProj\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketsDataAggregator", "TicketsDataAggregator\TicketsDataAggregator.csproj", "{3C1EF2EC-1B7F-4850-AF20-6B404AD1E9CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumericTypes", "NumericTypes\NumericTypes.csproj", "{48643520-8542-45A5-B3E9-ED196BDF874C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumericTypes", "NumericTypes\NumericTypes.csproj", "{48643520-8542-45A5-B3E9-ED196BDF874C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events", "Events\Events.csproj", "{46FE09DB-3E19-46B0-B382-621DD3CBB32A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Events", "Events\Events.csproj", "{46FE09DB-3E19-46B0-B382-621DD3CBB32A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWinFormApp", "MyWinFormApp\MyWinFormApp.csproj", "{C7E8440C-E84B-4C5E-B6A4-415857D00DF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -255,6 +257,10 @@ Global
 		{46FE09DB-3E19-46B0-B382-621DD3CBB32A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46FE09DB-3E19-46B0-B382-621DD3CBB32A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46FE09DB-3E19-46B0-B382-621DD3CBB32A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7E8440C-E84B-4C5E-B6A4-415857D00DF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7E8440C-E84B-4C5E-B6A4-415857D00DF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7E8440C-E84B-4C5E-B6A4-415857D00DF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7E8440C-E84B-4C5E-B6A4-415857D00DF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

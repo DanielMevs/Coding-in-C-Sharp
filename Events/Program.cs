@@ -1,38 +1,35 @@
-﻿using System.Runtime.Intrinsics.Arm;
-
-const int threshold = 30_000;
-
-var emailPriceChangeNotifier = new EmailPriceChangeNotifier(
-        threshold);
-
-var pushPriceChangeNotifier = new PushPriceChangeNotifier(
-        threshold);
-
+﻿const int threshold = 30_000;
 var goldPriceReader = new GoldPriceReader();
-//goldPriceReader.AttachObserver(emailPriceChangeNotifier);
-//goldPriceReader.AttachObserver(pushPriceChangeNotifier);
 
-//for(int i = 0; i < 3; ++i)
-//{
-//    goldPriceReader.ReadCurrentPrice();
-//}
-
-//Console.WriteLine("Turning push notifications off");
-
-//goldPriceReader.DetachObserver(pushPriceChangeNotifier);
-goldPriceReader.PriceRead += emailPriceChangeNotifier.Update;
-goldPriceReader.PriceRead += pushPriceChangeNotifier.Update;
-for (int i = 0; i < 3; ++i)
+bool areNotificationsEnabled = true;
+if(areNotificationsEnabled)
 {
-    goldPriceReader.ReadCurrentPrice();
+    var emailPriceChangeNotifier = new EmailPriceChangeNotifier(
+        threshold);
+
+    var pushPriceChangeNotifier = new PushPriceChangeNotifier(
+            threshold);
+
+
+
+    goldPriceReader.PriceRead += emailPriceChangeNotifier.Update;
+    goldPriceReader.PriceRead += pushPriceChangeNotifier.Update;
+    for (int i = 0; i < 3; ++i)
+    {
+        goldPriceReader.ReadCurrentPrice();
+    }
+
+    goldPriceReader.PriceRead -= emailPriceChangeNotifier.Update;
+    goldPriceReader.PriceRead -= pushPriceChangeNotifier.Update;
 }
 
-SomeMethod methods = Test1;
-//SomeMethod methods2 = Test2;
-methods += Test3;
-methods -= Test3;
 
-methods(10, 2);
+//SomeMethod methods = Test1;
+//SomeMethod methods2 = Test2;
+//methods += Test3;
+//methods -= Test3;
+
+//methods(10, 2);
 
 Console.ReadKey();
 
