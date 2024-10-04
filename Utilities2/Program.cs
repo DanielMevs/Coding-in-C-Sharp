@@ -1,4 +1,4 @@
-﻿using Utilities;
+﻿using Utilities2;
 
 var input = new int[] { 1, 2, 5, 4, 7, 8 };
 var result = input.SumOfEvenNumbers();

@@ -1,4 +1,4 @@
-﻿namespace Utilities;
+﻿namespace Utilities2;
 
 public static class EnumerableExtensions
 {
@@ -6,12 +6,12 @@ public static class EnumerableExtensions
         this IEnumerable<int> numbers)
     {
         int sum = 0;
-        foreach(var number in numbers)
+        foreach (var number in numbers)
         {
             if (number % 2 == 0)
             {
                 sum += number;
-            }      
+            }
         }
         return sum;
     }
