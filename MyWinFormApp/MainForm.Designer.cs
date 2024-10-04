@@ -30,6 +30,8 @@
         {
             IncreaseCounterButton = new Button();
             CounterLabel = new Label();
+            HideButtonCheckbox = new CheckBox();
+            YearOfBirthTextBox = new TextBox();
             SuspendLayout();
             // 
             // IncreaseCounterButton
@@ -53,11 +55,34 @@
             CounterLabel.TabIndex = 1;
             CounterLabel.Text = "0";
             // 
+            // HideButtonCheckbox
+            // 
+            HideButtonCheckbox.AutoSize = true;
+            HideButtonCheckbox.Font = new Font("Segoe UI", 20F);
+            HideButtonCheckbox.Location = new Point(79, 211);
+            HideButtonCheckbox.Name = "HideButtonCheckbox";
+            HideButtonCheckbox.Size = new Size(264, 58);
+            HideButtonCheckbox.TabIndex = 2;
+            HideButtonCheckbox.Text = "Hide button";
+            HideButtonCheckbox.UseVisualStyleBackColor = true;
+            HideButtonCheckbox.CheckedChanged += HideButtonCheckbox_CheckedChanged;
+            // 
+            // YearOfBirthTextBox
+            // 
+            YearOfBirthTextBox.Font = new Font("Segoe UI", 20F);
+            YearOfBirthTextBox.Location = new Point(98, 323);
+            YearOfBirthTextBox.Name = "YearOfBirthTextBox";
+            YearOfBirthTextBox.Size = new Size(232, 61);
+            YearOfBirthTextBox.TabIndex = 3;
+            YearOfBirthTextBox.KeyPress += YearOfBirthTextBox_KeyPress;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(YearOfBirthTextBox);
+            Controls.Add(HideButtonCheckbox);
             Controls.Add(CounterLabel);
             Controls.Add(IncreaseCounterButton);
             Name = "MainForm";
@@ -70,5 +95,7 @@
 
         private Button IncreaseCounterButton;
         private Label CounterLabel;
+        private CheckBox HideButtonCheckbox;
+        private TextBox YearOfBirthTextBox;
     }
 }

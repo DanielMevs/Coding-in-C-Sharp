@@ -15,7 +15,7 @@ public class Recipe
     {
         var steps = Ingredients
             .Select(ingredient =>
-                $"{ingredient.Name}. {ingredient.PreparationInstructions}")
+                $"{ingredient.Name}. {ingredient.PreparationInstructions}");
 
         return string.Join(Environment.NewLine, steps);
     }
