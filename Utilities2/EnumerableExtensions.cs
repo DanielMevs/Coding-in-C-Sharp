@@ -5,14 +5,8 @@ public static class EnumerableExtensions
     public static int SumOfEvenNumbers(
         this IEnumerable<int> numbers)
     {
-        int sum = 0;
-        foreach (var number in numbers)
-        {
-            if (number % 2 == 0)
-            {
-                sum += number;
-            }
-        }
-        return sum;
+        return numbers.Where(IsEven).Sum();
     }
+
+    private static bool IsEven(int number) => number % 2 == 0;
 }
