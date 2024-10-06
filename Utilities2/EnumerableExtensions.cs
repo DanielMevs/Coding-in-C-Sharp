@@ -1,6 +1,10 @@
-﻿namespace Utilities2;
+﻿using System.Runtime.CompilerServices;
 
-public static class EnumerableExtensions
+[assembly:InternalsVisibleTo("Utilities2Tests")]
+
+namespace Utilities2;
+
+internal static class EnumerableExtensions
 {
     public static int SumOfEvenNumbers(
         this IEnumerable<int> numbers)
