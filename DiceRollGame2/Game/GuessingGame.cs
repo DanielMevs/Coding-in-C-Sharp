@@ -1,45 +1,49 @@
 ﻿using DiceRollGameFinal.UserCommunication;
-
 namespace DiceRollGameFinal.Game
 {
-
-    class GuessingGame
+    public class GuessingGame
     {
-        private readonly Dice _dice;
+
+        private readonly IDice _dice;
+        private readonly IUserCommunication _userCommunication;
         private const int InitialTries = 3;
 
-        public GuessingGame(Dice dice)
+        public GuessingGame(
+        IDice dice,
+        IUserCommunication userCommunication)
         {
             _dice = dice;
+            _userCommunication = userCommunication;
         }
 
         public GameResult Play()
         {
             var diceRollResult = _dice.Roll();
-            Console.WriteLine(
+            _userCommunication.ShowMessage(
                 $"Dice rolled. Guess what number it shows in {InitialTries} tries");
 
             var triesLeft = InitialTries;
             while (triesLeft > 0)
             {
-                var guess = ConsoleReader.ReadInteger("Enter a number:");
+                var guess = _userCommunication.ReadInteger("Enter a number:");
                 if (guess == diceRollResult)
                 {
                     return GameResult.Victory;
                 }
-                Console.WriteLine("Wrong number.");
+                _userCommunication.ShowMessage("Wrong number.");
                 --triesLeft;
             }
             return GameResult.Loss;
         }
 
-        public static void PrintResult(GameResult gameResult)
+        public void PrintResult(GameResult gameResult)
         {
             string message = gameResult == GameResult.Victory
                 ? "You win!"
                 : "You lose :(";
 
-            Console.WriteLine(message);
+            _userCommunication.ShowMessage(message);
         }
     }
 }
+

@@ -14,4 +14,9 @@ public class PersonalDataReader
         Person person = _databaseConnection.GetById(id);
         return $"(Id: {person.Id}) {person.FirstName} {person.LastName}";
     }
+
+    public void Save(Person person)
+    {
+        _databaseConnection.Write(person.Id, person);
+    }
 }
