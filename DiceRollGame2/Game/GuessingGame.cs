@@ -7,6 +7,7 @@ namespace DiceRollGameFinal.Game
         private readonly IDice _dice;
         private readonly IUserCommunication _userCommunication;
         private const int InitialTries = 3;
+        public const string WrongNumberMessage = "Wrong number!";
 
         public GuessingGame(
         IDice dice,
@@ -20,17 +21,18 @@ namespace DiceRollGameFinal.Game
         {
             var diceRollResult = _dice.Roll();
             _userCommunication.ShowMessage(
-                $"Dice rolled. Guess what number it shows in {InitialTries} tries");
+                string.Format(Resource.DiceRolledMessage, InitialTries));
 
             var triesLeft = InitialTries;
             while (triesLeft > 0)
             {
-                var guess = _userCommunication.ReadInteger("Enter a number:");
+                var guess = _userCommunication.ReadInteger(
+                    Resource.EnterNumberMessage);
                 if (guess == diceRollResult)
                 {
                     return GameResult.Victory;
                 }
-                _userCommunication.ShowMessage("Wrong number.");
+                _userCommunication.ShowMessage(WrongNumberMessage);
                 --triesLeft;
             }
             return GameResult.Loss;

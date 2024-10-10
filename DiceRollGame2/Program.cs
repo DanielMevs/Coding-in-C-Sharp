@@ -1,11 +1,13 @@
 ﻿using DiceRollGameFinal.Game;
+using DiceRollGameFinal.UserCommunication;
 
 var random = new Random();
 var dice = new Dice(random);
-var guessingGame = new GuessingGame(dice);
+var userCommunication = new ConsoleUserCommunication();
+var guessingGame = new GuessingGame(dice, userCommunication);
 
 GameResult gameResult = guessingGame.Play();
-GuessingGame.PrintResult(gameResult);
+guessingGame.PrintResult(gameResult);
 
 
 
