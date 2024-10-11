@@ -97,7 +97,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FibonacciGenerator", "Fibon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FibonacciGeneratorTests", "FibonacciGeneratorTests\FibonacciGeneratorTests.csproj", "{7A16AC20-7E4B-41CF-A204-AED89542818B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceRollGameFinalTests", "DiceRollGameFinalTests\DiceRollGameFinalTests.csproj", "{A78724BD-0BCB-4F7E-A5FD-382F7776C252}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceRollGameFinalTests", "DiceRollGameFinalTests\DiceRollGameFinalTests.csproj", "{A78724BD-0BCB-4F7E-A5FD-382F7776C252}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCode", "CleanCode\CleanCode.csproj", "{D48B6EA3-7B81-4697-A93B-AFC2740E7153}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -297,6 +299,10 @@ Global
 		{A78724BD-0BCB-4F7E-A5FD-382F7776C252}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A78724BD-0BCB-4F7E-A5FD-382F7776C252}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A78724BD-0BCB-4F7E-A5FD-382F7776C252}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D48B6EA3-7B81-4697-A93B-AFC2740E7153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D48B6EA3-7B81-4697-A93B-AFC2740E7153}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D48B6EA3-7B81-4697-A93B-AFC2740E7153}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D48B6EA3-7B81-4697-A93B-AFC2740E7153}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
