@@ -1,6 +1,6 @@
 ﻿namespace CleanCode.Exercises
 {
-    public class ReverseStringRefactorExercise
+    public class ReverseStringRefactor
     {
         public static string Reverse_Refactored(string input)
         {
