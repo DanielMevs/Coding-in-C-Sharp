@@ -103,6 +103,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanCode", "CleanCode\Clea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordGeneratorRefactoring", "PasswordGeneratorRefactoring\PasswordGeneratorRefactoring.csproj", "{3423772A-AEF1-41B3-9B17-6C0BEE232957}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsynchronyAndMultithreading", "AsynchronyAndMultithreading\AsynchronyAndMultithreading.csproj", "{53505499-44E1-439B-B976-5F034478C7B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -309,6 +311,10 @@ Global
 		{3423772A-AEF1-41B3-9B17-6C0BEE232957}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3423772A-AEF1-41B3-9B17-6C0BEE232957}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3423772A-AEF1-41B3-9B17-6C0BEE232957}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53505499-44E1-439B-B976-5F034478C7B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53505499-44E1-439B-B976-5F034478C7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53505499-44E1-439B-B976-5F034478C7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53505499-44E1-439B-B976-5F034478C7B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
