@@ -48,31 +48,100 @@
 //        Thread.Sleep(500);
 //        Console.WriteLine("The second continuation.");
 //    });
+//var tasks = new[]
+//{
+//    Task.Run(() => CalculateLength("Hello there")),
+//    Task.Run(() => CalculateLength("hi")),
+//    Task.Run(() => CalculateLength("hola")),
+//};
+
+//var continuationTask = Task.Factory.ContinueWhenAll(
+//    tasks,
+//    completedTasks => Console.WriteLine(
+//        string.Join(", ", completedTasks.Select(task => task.Result))));
+
+//string userInput;
+//do
+//{
+//    Console.WriteLine("Enter a command:");
+//    userInput = Console.ReadLine();
+//} while (userInput != "exit");
+//var cancellationTokenSource = new CancellationTokenSource();
+//var task = Task.Run(
+//    () => NeverendingMethod(cancellationTokenSource.Token),
+//    cancellationTokenSource.Token);
+
+//string userInput;
+//do
+//{
+//    userInput = Console.ReadLine();
+//} while (userInput != "cancel");
+
+//cancellationTokenSource.Cancel();
 
 
 Console.WriteLine("Main thread's ID: " + Thread.CurrentThread.ManagedThreadId);
 
-var tasks = new[]
-{
-    Task.Run(() => CalculateLength("Hello there")),
-    Task.Run(() => CalculateLength("hi")),
-    Task.Run(() => CalculateLength("hola")),
-};
 
-var continuationTask = Task.Factory.ContinueWhenAll(
-    tasks,
-    completedTasks => Console.WriteLine(
-        string.Join(", ", completedTasks.Select(task => task.Result))));
+var task = Task.Run(() => Divide(2, 0))
+    .ContinueWith(
+    faultedTask =>
+    {
+        faultedTask.Exception.Handle(ex =>
+        {
+            Console.WriteLine("Division task finsihed");
+            if (ex is ArgumentNullException)
+            {
+                Console.WriteLine("Arguments can't be null");
+                return true;
+            }
+            if (ex is DivideByZeroException)
+            {
+                Console.WriteLine("Can't divide by zero.");
+                return true;
+            }
+            Console.WriteLine("Unexpected exception type.");
+            return false;
+        });
+    },
+    TaskContinuationOptions.OnlyOnFaulted);
+        
 
-string userInput;
-do
-{
-    Console.WriteLine("Enter a command:");
-    userInput = Console.ReadLine();
-} while (userInput != "exit");
 
+
+Thread.Sleep(1000);
 Console.WriteLine("Program is finished.");
 Console.ReadKey();
+
+static float Divide(int? a, int? b)
+{
+    if (a is null || b is null)
+    {
+        throw new ArgumentNullException("Arguments cannot be null.");
+    }
+    if (b == 0)
+    {
+        throw new DivideByZeroException("Division by zero is not allowed.");
+    }
+    return a.Value / (float)b.Value;
+}
+
+static void MethodThrowingException()
+{
+    Console.WriteLine("Inside MethodThrowingException");
+    throw new Exception("Some error message");
+}
+
+static void NeverendingMethod(CancellationToken cancellationToken)
+{
+    while (true)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        Console.WriteLine("Working...");
+        Thread.Sleep(1500);
+    }
+}
+
 
 static int CalculateLength(string input)
 {
