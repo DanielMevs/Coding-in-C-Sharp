@@ -144,26 +144,48 @@
 //Print(result);
 //Console.WriteLine("The process is finished.");
 ////////////////////////////////////////////////////
-//var task = Task.Run(() => CalculateLength("Hello"))
-//    .ContinueWith(completedTask => Print(completedTask.Result))
-//    .ContinueWith(previousContinuation =>
-//        Console.WriteLine("The process is finished."));
 
-//string userInput;
-//do
-//{
-//    userInput = Console.ReadLine();
-//} while (userInput != "stop");
-
-//Console.WriteLine("Program is finished.");
 ////////////////////////////////////////////////
-Console.WriteLine("Main thread's ID: " + Thread.CurrentThread.ManagedThreadId);
-var task = RunHeavyProcess();
+//Console.WriteLine("Main thread's ID: " + Thread.CurrentThread.ManagedThreadId);
+//var task = RunHeavyProcess();
 
-Console.WriteLine("Doing other work");
-Console.WriteLine("Doing even more work");
+//Console.WriteLine("Doing other work");
+//Console.WriteLine("Doing even more work");
+////////////////////////////////////////
+///
+var task = Process("Hello");
 
+string userInput;
+do
+{
+    userInput = Console.ReadLine();
+} while (userInput != "stop");
+
+Console.WriteLine("Program is finished.");
 Console.ReadKey();
+
+static async Task Process(string input)
+{
+    var length = await CalculateLengthAsync(input);
+    await PrintAsync(length);
+    Console.WriteLine("The process is finished.");
+}
+
+static async Task PrintAsync(int result)
+{
+    Console.WriteLine("Starting the Print method");
+    await Task.Delay(2000);
+    Console.WriteLine($"The result is {result}");
+}
+
+
+static async Task<int> CalculateLengthAsync(string input)
+{
+    //Console.WriteLine("CalculateLength thread's ID: " + Thread.CurrentThread.ManagedThreadId);
+    Console.WriteLine("Starting the CalculateLength method");
+    await Task.Delay(4000);
+    return input.Length;
+}
 
 static async Task RunHeavyProcess()
 {
@@ -177,6 +199,7 @@ static async Task<string> HeavyCalculation()
     Console.WriteLine("HeavyCalculation thread's ID: " + Thread.CurrentThread.ManagedThreadId);
     Console.WriteLine("Starting heavy calculation");
     await Task.Delay(2000);
+    Console.WriteLine("HeavyCalculation thread's ID: " + Thread.CurrentThread.ManagedThreadId);
     return "Done!";
 }
 
@@ -218,6 +241,7 @@ static int CalculateLength(string input)
     return input.Length;
 }
 
+
 static void Print(int result)
 {
     Console.WriteLine("Starting the Print method");
@@ -247,6 +271,7 @@ static void PrintMinuses(int n)
     }
 }
 
+
 class Counter
 {
     private object _valueLock = new object();
@@ -266,3 +291,4 @@ class Counter
         }
     }
 }
+
