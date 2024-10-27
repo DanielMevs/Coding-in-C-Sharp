@@ -152,23 +152,62 @@
 //Console.WriteLine("Doing other work");
 //Console.WriteLine("Doing even more work");
 ////////////////////////////////////////
-///
-var task = Process("Hello");
+//await Process("Hello");
 
-string userInput;
-do
+//string userInput;
+//do
+//{
+//    Console.WriteLine("Enter a command:");
+//    userInput = Console.ReadLine();
+//} while (userInput != "stop");
+
+//Console.WriteLine("Program is finished.");
+//////////////////////////
+
+
+using System.Text.Json;
+
+try
 {
-    userInput = Console.ReadLine();
-} while (userInput != "stop");
+    var quote = await GetQuote();
+}
+catch(Exception ex)
+{
+    Console.WriteLine($"Exception thrown: {ex.Message}");
+}
+
 
 Console.WriteLine("Program is finished.");
 Console.ReadKey();
 
+async Task<Quote> GetQuote()
+{
+    using var httpClient = new HttpClient();
+    var endpoint = $"https://favqs.com/api/qotd";
+
+    HttpResponseMessage response = await httpClient.GetAsync(endpoint);
+    response.EnsureSuccessStatusCode();
+    string json = await response.Content.ReadAsStringAsync();
+    var root = JsonSerializer.Deserialize<Root>(json);
+
+    return root.quote;
+}
+
+
+
 static async Task Process(string input)
 {
-    var length = await CalculateLengthAsync(input);
-    await PrintAsync(length);
-    Console.WriteLine("The process is finished.");
+    try
+    {
+        var length = await CalculateLengthAsync(input);
+        await PrintAsync(length);
+        Console.WriteLine("The process is finished.");
+    }
+    catch(NullReferenceException ex)
+    {
+        Console.WriteLine("The input can't be null.");
+    }
+    
 }
 
 static async Task PrintAsync(int result)
@@ -237,7 +276,7 @@ static int CalculateLength(string input)
 {
     //Console.WriteLine("CalculateLength thread's ID: " + Thread.CurrentThread.ManagedThreadId);
     Console.WriteLine("Starting the CalculateLength method");
-    Thread.Sleep(4000);
+    Thread.Sleep(2000);
     return input.Length;
 }
 
@@ -291,4 +330,23 @@ class Counter
         }
     }
 }
+
+public record Quote(
+int id,
+bool dialogue,
+bool @private,
+IReadOnlyList<string> tags,
+string url,
+int favorites_count,
+int upvotes_count,
+int downvotes_count,
+string author,
+string author_permalink,
+string body
+);
+
+public record Root(
+DateTime qotd_date,
+Quote quote
+);
 

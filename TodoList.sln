@@ -105,6 +105,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordGeneratorRefactorin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsynchronyAndMultithreading", "AsynchronyAndMultithreading\AsynchronyAndMultithreading.csproj", "{53505499-44E1-439B-B976-5F034478C7B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuoteFinder", "QuoteFinder\QuoteFinder.csproj", "{44976F3F-1663-48D3-A0F0-F7E1368FB7EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -315,6 +317,10 @@ Global
 		{53505499-44E1-439B-B976-5F034478C7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53505499-44E1-439B-B976-5F034478C7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53505499-44E1-439B-B976-5F034478C7B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44976F3F-1663-48D3-A0F0-F7E1368FB7EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44976F3F-1663-48D3-A0F0-F7E1368FB7EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44976F3F-1663-48D3-A0F0-F7E1368FB7EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44976F3F-1663-48D3-A0F0-F7E1368FB7EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
